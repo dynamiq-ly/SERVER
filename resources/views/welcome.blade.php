@@ -30,17 +30,17 @@
             width: 1000px;
             display: grid;
             margin: 0 auto;
-            padding-top: 10%;
+            padding-top: 8%;
             align-items: center;
             grid-template-columns: auto auto;
         }
 
         .column-1 {
-            width: 30rem;
+            width: 40rem;
             display: flex;
             grid-gap: 24px;
             padding: 0rem 1rem;
-            padding-bottom: 10%;
+            padding-bottom: 17%;
             flex-direction: column;
             align-items: flex-start;
             justify-content: flex-start;
@@ -56,6 +56,7 @@
         .column-1>p {
             color: #4b5563;
             font-size: 1rem;
+            margin-bottom: 1rem;
         }
 
         .column-2 {
@@ -74,8 +75,8 @@
     <section class="section">
         <div class="column-1">
             <h1 class="heading">smarhotel makes your stay simply brilliant.</h1>
-            <p>smarhotel is a crossplatform hotel management system. that will help you bring you the best experience of hotel management. from managing rooms and guests to booking and managing reservations.</p>
-            <button type="button" class="border capitalize border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">
+            <p>Smarhotel is a crossplatform hotel management system. that will help you bring you the best experience of hotel management. from managing rooms and guests to booking and managing reservations.</p>
+            <button type="button" style="font-weight:500;" class="border capitalize border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">
                 discover our api
             </button>
         </div>
