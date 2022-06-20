@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('safety_measures', function (Blueprint $table) {
             $table->id();
             $table->string('measure_name')->unique();
+            $table->string('measure_icon')->default('ri-error-warning-line');
             $table->text('measure_content');
             $table->timestamps();
         });

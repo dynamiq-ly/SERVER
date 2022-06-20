@@ -15,6 +15,7 @@ class SafetyMeasures extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'measure_icon',
         'measure_name',
         'measure_content',
     ];
