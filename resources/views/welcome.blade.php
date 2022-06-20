@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- application name -->
-    <title>Smarhotel Api</title>
+    <title>Smarhotel</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- tailwind -->
@@ -76,9 +76,9 @@
         <div class="column-1">
             <h1 class="heading">smarhotel makes your stay simply brilliant.</h1>
             <p>Smarhotel is a crossplatform hotel management system. that will help you bring you the best experience of hotel management. from managing rooms and guests to booking and managing reservations.</p>
-            <button type="button" style="font-weight:500;" class="border capitalize border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">
+            <a href="/docs" type="button" style="font-weight:500;" class="border capitalize border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">
                 discover our api
-            </button>
+            </a>
         </div>
         <div class="column-2">
             <img src="https://nine4-2.vercel.app/images/iPhone-12-Mockup.png" alt="iphone mockup">
