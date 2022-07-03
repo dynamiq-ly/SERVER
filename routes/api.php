@@ -2,7 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Api\SafetyMeasuresController;
+use App\Http\Controllers\Api\ReminderCallController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +29,12 @@ Route::post('/measures', [SafetyMeasuresController::class, 'store']);
 Route::get('/measures/{_uid}', [SafetyMeasuresController::class, 'show']);
 Route::patch('/measures/{_uid}', [SafetyMeasuresController::class, 'update']);
 Route::delete('/measures/{_uid}', [SafetyMeasuresController::class, 'destroy']);
+
+/**
+ * reminder call api
+ */
+Route::get('/reception/reminder', [ReminderCallController::class, 'index']);
+Route::post('/reception/reminder', [ReminderCallController::class, 'store']);
+Route::get('/reception/reminder/{_uid}', [ReminderCallController::class, 'show']);
+Route::patch('/reception/reminder/{_uid}', [ReminderCallController::class, 'update']);
+Route::delete('/reception/reminder/{_uid}', [ReminderCallController::class, 'destroy']);
