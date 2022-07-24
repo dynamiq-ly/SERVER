@@ -62,6 +62,10 @@ class ActivitiesController extends Controller
                 'activity_name' => $request->activity_name,
                 'activity_image' => $request->file('activity_image')->hashName(),
             ]);
+        } else {
+            return Activities::find($id)->update([
+                'activity_name' => $request->activity_name,
+            ]);
         }
     }
 
