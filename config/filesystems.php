@@ -57,8 +57,7 @@ return [
         ],
         'azure' => [
             'driver' => 'azure',
-            'account_name' => env('AZURE_ACCOUNT_NAME'),
-            'api_key' => env('AZURE_API_KEY'),
+            'sasToekn' => env('AZURE_SAS_TOEKN'),
             'container' => env('AZURE_CONTAINER'),
             'url' => env('AZURE_URL'),
             'throw' => false,
