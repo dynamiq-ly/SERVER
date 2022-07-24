@@ -56,7 +56,13 @@ class ActivitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return Activities::find($id)->update($request->all());
+        if ($request->hasFile('activity_image')) {
+            $request->file('activity_image')->store('public/excursions/thumbnails');
+            return Activities::find($id)->update([
+                'activity_name' => $request->activity_name,
+                'activity_image' => $request->file('activity_image')->hashName(),
+            ]);
+        }
     }
 
     /**
