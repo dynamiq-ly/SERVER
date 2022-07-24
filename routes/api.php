@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\SafetyMeasuresController;
 use App\Http\Controllers\Api\ReminderCallController;
+use App\Http\Controllers\Api\ActivitiesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,12 @@ Route::post('/reception/reminder', [ReminderCallController::class, 'store']);
 Route::get('/reception/reminder/{_uid}', [ReminderCallController::class, 'show']);
 Route::patch('/reception/reminder/{_uid}', [ReminderCallController::class, 'update']);
 Route::delete('/reception/reminder/{_uid}', [ReminderCallController::class, 'destroy']);
+
+/**
+ * activites and excursion call api
+ */
+Route::get('/activities', [ActivitiesController::class, 'index']);
+Route::post('/activities', [ActivitiesController::class, 'store']);
+Route::get('/activities/{_uid}', [ActivitiesController::class, 'show']);
+Route::patch('/activities/{_uid}', [ActivitiesController::class, 'update']);
+Route::delete('/activities/{_uid}', [ActivitiesController::class, 'destroy']);

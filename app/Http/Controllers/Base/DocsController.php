@@ -13,7 +13,7 @@ class DocsController extends Controller
      */
     public function show()
     {
-        $routes = array("users", "measures");
+        $routes = array("users", "measures", "reminders", "activities", "entertainement");
         return view('docs', compact('routes'));
     }
 }
