@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\SafetyMeasuresController;
 use App\Http\Controllers\Api\ReminderCallController;
 use App\Http\Controllers\Api\ActivitiesController;
+use App\Http\Controllers\Api\ActivityListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,15 +37,29 @@ Route::delete('/measures/{_uid}', [SafetyMeasuresController::class, 'destroy']);
  */
 Route::get('/reception/reminder', [ReminderCallController::class, 'index']);
 Route::post('/reception/reminder', [ReminderCallController::class, 'store']);
-Route::get('/reception/reminder/{_uid}', [ReminderCallController::class, 'show']);
-Route::patch('/reception/reminder/{_uid}', [ReminderCallController::class, 'update']);
-Route::delete('/reception/reminder/{_uid}', [ReminderCallController::class, 'destroy']);
+Route::get('/reception/reminder/{id}', [ReminderCallController::class, 'show']);
+Route::patch('/reception/reminder/{id}', [ReminderCallController::class, 'update']);
+Route::delete('/reception/reminder/{id}', [ReminderCallController::class, 'destroy']);
 
 /**
- * activites and excursion call api
+ * types of activites and excursion call api
  */
-Route::get('/activities', [ActivitiesController::class, 'index']);
-Route::post('/activities', [ActivitiesController::class, 'store']);
-Route::get('/activities/{_uid}', [ActivitiesController::class, 'show']);
-Route::patch('/activities/{_uid}', [ActivitiesController::class, 'update']);
-Route::delete('/activities/{_uid}', [ActivitiesController::class, 'destroy']);
+Route::get('/excursion/activities', [ActivitiesController::class, 'index']);
+Route::post('/excursion/activities', [ActivitiesController::class, 'store']);
+Route::get('/excursion/activities/{id}', [ActivitiesController::class, 'show']);
+Route::patch('/excursion/activities/{id}', [ActivitiesController::class, 'update']);
+Route::delete('/excursion/activities/{id}', [ActivitiesController::class, 'destroy']);
+
+/**
+ * name of activities in each excursion call api
+ */
+Route::get('/excursion/activity', [ActivityListController::class, 'index']);
+Route::post('/excursion/activity', [ActivityListController::class, 'store']);
+Route::get('/excursion/activity/{id}', [ActivityListController::class, 'show']);
+Route::patch('/excursion/activity/{id}', [ActivityListController::class, 'update']);
+Route::delete('/excursion/activity/{id}', [ActivityListController::class, 'destroy']);
+
+/**
+ * relation
+ */
+Route::get('/excursion', [ActivitiesController::class, 'indexWithRelations']);

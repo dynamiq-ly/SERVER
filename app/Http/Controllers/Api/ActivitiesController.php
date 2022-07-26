@@ -20,6 +20,16 @@ class ActivitiesController extends Controller
     }
 
     /**
+     * Display a listing of the resource with deep relations.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function indexWithRelations()
+    {
+        return Activities::with('activities')->get();
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\ActivitiesRequest  $request
