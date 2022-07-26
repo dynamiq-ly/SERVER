@@ -58,6 +58,7 @@ Route::post('/excursion/activity', [ActivityListController::class, 'store']);
 Route::get('/excursion/activity/{id}', [ActivityListController::class, 'show']);
 Route::patch('/excursion/activity/{id}', [ActivityListController::class, 'update']);
 Route::delete('/excursion/activity/{id}', [ActivityListController::class, 'destroy']);
+Route::get('/excursion/{id}/specific', [ActivityListController::class, 'indexFilteredList']);
 
 /**
  * relation

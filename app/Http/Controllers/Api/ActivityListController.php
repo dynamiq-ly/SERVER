@@ -19,6 +19,16 @@ class ActivityListController extends Controller
     }
 
     /**
+     * @param  int  $id
+     * 
+     * display a list of the resource depending on the parent table
+     */
+    public function indexFilteredList($id)
+    {
+        return Activity_Lists::where('activities_id', $id)->get();
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
