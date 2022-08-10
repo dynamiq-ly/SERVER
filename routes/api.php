@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\SafetyMeasuresController;
 use App\Http\Controllers\Api\ReminderCallController;
 use App\Http\Controllers\Api\ActivitiesController;
 use App\Http\Controllers\Api\ActivityListController;
+use App\Http\Controllers\Api\SwimmingPoolController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,8 +60,13 @@ Route::get('/excursion/activity/{id}', [ActivityListController::class, 'show']);
 Route::patch('/excursion/activity/{id}', [ActivityListController::class, 'update']);
 Route::delete('/excursion/activity/{id}', [ActivityListController::class, 'destroy']);
 Route::get('/excursion/{id}/specific', [ActivityListController::class, 'indexFilteredList']);
+Route::get('/excursion', [ActivitiesController::class, 'indexWithRelations']);
 
 /**
- * relation
+ * swimming pool
  */
-Route::get('/excursion', [ActivitiesController::class, 'indexWithRelations']);
+Route::get('/swimming-pool', [SwimmingPoolController::class, 'index']);
+route::post('/swimming-pool', [SwimmingPoolController::class, 'store']);
+Route::get('/swimming-pool/{id}', [SwimmingPoolController::class, 'show']);
+Route::patch('/swimming-pool/{id}', [SwimmingPoolController::class, 'update']);
+Route::delete('/swimming-pool/{id}', [SwimmingPoolController::class, 'destroy']);
