@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ReminderCallController;
 use App\Http\Controllers\Api\ActivitiesController;
 use App\Http\Controllers\Api\ActivityListController;
 use App\Http\Controllers\Api\SwimmingPoolController;
+use App\Http\Controllers\Api\SwimmingPoolListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,3 +71,9 @@ route::post('/swimming-pool', [SwimmingPoolController::class, 'store']);
 Route::get('/swimming-pool/{id}', [SwimmingPoolController::class, 'show']);
 Route::patch('/swimming-pool/{id}', [SwimmingPoolController::class, 'update']);
 Route::delete('/swimming-pool/{id}', [SwimmingPoolController::class, 'destroy']);
+Route::get('/pools', [SwimmingPoolListController::class, 'index']);
+Route::post('/swimming-pool/pools', [SwimmingPoolListController::class, 'store']);
+Route::get(('/swimming-pool/pools/type={id}'), [SwimmingPoolListController::class, 'searchByPoolType']);
+Route::get('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'show']);
+Route::patch('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'update']);
+Route::delete('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'destroy']);

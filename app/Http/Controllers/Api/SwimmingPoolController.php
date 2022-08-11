@@ -15,7 +15,7 @@ class SwimmingPoolController extends Controller
      */
     public function index()
     {
-        return SwimmingPool::with('pools')->get();
+        return SwimmingPool::all();
     }
 
     /**

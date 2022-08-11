@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('swimming_pool_lists', function (Blueprint $table) {
             $table->id();
             $table->string('pool_name');
+            $table->string('pool_image');
+            $table->string('pool_capacity');
+            $table->text('pool_description');
+            $table->boolean('pool_status')->default(true);
             $table->foreignId('pool_id')->constrained('swimming_pools')->onDelete('cascade');
             $table->timestamps();
         });

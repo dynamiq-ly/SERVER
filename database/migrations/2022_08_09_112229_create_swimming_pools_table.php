@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('swimming_pools', function (Blueprint $table) {
             $table->id();
-            $table->string('pool_type');
+            $table->string('pool_type')->unique();
             $table->string('pool_image');
             $table->timestamps();
         });
