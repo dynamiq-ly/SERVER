@@ -87,3 +87,5 @@ Route::get('/restaurant/{id}', [RestaurantController::class, 'show']);
 Route::post('/restaurant', [RestaurantController::class, 'store']);
 Route::patch('/restaurant/{id}', [RestaurantController::class, 'update']);
 Route::delete('/restaurant/{id}', [RestaurantController::class, 'destroy']);
+// restaurant regulations
+Route::post('/restaurant/regulations/{id}', [RestaurantController::class, 'addRestaurantRegulation']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
+use App\Models\RestaurantRegulation;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
@@ -49,11 +50,11 @@ class RestaurantController extends Controller
             )
         );
 
-        $restaurant->regulations()->create([
-            'restaurant_id' => $restaurant->id,
-            'restaurant_regulations_name' => $request->restaurant_regulations_name,
-            'restaurant_regulations_description' => $request->restaurant_regulations_description,
-        ]);
+        // $restaurant->regulations()->create([
+        //     'restaurant_id' => $restaurant->id,
+        //     'restaurant_regulations_name' => $request->restaurant_regulations_name,
+        //     'restaurant_regulations_description' => $request->restaurant_regulations_description,
+        // ]);
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
@@ -112,5 +113,18 @@ class RestaurantController extends Controller
     public function destroy($id)
     {
         return Restaurant::destroy($id);
+    }
+
+    /**
+     * extendable function to get the restaurant by the restaurant id
+     */
+
+    public function addRestaurantRegulation($id, Request $request)
+    {
+        return RestaurantRegulation::create([
+            'restaurant_id' => $id,
+            'restaurant_regulations_name' => $request->restaurant_regulations_name,
+            'restaurant_regulations_description' => $request->restaurant_regulations_description,
+        ]);
     }
 }
