@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\SafetyMeasuresController;
 use App\Http\Controllers\Api\ReminderCallController;
 use App\Http\Controllers\Api\ActivitiesController;
 use App\Http\Controllers\Api\ActivityListController;
+use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\SwimmingPoolController;
 use App\Http\Controllers\Api\SwimmingPoolListController;
 
@@ -77,3 +78,12 @@ Route::get(('/swimming-pool/pools/type={id}'), [SwimmingPoolListController::clas
 Route::get('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'show']);
 Route::patch('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'update']);
 Route::delete('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'destroy']);
+
+/**
+ * restaurant
+ */
+Route::get('/restaurant&status={bool}', [RestaurantController::class, 'index'])->where('bool', '1|0|-1');
+Route::get('/restaurant/{id}', [RestaurantController::class, 'show']);
+Route::post('/restaurant', [RestaurantController::class, 'store']);
+Route::patch('/restaurant/{id}', [RestaurantController::class, 'update']);
+Route::delete('/restaurant/{id}', [RestaurantController::class, 'destroy']);
