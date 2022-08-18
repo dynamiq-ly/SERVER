@@ -26,7 +26,7 @@ class SwimmingPoolListController extends Controller
      */
     public function searchByPoolType($id)
     {
-        return SwimmingPoolLists::where('pool_id', $id)->get();
+        return SwimmingPoolLists::where('pool_id', $id)->where('pool_status', 1)->get();
     }
 
     /**
