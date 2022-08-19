@@ -17,12 +17,12 @@ class BarController extends Controller
     public function index($bool = null)
     {
         if ($bool == 1)
-            return Bar::with('images')->where('bar_status', 1)->get();
+            return Bar::with('images', 'menus')->where('bar_status', 1)->get();
         else if ($bool == -1)
-            return Bar::with('images')->where('bar_status', 0)->get();
+            return Bar::with('images', 'menus')->where('bar_status', 0)->get();
         else
             if ($bool == 0)
-            return Bar::with('images')->get();
+            return Bar::with('images', 'menus')->get();
     }
 
     /**
@@ -66,7 +66,7 @@ class BarController extends Controller
      */
     public function show($id)
     {
-        return Bar::with('images')->find($id);
+        return Bar::with('images', 'menus')->find($id);
     }
 
     /**

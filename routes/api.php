@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ReminderCallController;
 use App\Http\Controllers\Api\ActivitiesController;
 use App\Http\Controllers\Api\ActivityListController;
 use App\Http\Controllers\Api\BarController;
+use App\Http\Controllers\Api\BarMenuController;
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\SwimmingPoolController;
 use App\Http\Controllers\Api\SwimmingPoolListController;
@@ -97,3 +98,14 @@ Route::post('/restaurant/regulations/{id}', [RestaurantController::class, 'addRe
 Route::get('/bar&status={bool}', [BarController::class, 'index'])->where('bool', '1|0|-1');
 Route::get('/bar/{id}', [BarController::class, 'show']);
 Route::post('/bar', [BarController::class, 'store']);
+Route::patch('/bar/{id}', [BarController::class, 'update']);
+Route::delete('/bar/{id}', [BarController::class, 'destroy']);
+
+/**
+ * menu bar
+ */
+Route::get('/bar/menu/type={id}', [BarMenuController::class, 'index']);
+Route::get('/bar/menu/{id}', [BarMenuController::class, 'show']);
+Route::post('/bar/menu', [BarMenuController::class, 'store']);
+Route::patch('/bar/menu/{id}', [BarMenuController::class, 'update']);
+Route::delete('/bar/menu/{id}', [BarMenuController::class, 'destroy']);

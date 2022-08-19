@@ -46,4 +46,14 @@ class Bar extends Model
     {
         return $this->hasMany(BarImage::class, 'bar_id', 'id');
     }
+
+    /**
+     * Get all of the menus for the Bar
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function menus(): HasMany
+    {
+        return $this->hasMany(BarMenu::class, 'bar_id', 'id');
+    }
 }
