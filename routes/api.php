@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\SafetyMeasuresController;
 use App\Http\Controllers\Api\ReminderCallController;
 use App\Http\Controllers\Api\ActivitiesController;
 use App\Http\Controllers\Api\ActivityListController;
+use App\Http\Controllers\Api\BarController;
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\SwimmingPoolController;
 use App\Http\Controllers\Api\SwimmingPoolListController;
@@ -89,3 +90,10 @@ Route::patch('/restaurant/{id}', [RestaurantController::class, 'update']);
 Route::delete('/restaurant/{id}', [RestaurantController::class, 'destroy']);
 // restaurant regulations
 Route::post('/restaurant/regulations/{id}', [RestaurantController::class, 'addRestaurantRegulation']);
+
+/**
+ * bar
+ */
+Route::get('/bar&status={bool}', [BarController::class, 'index'])->where('bool', '1|0|-1');
+Route::get('/bar/{id}', [BarController::class, 'show']);
+Route::post('/bar', [BarController::class, 'store']);
