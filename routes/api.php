@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\ActivityListController;
 use App\Http\Controllers\Api\BarController;
 use App\Http\Controllers\Api\BarMenuController;
 use App\Http\Controllers\Api\RestaurantController;
+use App\Http\Controllers\Api\RoomTypeController;
 use App\Http\Controllers\Api\SwimmingPoolController;
 use App\Http\Controllers\Api\SwimmingPoolListController;
 
@@ -109,3 +110,12 @@ Route::get('/bar/menu/{id}', [BarMenuController::class, 'show']);
 Route::post('/bar/menu', [BarMenuController::class, 'store']);
 Route::patch('/bar/menu/{id}', [BarMenuController::class, 'update']);
 Route::delete('/bar/menu/{id}', [BarMenuController::class, 'destroy']);
+
+/**
+ * room type
+ */
+Route::get('/rooms/room-category', [RoomTypeController::class, 'index']);
+Route::get('/rooms/room-category/{id}', [RoomTypeController::class, 'show']);
+Route::post('/rooms/room-category', [RoomTypeController::class, 'store']);
+Route::patch('/rooms/room-category/{id}', [RoomTypeController::class, 'update']);
+Route::delete('/rooms/room-category/{id}', [RoomTypeController::class, 'destroy']);
