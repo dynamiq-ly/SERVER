@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\ActivityListController;
 use App\Http\Controllers\Api\BarController;
 use App\Http\Controllers\Api\BarMenuController;
 use App\Http\Controllers\Api\RestaurantController;
+use App\Http\Controllers\Api\RoomController;
 use App\Http\Controllers\Api\RoomTypeController;
 use App\Http\Controllers\Api\SwimmingPoolController;
 use App\Http\Controllers\Api\SwimmingPoolListController;
@@ -119,3 +120,7 @@ Route::get('/rooms/room-category/{id}', [RoomTypeController::class, 'show']);
 Route::post('/rooms/room-category', [RoomTypeController::class, 'store']);
 Route::patch('/rooms/room-category/{id}', [RoomTypeController::class, 'update']);
 Route::delete('/rooms/room-category/{id}', [RoomTypeController::class, 'destroy']);
+/**
+ * room listing
+ */
+Route::get('/rooms&status={bool}', [RoomController::class, 'index'])->where('bool', '1|0|-1');

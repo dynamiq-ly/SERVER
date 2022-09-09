@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class RoomType extends Model
+class RoomImage extends Model
 {
     use HasFactory;
 
@@ -16,7 +16,8 @@ class RoomType extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'room_type_name',
+        'image',
+        'room_id'
     ];
 
     /**
@@ -25,17 +26,18 @@ class RoomType extends Model
      * @var array<int, string>
      */
     protected $hidden = [
+        'room_id',
         'created_at',
         'updated_at'
     ];
 
     /**
-     * Get all of the rooms for the RoomType
+     * Get the room that owns the RoomImages
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function rooms(): HasMany
+    public function rooms(): BelongsTo
     {
-        return $this->hasMany(Comment::class, 'room_type_id', 'id');
+        return $this->belongsTo(Room::class, 'room_id');
     }
 }
