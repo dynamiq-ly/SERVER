@@ -9,11 +9,13 @@ use App\Http\Controllers\Api\ActivitiesController;
 use App\Http\Controllers\Api\ActivityListController;
 use App\Http\Controllers\Api\BarController;
 use App\Http\Controllers\Api\BarMenuController;
+use App\Http\Controllers\Api\PointInterestController;
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\RoomController;
 use App\Http\Controllers\Api\RoomTypeController;
 use App\Http\Controllers\Api\SwimmingPoolController;
 use App\Http\Controllers\Api\SwimmingPoolListController;
+use App\Models\PointInterestType;
 
 /*
 |--------------------------------------------------------------------------
@@ -120,7 +122,20 @@ Route::get('/rooms/room-category/{id}', [RoomTypeController::class, 'show']);
 Route::post('/rooms/room-category', [RoomTypeController::class, 'store']);
 Route::patch('/rooms/room-category/{id}', [RoomTypeController::class, 'update']);
 Route::delete('/rooms/room-category/{id}', [RoomTypeController::class, 'destroy']);
-/**
- * room listing
- */
+// room listing
 Route::get('/rooms&status={bool}', [RoomController::class, 'index'])->where('bool', '1|0|-1');
+
+/**
+ * point interest
+ */
+Route::get('/point-of-interes/type', [PointInterestType::class, 'index']);
+Route::get('/point-of-interes/type/{id}', [PointInterestType::class, 'show']);
+Route::post('/point-of-interes/type', [PointInterestType::class, 'store']);
+Route::patch('/point-of-interes/type/{id}', [PointInterestType::class, 'update']);
+Route::delete('/point-of-interes/type/{id}', [PointInterestType::class, 'destroy']);
+// point of interest
+Route::get('/point-of-interest&status={bool}', [PointInterestController::class, 'index'])->where('bool', '1|0|-1');
+Route::get('/point-of-interes/{id}', [PointInterestController::class, 'show']);
+Route::post('/point-of-interes', [PointInterestController::class, 'store']);
+Route::patch('/PointInterest/{id}', [PointInterestController::class, 'update']);
+Route::delete('/PointInterest/{id}', [PointInterestController::class, 'delete']);
