@@ -78,7 +78,7 @@ class PointInterestController extends Controller
      */
     public function show($id)
     {
-        PointInterest::with('images')->leftJoin('point_interest_types', 'point_interest_types.id', '=', 'point_interests.id')->find($id);
+        return PointInterest::with('images', 'schedule')->leftJoin('point_interest_types', 'point_interest_types.id', '=', 'point_interests.id')->find($id);
     }
 
     /**
