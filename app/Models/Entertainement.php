@@ -55,4 +55,14 @@ class Entertainement extends Model
     {
         return $this->hasMany(EntertainementImage::class, 'entertainements_id', 'id');
     }
+
+    /**
+     * Get all of the nightShows for the Entertainement
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function nightShows(): HasMany
+    {
+        return $this->hasMany(EntertainementNightShow::class, 'entertainements_id', 'id');
+    }
 }

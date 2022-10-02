@@ -49,6 +49,7 @@ class EntertainementController extends Controller
             'entertainements_summary',
             'entertainements_description',
             'entertainements_location',
+            'entertainements_duration',
             'entertainements_location_can_join',
             'entertainements_status'
         ));
@@ -70,6 +71,23 @@ class EntertainementController extends Controller
                     'entertainements_id' => $entertainement->id
                 ]);
             }
+        }
+
+        switch ($request->entertainements_type) {
+            case 'night shows':
+                $entertainement->nightShows()->create([
+                    'night_show_web_link' => $request->night_show_web_link,
+                    'night_show_leader' => $request->night_show_leader,
+                    'night_show_assisatant' => $request->night_show_assisatant,
+                    'night_show_video_link' => $request->night_show_video_link,
+                    'night_show_ticked_price' => $request->night_show_ticked_price,
+                    'night_show_audience' => $request->night_show_audience,
+                    'night_show_type' => $request->night_show_type,
+                    'entertainements_id' => $entertainement->id
+                ]);
+                return Entertainement::with('timings', 'images', 'nightShows')->find($entertainement->id);
+            default:
+                return response()->json(['error' => 405, 'message' => 'failed to insert data correctly']);
         }
     }
 
