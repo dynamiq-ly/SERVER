@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\ActivitiesController;
 use App\Http\Controllers\Api\ActivityListController;
 use App\Http\Controllers\Api\BarController;
 use App\Http\Controllers\Api\BarMenuController;
+use App\Http\Controllers\Api\EntertainementController;
 use App\Http\Controllers\Api\PointInterestController;
 use App\Http\Controllers\Api\PointInterestTypeController;
 use App\Http\Controllers\Api\RestaurantController;
@@ -59,9 +60,7 @@ Route::get('/excursion/activities/{id}', [ActivitiesController::class, 'show']);
 Route::patch('/excursion/activities/{id}', [ActivitiesController::class, 'update']);
 Route::delete('/excursion/activities/{id}', [ActivitiesController::class, 'destroy']);
 
-/**
- * name of activities in each excursion call api
- */
+// name of activities in each excursion call api
 Route::get('/excursion/activity', [ActivityListController::class, 'index']);
 Route::post('/excursion/activity', [ActivityListController::class, 'store']);
 Route::get('/excursion/activity/{id}', [ActivityListController::class, 'show']);
@@ -104,10 +103,7 @@ Route::get('/bar/{id}', [BarController::class, 'show']);
 Route::post('/bar', [BarController::class, 'store']);
 Route::patch('/bar/{id}', [BarController::class, 'update']);
 Route::delete('/bar/{id}', [BarController::class, 'destroy']);
-
-/**
- * menu bar
- */
+// bar menu
 Route::get('/bar/menu/type={id}', [BarMenuController::class, 'index']);
 Route::get('/bar/menu/{id}', [BarMenuController::class, 'show']);
 Route::post('/bar/menu', [BarMenuController::class, 'store']);
@@ -139,3 +135,9 @@ Route::get('/point-of-interest/{id}', [PointInterestController::class, 'show']);
 Route::post('/point-of-interest', [PointInterestController::class, 'store']);
 Route::patch('/PointInterest/{id}', [PointInterestController::class, 'update']);
 Route::delete('/PointInterest/{id}', [PointInterestController::class, 'delete']);
+
+/**
+ * entertainement
+ */
+Route::get('/entertainement&status={bool}/{type?}', [EntertainementController::class, 'index'])->where('bool', '1|0|-1');
+Route::post('/entertainement', [EntertainementController::class, 'store']);
