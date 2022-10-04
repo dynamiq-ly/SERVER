@@ -140,4 +140,5 @@ Route::delete('/PointInterest/{id}', [PointInterestController::class, 'delete'])
  * entertainement
  */
 Route::get('/entertainement&status={bool}/{type?}', [EntertainementController::class, 'index'])->where('bool', '1|0|-1');
+Route::get('/entertainement/{id}', [EntertainementController::class, 'show']);
 Route::post('/entertainement', [EntertainementController::class, 'store']);

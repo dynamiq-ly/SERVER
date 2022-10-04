@@ -26,12 +26,13 @@ class EntertainementController extends Controller
                 return Entertainement::with('timings', 'images')->get();
         } else {
 
-            if ($bool == 1)
-                return Entertainement::with('timings', 'images', $type)->where('entertainements_status', 1)->get();
-            else if ($bool == -1)
-                return Entertainement::with('timings', 'images', $type)->where('entertainements_status', 0)->get();
-            else if ($bool == 0)
-                return Entertainement::with('timings', 'images', $type)->get();
+            switch ($type) {
+                case 'nightShows':
+                    if ($bool == 1)
+                        return Entertainement::with('timings', 'images', 'nightShows')->where('entertainements_status', 1)->where('entertainements_type', 'night shows')->get();
+                    else if ($bool == 0)
+                        return Entertainement::with('timings', 'images')->where('entertainements_status', 0)->where('entertainements_type', 'night shows')->get();
+            }
         }
     }
 
@@ -99,7 +100,7 @@ class EntertainementController extends Controller
      */
     public function show($id)
     {
-        //
+        return Entertainement::with('timings', 'images', 'nightShows')->find($id);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Entertainement extends Model
 {
@@ -59,10 +60,10 @@ class Entertainement extends Model
     /**
      * Get all of the nightShows for the Entertainement
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function nightShows(): HasMany
+    public function nightShows(): HasOne
     {
-        return $this->hasMany(EntertainementNightShow::class, 'entertainements_id', 'id');
+        return $this->hasOne(EntertainementNightShow::class, 'entertainements_id', 'id');
     }
 }

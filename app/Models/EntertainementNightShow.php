@@ -32,6 +32,7 @@ class EntertainementNightShow extends Model
      * @var array<int, string>
      */
     protected $hidden = [
+        'id',
         'created_at',
         'updated_at',
         'entertainements_id'
