@@ -18,12 +18,12 @@ class RestaurantController extends Controller
     public function index($bool = null)
     {
         if ($bool == 1)
-            return Restaurant::with('images', 'chefs', 'regulations')->where('restaurant_status', 1)->get();
+            return Restaurant::with('images', 'chefs', 'regulations', 'schedule')->where('restaurant_status', 1)->get();
         else if ($bool == -1)
-            return Restaurant::with('images', 'chefs', 'regulations')->where('restaurant_status', 0)->get();
+            return Restaurant::with('images', 'chefs', 'regulations', 'schedule')->where('restaurant_status', 0)->get();
         else 
             if ($bool == 0)
-            return Restaurant::with('images', 'chefs', 'regulations')->get();
+            return Restaurant::with('images', 'chefs', 'regulations', 'schedule')->get();
     }
 
     /**
@@ -79,6 +79,18 @@ class RestaurantController extends Controller
                 'restaurant_chef_image' => $request->file('restaurant_chef_image')->hashName(),
             ]);
         }
+
+
+        $restaurant->schedule()->create([
+            'sunday' => $request->sunday,
+            'monday' => $request->monday,
+            'tuesday' => $request->tuesday,
+            'wednesday' => $request->wednesday,
+            'thursday' => $request->thursday,
+            'friday' => $request->friday,
+            'saturday' => $request->saturday,
+            'restaurant_id' => $restaurant->id
+        ]);
     }
 
     /**
@@ -89,7 +101,7 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        return Restaurant::with('images', 'chefs', 'regulations')->find($id);
+        return Restaurant::with('images', 'chefs', 'regulations', 'schedule')->find($id);
     }
 
     /**
