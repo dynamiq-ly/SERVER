@@ -79,4 +79,14 @@ class Restaurant extends Model
     {
         return $this->hasOne(RestaurantWeeklyTheme::class, 'restaurant_id', 'id');
     }
+
+    /**
+     * Get all of the foodCategories for the Restaurant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function foodCategories(): HasMany
+    {
+        return $this->hasMany(RestaurantFoodMenuCategory::class, 'restaurant_id', 'id');
+    }
 }

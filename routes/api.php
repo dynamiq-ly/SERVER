@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\EntertainementController;
 use App\Http\Controllers\Api\PointInterestController;
 use App\Http\Controllers\Api\PointInterestTypeController;
 use App\Http\Controllers\Api\RestaurantController;
+use App\Http\Controllers\Api\RestaurantMenu;
 use App\Http\Controllers\Api\RoomController;
 use App\Http\Controllers\Api\RoomTypeController;
 use App\Http\Controllers\Api\SwimmingPoolController;
@@ -94,6 +95,11 @@ Route::patch('/restaurant/{id}', [RestaurantController::class, 'update']);
 Route::delete('/restaurant/{id}', [RestaurantController::class, 'destroy']);
 // restaurant regulations
 Route::post('/restaurant/regulations/{id}', [RestaurantController::class, 'addRestaurantRegulation']);
+// restaurant food menu
+Route::get('/restaurant/menu/food', [RestaurantMenu::class, 'index']);
+Route::get('/restaurant/menu/food={id}', [RestaurantMenu::class, 'indexFood']);
+Route::get('/restaurant/menu/food/{id}', [RestaurantMenu::class, 'showFood']);
+Route::post('/restaurant/menu/food', [RestaurantMenu::class, 'storeFood']);
 
 /**
  * bar
