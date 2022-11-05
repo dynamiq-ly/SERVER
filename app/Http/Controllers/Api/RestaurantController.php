@@ -18,12 +18,12 @@ class RestaurantController extends Controller
     public function index($bool = null)
     {
         if ($bool == 1)
-            return Restaurant::with('images', 'chefs', 'regulations', 'schedule', 'foodCategories')->where('restaurant_status', 1)->get();
+            return Restaurant::with('images', 'chefs', 'regulations', 'schedule', 'foodCategories', 'drinkCategories')->where('restaurant_status', 1)->get();
         else if ($bool == -1)
-            return Restaurant::with('images', 'chefs', 'regulations', 'schedule', 'foodCategories')->where('restaurant_status', 0)->get();
+            return Restaurant::with('images', 'chefs', 'regulations', 'schedule', 'foodCategories', 'drinkCategories')->where('restaurant_status', 0)->get();
         else 
             if ($bool == 0)
-            return Restaurant::with('images', 'chefs', 'regulations', 'schedule', 'foodCategories')->get();
+            return Restaurant::with('images', 'chefs', 'regulations', 'schedule', 'foodCategories', 'drinkCategories')->get();
     }
 
     /**
@@ -101,7 +101,7 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        return Restaurant::with('images', 'chefs', 'regulations', 'schedule', 'foodCategories')->find($id);
+        return Restaurant::with('images', 'chefs', 'regulations', 'schedule', 'foodCategories', 'drinkCategories')->find($id);
     }
 
     /**

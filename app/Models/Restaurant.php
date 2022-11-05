@@ -89,4 +89,14 @@ class Restaurant extends Model
     {
         return $this->hasMany(RestaurantFoodMenuCategory::class, 'restaurant_id', 'id');
     }
+
+    /**
+     * Get all of the drinkCategories for the Restaurant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function drinkCategories(): HasMany
+    {
+        return $this->hasMany(RestaurantDrinkMenuCategory::class, 'restaurant_id', 'id');
+    }
 }

@@ -100,10 +100,19 @@ Route::get('/restaurant/menu/food', [RestaurantMenu::class, 'index']);
 Route::get('/restaurant/menu/food={id}', [RestaurantMenu::class, 'indexFood']);
 Route::get('/restaurant/menu/food/{id}', [RestaurantMenu::class, 'showFood']);
 Route::post('/restaurant/menu/food', [RestaurantMenu::class, 'storeFood']);
+Route::patch('/restaurant/menu/food/{id}', [RestaurantMenu::class, 'updateFood']);
+Route::delete('/restaurant/menu/food/{id}', [RestaurantMenu::class, 'destroyFood']);
 // restaurant dishes
 Route::get('/restaurant/menu/food?dish', [RestaurantMenu::class, 'indexDish']);
 Route::get('/restaurant/menu/dish/{id}', [RestaurantMenu::class, 'indexFoodDish']);
 Route::post('/restaurant/menu/food?dish', [RestaurantMenu::class, 'storeFoodDish']);
+// restaurant drink menu
+Route::get('/restaurant/menu/drink', [RestaurantMenu::class, 'index2']);
+Route::get('/restaurant/menu/drink={id}', [RestaurantMenu::class, 'indexDrink']);
+Route::get('/restaurant/menu/drink/{id}', [RestaurantMenu::class, 'showDrink']);
+Route::post('/restaurant/menu/drink', [RestaurantMenu::class, 'storeDrink']);
+Route::patch('/restaurant/menu/drink/{id}', [RestaurantMenu::class, 'updateDrink']);
+Route::delete('/restaurant/menu/drink/{id}', [RestaurantMenu::class, 'destroyDrink']);
 
 /**
  * bar
