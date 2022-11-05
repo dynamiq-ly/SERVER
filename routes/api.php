@@ -100,6 +100,10 @@ Route::get('/restaurant/menu/food', [RestaurantMenu::class, 'index']);
 Route::get('/restaurant/menu/food={id}', [RestaurantMenu::class, 'indexFood']);
 Route::get('/restaurant/menu/food/{id}', [RestaurantMenu::class, 'showFood']);
 Route::post('/restaurant/menu/food', [RestaurantMenu::class, 'storeFood']);
+// restaurant dishes
+Route::get('/restaurant/menu/food?dish', [RestaurantMenu::class, 'indexDish']);
+Route::get('/restaurant/menu/dish/{id}', [RestaurantMenu::class, 'indexFoodDish']);
+Route::post('/restaurant/menu/food?dish', [RestaurantMenu::class, 'storeFoodDish']);
 
 /**
  * bar

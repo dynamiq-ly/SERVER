@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\RestaurantFoodMenuCategory;
+use App\Models\RestaurantFoodMenuList;
 use Illuminate\Http\Request;
 
 class RestaurantMenu extends Controller
@@ -15,7 +16,7 @@ class RestaurantMenu extends Controller
      */
     public function index()
     {
-        return RestaurantFoodMenuCategory::all();
+        return RestaurantFoodMenuCategory::with('dishes')->get();
     }
 
     /**
@@ -26,7 +27,7 @@ class RestaurantMenu extends Controller
      */
     public function indexFood($id)
     {
-        return RestaurantFoodMenuCategory::where('restaurant_id',  $id)->get();
+        return RestaurantFoodMenuCategory::where('restaurant_id',  $id)->with('dishes')->get();
     }
 
     /**
@@ -46,6 +47,7 @@ class RestaurantMenu extends Controller
             ]);
         }
     }
+
 
     /**
      * Display the specified resource.
@@ -91,5 +93,38 @@ class RestaurantMenu extends Controller
     public function destroyFood($id)
     {
         return RestaurantFoodMenuCategory::destroy($id);
+    }
+
+
+    /**
+     * dishes
+     */
+
+    public function indexDish()
+    {
+        return RestaurantFoodMenuList::all();
+    }
+
+    public function indexFoodDish($id)
+    {
+        return RestaurantFoodMenuList::where('restaurant_food_categories_id', $id)->get();
+    }
+
+    public function storeFoodDish(Request $request)
+    {
+        if ($request->hasFile('dish_image')) {
+            $request->file('dish_image')->store('public/restaurants/menu/food/dishes');
+            return RestaurantFoodMenuList::create([
+                'dish_name' => $request->dish_name,
+                'dish_price' => $request->dish_price,
+                'dish_summary' => $request->dish_summary,
+                'dish_discount' => $request->dish_discount,
+                'dish_wait_time' => $request->dish_wait_time,
+                'dish_ingredient' => $request->dish_ingredient,
+                'dish_description' => $request->dish_description,
+                'dish_image' => $request->dish_image->hashName(),
+                'restaurant_food_categories_id' => $request->restaurant_food_categories_id
+            ]);
+        }
     }
 }

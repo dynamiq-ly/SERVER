@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class RestaurantFoodMenuCategory extends Model
 {
@@ -40,5 +41,15 @@ class RestaurantFoodMenuCategory extends Model
     public function restaurant(): BelongsTo
     {
         return $this->belongsTo(Restaurant::class, 'restaurant_id');
+    }
+
+    /**
+     * Get all of the dishes for the RestaurantFoodMenuCategory
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function dishes(): HasMany
+    {
+        return $this->hasMany(RestaurantFoodMenuList::class, 'restaurant_food_categories_id', 'id');
     }
 }
