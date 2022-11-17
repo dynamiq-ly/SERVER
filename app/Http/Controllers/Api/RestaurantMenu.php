@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\RestaurantDrinkMenuCategory;
+use App\Models\RestaurantDrinkMenuSoft;
 use App\Models\RestaurantFoodMenuCategory;
 use App\Models\RestaurantFoodMenuList;
+use App\Models\RestauranttDrinkMenuSoft;
 use Illuminate\Http\Request;
 
 class RestaurantMenu extends Controller
@@ -27,7 +29,7 @@ class RestaurantMenu extends Controller
      */
     public function index2()
     {
-        return RestaurantDrinkMenuCategory::all();
+        return RestaurantDrinkMenuCategory::with('softdrinks')->all();
     }
 
     /**
@@ -49,7 +51,7 @@ class RestaurantMenu extends Controller
      */
     public function indexDrink($id)
     {
-        return RestaurantDrinkMenuCategory::where('restaurant_id',  $id)->get();
+        return RestaurantDrinkMenuCategory::where('restaurant_id',  $id)->with('softdrinks')->get();
     }
 
     /**
@@ -214,5 +216,28 @@ class RestaurantMenu extends Controller
                 'restaurant_food_categories_id' => $request->restaurant_food_categories_id
             ]);
         }
+    }
+
+    /**
+     * soft drinks
+     */
+    public function indexSoftDrinks()
+    {
+        return RestaurantDrinkMenuSoft::all();
+    }
+
+    public function indexSoftDrink($id)
+    {
+        return RestaurantDrinkMenuSoft::where('restaurant_soft_drink_id', $id)->get();
+    }
+
+    public function storeSoftDrink(Request $request)
+    {
+        return RestaurantDrinkMenuSoft::create($request->all());
+    }
+
+    public function updateSoftDrink($id, Request $request)
+    {
+        return RestaurantDrinkMenuSoft::find($id)->update($request->all());
     }
 }

@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class RestaurantDrinkMenuCategory extends Model
+class RestaurantDrinkMenuSoft extends Model
 {
     use HasFactory;
 
@@ -17,10 +16,10 @@ class RestaurantDrinkMenuCategory extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'restaurant_drink_category',
-        'restaurant_drink_image',
-        'restaurant_drink_type',
-        'restaurant_id'
+        'soft_drink_name',
+        'soft_drink_price',
+        'soft_drink_variants',
+        'restaurant_soft_drink_id'
     ];
 
     /**
@@ -31,7 +30,7 @@ class RestaurantDrinkMenuCategory extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
-        'restaurant_id'
+        'restaurant_soft_drink_id'
     ];
 
     /**
@@ -41,16 +40,6 @@ class RestaurantDrinkMenuCategory extends Model
      */
     public function restaurant(): BelongsTo
     {
-        return $this->belongsTo(Restaurant::class, 'restaurant_id');
-    }
-
-    /**
-     * Get all of the softdrinks for the RestaurantDrinkMenuCategory
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function softdrinks(): HasMany
-    {
-        return $this->hasMany(RestaurantDrinkMenuSoft::class, 'restaurant_soft_drink_id', 'id');
+        return $this->belongsTo(RestaurantDrinkMenuCategory::class, 'restaurant_soft_drink_id');
     }
 }

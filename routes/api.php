@@ -113,7 +113,10 @@ Route::get('/restaurant/menu/drink/{id}', [RestaurantMenu::class, 'showDrink']);
 Route::post('/restaurant/menu/drink', [RestaurantMenu::class, 'storeDrink']);
 Route::patch('/restaurant/menu/drink/{id}', [RestaurantMenu::class, 'updateDrink']);
 Route::delete('/restaurant/menu/drink/{id}', [RestaurantMenu::class, 'destroyDrink']);
-
+// restaurant drink menu soft drinks
+Route::get('/restaurant/drinks/soft', [RestaurantMenu::class, 'indexSoftDrinks']);
+Route::get('/restaurant/drinks/soft={id}', [RestaurantMenu::class, 'indexSoftDrink']);
+Route::post('/restaurant/drinks/soft', [RestaurantMenu::class, 'storeSoftDrink']);
 /**
  * bar
  */
