@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\RestaurantDrinkMenuAlchohol;
 use App\Models\RestaurantDrinkMenuCategory;
 use App\Models\RestaurantDrinkMenuSoft;
 use App\Models\RestaurantFoodMenuCategory;
@@ -29,7 +30,7 @@ class RestaurantMenu extends Controller
      */
     public function index2()
     {
-        return RestaurantDrinkMenuCategory::with('softdrinks')->all();
+        return RestaurantDrinkMenuCategory::with('softdrinks', 'alcoholdrinks')->get();
     }
 
     /**
@@ -51,7 +52,7 @@ class RestaurantMenu extends Controller
      */
     public function indexDrink($id)
     {
-        return RestaurantDrinkMenuCategory::where('restaurant_id',  $id)->with('softdrinks')->get();
+        return RestaurantDrinkMenuCategory::where('restaurant_id',  $id)->with('softdrinks', 'alcoholdrinks')->get();
     }
 
     /**
@@ -239,5 +240,46 @@ class RestaurantMenu extends Controller
     public function updateSoftDrink($id, Request $request)
     {
         return RestaurantDrinkMenuSoft::find($id)->update($request->all());
+    }
+
+    /**
+     * alcohol drinks
+     */
+
+    public function indexAlcoholDrinks()
+    {
+        return RestaurantDrinkMenuAlchohol::all();
+    }
+
+    public function indexAlcoholDrink($id)
+    {
+        return RestaurantDrinkMenuAlchohol::where('restaurant_alcohol_id', $id)->get();
+    }
+
+    public function findAlcoholDrink($id)
+    {
+        return RestaurantDrinkMenuAlchohol::find($id);
+    }
+
+    public function storeAlcoholDrink(Request $request)
+    {
+        if ($request->hasFile('drink_alcohol_image')) {
+            $request->file('drink_alcohol_image')->store('public/restaurants/menu/drink/bottles');
+            return RestaurantDrinkMenuAlchohol::create([
+                'drink_alcohol_name' => $request->drink_alcohol_name,
+                'drink_alcohol_type' => $request->drink_alcohol_type,
+                'drink_alcohol_bottle_size' => $request->drink_alcohol_bottle_size,
+                'drink_alcohol_bottle_price' => $request->drink_alcohol_bottle_price,
+                'drink_alcohol_glass_size' => $request->drink_alcohol_glass_size,
+                'drink_alcohol_glass_price' => $request->drink_alcohol_glass_price,
+                'drink_alcohol_description' => $request->drink_alcohol_description,
+                'drink_alcohol_origin' => $request->drink_alcohol_origin,
+                'drink_alcohol_year' => $request->drink_alcohol_year,
+                'drink_alcohol_ingredient' => $request->drink_alcohol_ingredient,
+                'drink_alcohol_percentage' => $request->drink_alcohol_percentage,
+                'drink_alcohol_image' => $request->drink_alcohol_image->hashName(),
+                'restaurant_alcohol_id' => $request->restaurant_alcohol_id,
+            ]);
+        }
     }
 }

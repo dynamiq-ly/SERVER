@@ -53,4 +53,14 @@ class RestaurantDrinkMenuCategory extends Model
     {
         return $this->hasMany(RestaurantDrinkMenuSoft::class, 'restaurant_soft_drink_id', 'id');
     }
+
+    /**
+     * Get all of the softdrinks for the RestaurantDrinkMenuCategory
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function alcoholdrinks(): HasMany
+    {
+        return $this->hasMany(RestaurantDrinkMenuAlchohol::class, 'restaurant_alcohol_id', 'id');
+    }
 }
