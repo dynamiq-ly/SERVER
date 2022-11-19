@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\ActivitiesController;
 use App\Http\Controllers\Api\ActivityListController;
 use App\Http\Controllers\Api\BarController;
 use App\Http\Controllers\Api\BarMenuController;
+use App\Http\Controllers\Api\BarMenuDrinksController;
 use App\Http\Controllers\Api\EntertainementController;
 use App\Http\Controllers\Api\PointInterestController;
 use App\Http\Controllers\Api\PointInterestTypeController;
@@ -137,6 +138,12 @@ Route::get('/bar/menu/{id}', [BarMenuController::class, 'show']);
 Route::post('/bar/menu', [BarMenuController::class, 'store']);
 Route::patch('/bar/menu/{id}', [BarMenuController::class, 'update']);
 Route::delete('/bar/menu/{id}', [BarMenuController::class, 'destroy']);
+// bar menu drinks
+Route::get('/bar/menu/drinks/{id}', [BarMenuDrinksController::class, 'index']);
+Route::get('/bar/menu/drinks/search={id}', [BarMenuDrinksController::class, 'show']);
+Route::post('/bar/menu/drinks', [BarMenuDrinksController::class, 'store']);
+Route::post('/bar/menu/drinks/{id}', [BarMenuDrinksController::class, 'update']);
+Route::delete('/bar/menu/drinks/{id}', [BarMenuDrinksController::class, 'destroy']);
 
 /**
  * room type

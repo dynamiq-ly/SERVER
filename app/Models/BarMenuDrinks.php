@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class BarMenu extends Model
+class BarMenuDrinks extends Model
 {
     use HasFactory;
 
@@ -17,9 +16,16 @@ class BarMenu extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'bar_menu_category',
-        'bar_menu_category_image',
-        'bar_id'
+        'bar_drink_name',
+        'bar_drink_image',
+        'bar_drink_price',
+        'drink_bar_strengh',
+        'drink_served_one',
+        'bar_drink_served',
+        'drink_main_alcohol',
+        'bar_drink_preperation',
+        'bar_drink_ingredient',
+        'menu_drink_id',
     ];
 
     /**
@@ -30,7 +36,7 @@ class BarMenu extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
-        'bar_id'
+        'menu_drink_id'
     ];
 
     /**
@@ -40,16 +46,6 @@ class BarMenu extends Model
      */
     public function bar(): BelongsTo
     {
-        return $this->belongsTo(Bar::class, 'bar_id');
-    }
-
-    /**
-     * Get all of the drinks for the BarMenu
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function drinks(): HasMany
-    {
-        return $this->hasMany(BarMenuDrinks::class, 'menu_drink_id', 'id');
+        return $this->belongsTo(BarMenu::class, 'menu_drink_id');
     }
 }

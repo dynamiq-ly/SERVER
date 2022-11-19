@@ -16,7 +16,7 @@ class BarMenuController extends Controller
      */
     public function index($id)
     {
-        return BarMenu::where('bar_id', $id)->get();
+        return BarMenu::where('bar_id', $id)->with('drinks')->get();
     }
 
     /**
@@ -45,7 +45,7 @@ class BarMenuController extends Controller
      */
     public function show($id)
     {
-        return BarMenu::find($id);
+        return BarMenu::with('drinks')->find($id);
     }
 
     /**
