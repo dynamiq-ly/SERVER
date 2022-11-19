@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\RestaurantMenu;
 use App\Http\Controllers\Api\RoomController;
 use App\Http\Controllers\Api\RoomTypeController;
+use App\Http\Controllers\Api\ServiceRoomMiniBarController;
 use App\Http\Controllers\Api\SwimmingPoolController;
 use App\Http\Controllers\Api\SwimmingPoolListController;
 
@@ -177,3 +178,13 @@ Route::delete('/PointInterest/{id}', [PointInterestController::class, 'delete'])
 Route::get('/entertainement&status={bool}/{type?}', [EntertainementController::class, 'index'])->where('bool', '1|0|-1');
 Route::get('/entertainement/{id}', [EntertainementController::class, 'show']);
 Route::post('/entertainement', [EntertainementController::class, 'store']);
+
+/**
+ * room service
+ */
+
+// mini bar
+Route::get('/room-service/mini-bar', [ServiceRoomMiniBarController::class, 'index']);
+Route::post('/room-service/mini-bar', [ServiceRoomMiniBarController::class, 'store']);
+Route::patch('/room-service/mini-bar/{id}', [ServiceRoomMiniBarController::class, 'update']);
+Route::delete('/room-service/mini-bar/{id}', [ServiceRoomMiniBarController::class, 'delete']);
