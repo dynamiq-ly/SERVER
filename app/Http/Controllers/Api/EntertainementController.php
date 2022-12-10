@@ -32,6 +32,11 @@ class EntertainementController extends Controller
                         return Entertainement::with('timings', 'images', 'nightShows')->where('entertainements_status', 1)->where('entertainements_type', 'night shows')->get();
                     else if ($bool == 0)
                         return Entertainement::with('timings', 'images')->where('entertainements_status', 0)->where('entertainements_type', 'night shows')->get();
+                case 'dayActivities':
+                    if ($bool == 1)
+                        return Entertainement::with('timings', 'images', 'dayActivities')->where('entertainements_status', 1)->where('entertainements_type', 'day activities')->get();
+                    else if ($bool == 0)
+                        return Entertainement::with('timings', 'images')->where('entertainements_status', 0)->where('entertainements_type', 'day activities')->get();
             }
         }
     }
@@ -87,6 +92,12 @@ class EntertainementController extends Controller
                     'entertainements_id' => $entertainement->id
                 ]);
                 return Entertainement::with('timings', 'images', 'nightShows')->find($entertainement->id);
+            case 'day activities':
+                $entertainement->nightShows()->create([
+                    'day_activity_rated' => $request->day_activity_rated,
+                    'entertainements_id' => $entertainement->id
+                ]);
+                return Entertainement::with('timings', 'images', 'dayActivities')->find($entertainement->id);
             default:
                 return response()->json(['error' => 405, 'message' => 'failed to insert data correctly']);
         }
@@ -100,7 +111,7 @@ class EntertainementController extends Controller
      */
     public function show($id)
     {
-        return Entertainement::with('timings', 'images', 'nightShows')->find($id);
+        return Entertainement::with('timings', 'images', 'nightShows', 'dayActivities')->find($id);
     }
 
     /**

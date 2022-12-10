@@ -66,4 +66,14 @@ class Entertainement extends Model
     {
         return $this->hasOne(EntertainementNightShow::class, 'entertainements_id', 'id');
     }
+
+    /**
+     * Get the dayActivities associated with the Entertainement
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function dayActivities(): HasOne
+    {
+        return $this->hasOne(User::class, 'entertainements_id', 'id');
+    }
 }

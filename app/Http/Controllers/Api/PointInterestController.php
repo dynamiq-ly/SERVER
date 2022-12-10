@@ -17,7 +17,7 @@ class PointInterestController extends Controller
     public function index($bool = null)
     {
         if ($bool == 1)
-            return PointInterest::with('images', 'schedule')->leftJoin('point_interest_types', 'point_interest_types.id', '=', 'point_interests.id')->where('point_status', 1)->get();
+            return PointInterest::with('images', 'schedule', 'pointType')->where('point_status', 1)->get();
         else if ($bool == -1)
             return PointInterest::with('images', 'schedule')->leftJoin('point_interest_types', 'point_interest_types.id', '=', 'point_interests.id')->where('point_status', 0)->get();
         else 

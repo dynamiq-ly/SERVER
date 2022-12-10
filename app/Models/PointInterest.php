@@ -69,6 +69,6 @@ class PointInterest extends Model
      */
     public function pointType(): BelongsTo
     {
-        return $this->belongsTo(PointInterestType::class, 'point_interest_types_id');
+        return $this->belongsTo(PointInterestType::class, 'point_interest_types_id', 'id');
     }
 }
