@@ -31,8 +31,9 @@ class Gym extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
-        
+
     ];
+
     /**
      * Get all of the equipments for the Gym
      *
