@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class GymEquipment extends Model
 {
     use HasFactory;
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -18,7 +18,6 @@ class GymEquipment extends Model
         'gym_equipement_name',
         'gym_equipment_image',
         'gym_id'
-       
     ];
 
     /**
@@ -30,7 +29,7 @@ class GymEquipment extends Model
         'created_at',
         'updated_at',
         'gym_id'
-        
+
     ];
 
     /**
