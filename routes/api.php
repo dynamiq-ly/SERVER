@@ -216,3 +216,10 @@ Route::get('/gym',[GymController::class,'show']);
 Route::post('/gym',[GymController::class,'store']);
 Route::patch('/gym',[GymController::class,'update']);
 Route::delete('/gym',[GymController::class,'destroy']);
+// gym_equipment
+Route::get('/gym/equipments',[GymController::class,'gymEquipment']);
+Route::get('/gym/equipments/{id}',[GymController::class,'show_gym_equipment']);
+Route::post('/gym/equipments',[GymController::class,'add_gym_equipment']);
+Route::patch('/gym/equipments/{id}',[GymController::class,'update_gym_equipment']);
+Route::delete('/gym/equipments/{id}',[GymController::class,'destroy_gym_equipment']);
+

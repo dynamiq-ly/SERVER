@@ -1,10 +1,12 @@
 <?php
-
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gym;
+use App\Models\GymEquipment;
 use Illuminate\Http\Request;
+
+use function GuzzleHttp\Promise\all;
 
 class GymController extends Controller
 {
@@ -41,7 +43,7 @@ class GymController extends Controller
      */
     public function show()
     {
-       return Gym::find(1);
+       return Gym::with('equipments')->find(1);
     }
 
     /**
@@ -87,4 +89,50 @@ class GymController extends Controller
         return Gym::destroy(1);
      
     }
+
+    public function gymEquipment()
+    {
+        return GymEquipment::all();
+     
+    }
+
+    public function add_gym_equipment(Request $request)
+    {
+
+        if ($request->hasFile("gym_equipment_image") ){
+            $request->file("gym_equipment_image")->store("public/gym");
+            return GymEquipment::create([                    
+                'gym_equipement_name'=> $request->gym_equipement_name,
+                'gym_equipment_image'=> $request->file("gym_equipment_image")->hashName(),
+                'gym_id'=>1,
+               
+            ]);
+
+            
+        }
+     
+    }
+
+    public function update_gym_equipment(Request $request,$id)
+    {
+        if ($request->hasFile("gym_equipment_image") ){
+            $request->file("gym_equipment_image")->store("public/gym");
+            return GymEquipment::find($id)->update([                    
+                'gym_equipement_name'=> $request->gym_equipement_name,
+                'gym_equipment_image'=> $request->file("gym_equipment_image")->hashName(),
+              ]);
+        }
+    }
+    public function show_gym_equipment($id)
+    {
+       return GymEquipment::find($id);
+    }
+
+    public function destroy_gym_equipment($id)
+    {
+        return GymEquipment::destroy($id);
+     
+    }
+
+
 }
