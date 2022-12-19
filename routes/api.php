@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\ActivityListController;
 use App\Http\Controllers\Api\BarController;
 use App\Http\Controllers\Api\BarMenuController;
 use App\Http\Controllers\Api\BarMenuDrinksController;
+use App\Http\Controllers\Api\ConnectivityController;
 use App\Http\Controllers\Api\EntertainementController;
 use App\Http\Controllers\Api\FoodServiceController;
 use App\Http\Controllers\Api\FoodServicePlateController;
@@ -223,3 +224,12 @@ Route::post('/gym/equipments',[GymController::class,'add_gym_equipment']);
 Route::patch('/gym/equipments/{id}',[GymController::class,'update_gym_equipment']);
 Route::delete('/gym/equipments/{id}',[GymController::class,'destroy_gym_equipment']);
 
+
+/**
+ * connectivity
+ */
+Route::get('/connectivity',[ConnectivityController::class,'index']);
+Route::get('/connectivity/{id}',[ConnectivityController::class,'show']);
+Route::post('/connectivity',[ConnectivityController::class,'store']);
+Route::patch('/connectivity/{id}',[ConnectivityController::class,'update']);
+Route::delete('/connectivity/{id}',[ConnectivityController::class,'destroy']);
