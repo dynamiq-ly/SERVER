@@ -96,7 +96,7 @@ class GymController extends Controller
     {
 
         if ($request->hasFile("gym_equipment_image")) {
-            $request->file("gym_equipment_image")->store("public/gym");
+            $request->file("gym_equipment_image")->store("public/gym/equipments");
             return GymEquipment::create([
                 'gym_equipement_name' => $request->gym_equipement_name,
                 'gym_equipment_image' => $request->file("gym_equipment_image")->hashName(),
@@ -108,7 +108,7 @@ class GymController extends Controller
     public function update_gym_equipment(Request $request, $id)
     {
         if ($request->hasFile("gym_equipment_image")) {
-            $request->file("gym_equipment_image")->store("public/gym");
+            $request->file("gym_equipment_image")->store("public/gym/equipments");
             return GymEquipment::find($id)->update([
                 'gym_equipement_name' => $request->gym_equipement_name,
                 'gym_equipment_image' => $request->file("gym_equipment_image")->hashName(),
