@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\BarController;
 use App\Http\Controllers\Api\BarMenuController;
 use App\Http\Controllers\Api\BarMenuDrinksController;
 use App\Http\Controllers\Api\ConnectivityController;
+use App\Http\Controllers\Api\DrinkServiceCategoryController;
 use App\Http\Controllers\Api\EntertainementController;
 use App\Http\Controllers\Api\FoodServiceController;
 use App\Http\Controllers\Api\FoodServicePlateController;
@@ -208,6 +209,12 @@ Route::delete('/room-service/food-service/plate', [FoodServicePlateController::c
 Route::post('/room-service/food-service/plate/supplement', [FoodServicePlateSupplementController::class, 'store']);
 Route::patch('/room-service/food-service/plate/supplement/{id}', [FoodServicePlateSupplementController::class, 'update']);
 Route::delete('/room-service/food-service/plate/supplement', [FoodServicePlateSupplementController::class, 'destroy']);
+// drink service
+Route::get('/room-service/drink-service/category', [DrinkServiceCategoryController::class, 'index']);
+Route::get('/room-service/drink-service/category/{id}', [DrinkServiceCategoryController::class, 'show']);
+Route::post('/room-service/drink-service/category', [DrinkServiceCategoryController::class, 'store']);
+Route::patch('/room-service/drink-service/category/{id}', [DrinkServiceCategoryController::class, 'update']);
+Route::delete('/room-service/drink-service/category', [DrinkServiceCategoryController::class, 'destroy']);
 
 
 /**
