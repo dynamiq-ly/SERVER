@@ -146,7 +146,7 @@ Route::patch('/bar/menu/{id}', [BarMenuController::class, 'update']);
 Route::delete('/bar/menu/{id}', [BarMenuController::class, 'destroy']);
 // bar menu drinks
 Route::get('/bar/menu/drinks/{id}', [BarMenuDrinksController::class, 'index']);
-Route::get('/bar/menu/drinks/search={id}', [BarMenuDrinksController::class, 'show']);
+Route::get('/bar/menu/drinks/search/{id}', [BarMenuDrinksController::class, 'show']);
 Route::post('/bar/menu/drinks', [BarMenuDrinksController::class, 'store']);
 Route::post('/bar/menu/drinks/{id}', [BarMenuDrinksController::class, 'update']);
 Route::delete('/bar/menu/drinks/{id}', [BarMenuDrinksController::class, 'destroy']);
@@ -175,7 +175,7 @@ Route::get('/point-of-interest&status={bool}', [PointInterestController::class, 
 Route::get('/point-of-interest/{id}', [PointInterestController::class, 'show']);
 Route::post('/point-of-interest', [PointInterestController::class, 'store']);
 Route::patch('/PointInterest/{id}', [PointInterestController::class, 'update']);
-Route::delete('/PointInterest/{id}', [PointInterestController::class,'destroy']);
+Route::delete('/PointInterest/{id}', [PointInterestController::class, 'destroy']);
 
 /**
  * entertainement
@@ -192,44 +192,44 @@ Route::post('/entertainement', [EntertainementController::class, 'store']);
 Route::get('/room-service/mini-bar', [ServiceRoomMiniBarController::class, 'index']);
 Route::post('/room-service/mini-bar', [ServiceRoomMiniBarController::class, 'store']);
 Route::patch('/room-service/mini-bar/{id}', [ServiceRoomMiniBarController::class, 'update']);
-Route::delete('/room-service/mini-bar/{id}', [ServiceRoomMiniBarController::class,'destroy']);
+Route::delete('/room-service/mini-bar/{id}', [ServiceRoomMiniBarController::class, 'destroy']);
 // food service
 Route::get('/room-service/food-service', [FoodServiceController::class, 'index']);
 Route::get('/room-service/food-service/{id}', [FoodServiceController::class, 'show']);
 Route::post('/room-service/food-service', [FoodServiceController::class, 'store']);
 Route::patch('/room-service/food-service/{id}', [FoodServiceController::class, 'update']);
-Route::delete('/room-service/food-service', [FoodServiceController::class,'destroy']);
+Route::delete('/room-service/food-service', [FoodServiceController::class, 'destroy']);
 // food service plates
 Route::get('/room-service/food-service/plate/{id}', [FoodServicePlateController::class, 'show']);
 Route::post('/room-service/food-service/plate', [FoodServicePlateController::class, 'store']);
 Route::patch('/room-service/food-service/plate/{id}', [FoodServicePlateController::class, 'update']);
-Route::delete('/room-service/food-service/plate', [FoodServicePlateController::class,'destroy']);
+Route::delete('/room-service/food-service/plate', [FoodServicePlateController::class, 'destroy']);
 // food service supplement
 Route::post('/room-service/food-service/plate/supplement', [FoodServicePlateSupplementController::class, 'store']);
 Route::patch('/room-service/food-service/plate/supplement/{id}', [FoodServicePlateSupplementController::class, 'update']);
-Route::delete('/room-service/food-service/plate/supplement', [FoodServicePlateSupplementController::class,'destroy']);
+Route::delete('/room-service/food-service/plate/supplement', [FoodServicePlateSupplementController::class, 'destroy']);
 
 
 /**
  * gym
  */
-Route::get('/gym',[GymController::class,'show']);
-Route::post('/gym',[GymController::class,'store']);
-Route::patch('/gym',[GymController::class,'update']);
-Route::delete('/gym',[GymController::class,'destroy']);
+Route::get('/gym', [GymController::class, 'show']);
+Route::post('/gym', [GymController::class, 'store']);
+Route::patch('/gym', [GymController::class, 'update']);
+Route::delete('/gym', [GymController::class, 'destroy']);
 // gym_equipment
-Route::get('/gym/equipments',[GymController::class,'gymEquipment']);
-Route::get('/gym/equipments/{id}',[GymController::class,'show_gym_equipment']);
-Route::post('/gym/equipments',[GymController::class,'add_gym_equipment']);
-Route::patch('/gym/equipments/{id}',[GymController::class,'update_gym_equipment']);
-Route::delete('/gym/equipments/{id}',[GymController::class,'destroy_gym_equipment']);
+Route::get('/gym/equipments', [GymController::class, 'gymEquipment']);
+Route::get('/gym/equipments/{id}', [GymController::class, 'show_gym_equipment']);
+Route::post('/gym/equipments', [GymController::class, 'add_gym_equipment']);
+Route::patch('/gym/equipments/{id}', [GymController::class, 'update_gym_equipment']);
+Route::delete('/gym/equipments/{id}', [GymController::class, 'destroy_gym_equipment']);
 
 
 /**
  * connectivity
  */
-Route::get('/connectivity',[ConnectivityController::class,'index']);
-Route::get('/connectivity/{id}',[ConnectivityController::class,'show']);
-Route::post('/connectivity',[ConnectivityController::class,'store']);
-Route::patch('/connectivity/{id}',[ConnectivityController::class,'update']);
-Route::delete('/connectivity/{id}',[ConnectivityController::class,'destroy']);
+Route::get('/connectivity', [ConnectivityController::class, 'index']);
+Route::get('/connectivity/{id}', [ConnectivityController::class, 'show']);
+Route::post('/connectivity', [ConnectivityController::class, 'store']);
+Route::patch('/connectivity/{id}', [ConnectivityController::class, 'update']);
+Route::delete('/connectivity/{id}', [ConnectivityController::class, 'destroy']);

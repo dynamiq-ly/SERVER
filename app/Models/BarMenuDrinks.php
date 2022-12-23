@@ -46,6 +46,6 @@ class BarMenuDrinks extends Model
      */
     public function bar(): BelongsTo
     {
-        return $this->belongsTo(BarMenu::class, 'menu_drink_id');
+        return $this->belongsTo(BarMenu::class, 'menu_drink_id', 'id');
     }
 }

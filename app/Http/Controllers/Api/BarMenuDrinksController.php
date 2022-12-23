@@ -51,7 +51,7 @@ class BarMenuDrinksController extends Controller
      */
     public function show($id)
     {
-        return BarMenuDrinks::find($id);
+        return BarMenuDrinks::with('bar')->find($id);
     }
 
     /**
