@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\FoodServiceController;
 use App\Http\Controllers\Api\FoodServicePlateController;
 use App\Http\Controllers\Api\FoodServicePlateSupplementController;
 use App\Http\Controllers\Api\GymController;
+use App\Http\Controllers\Api\PhoneDirectoryController;
 use App\Http\Controllers\Api\PointInterestController;
 use App\Http\Controllers\Api\PointInterestTypeController;
 use App\Http\Controllers\Api\RestaurantController;
@@ -215,6 +216,12 @@ Route::get('/room-service/drink-service/category/{id}', [DrinkServiceCategoryCon
 Route::post('/room-service/drink-service/category', [DrinkServiceCategoryController::class, 'store']);
 Route::patch('/room-service/drink-service/category/{id}', [DrinkServiceCategoryController::class, 'update']);
 Route::delete('/room-service/drink-service/category', [DrinkServiceCategoryController::class, 'destroy']);
+// phone directory
+Route::get('/directory', [PhoneDirectoryController::class, 'index']);
+Route::get('/directory/{id}', [PhoneDirectoryController::class, 'show']);
+Route::post('/directory', [PhoneDirectoryController::class, 'store']);
+Route::patch('/directory/{id}', [PhoneDirectoryController::class, 'update']);
+Route::delete('/directory/{id}', [PhoneDirectoryController::class, 'destory']);
 
 
 /**
@@ -239,4 +246,3 @@ Route::get('/connectivity', [ConnectivityController::class, 'index']);
 Route::get('/connectivity/{id}', [ConnectivityController::class, 'show']);
 Route::post('/connectivity', [ConnectivityController::class, 'store']);
 Route::patch('/connectivity/{id}', [ConnectivityController::class, 'update']);
-Route::delete('/connectivity/{id}', [ConnectivityController::class, 'destroy']);
