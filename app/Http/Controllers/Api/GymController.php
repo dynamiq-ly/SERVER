@@ -7,10 +7,18 @@ use App\Models\Gym;
 use App\Models\GymEquipment;
 use Illuminate\Http\Request;
 
-use function GuzzleHttp\Promise\all;
-
 class GymController extends Controller
 {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return Gym::with('equipments')->get();
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -36,12 +44,11 @@ class GymController extends Controller
     /**
      * Display the specified resource.
      *
-     
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        return Gym::with('equipments')->find(1);
+        return Gym::with('equipments')->find($id);
     }
 
     /**
@@ -50,11 +57,11 @@ class GymController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         if ($request->hasFile("gym_image")) {
             $request->file("gym_image")->store("public/gym");
-            return Gym::finf(1)->update([
+            return Gym::find($id)->update([
                 'gym_name' => $request->gym_name,
                 'gym_image' => $request->file("gym_image")->hashName(),
                 'gym_description' => $request->gym_description,
@@ -63,7 +70,7 @@ class GymController extends Controller
                 'gym_timing' => $request->gym_timing,
             ]);
         } else {
-            return Gym::finf(1)->update([
+            return Gym::find($id)->update([
                 'gym_name' => $request->gym_name,
                 'gym_description' => $request->gym_description,
                 'gym_floor' => $request->gym_floor,
@@ -78,9 +85,9 @@ class GymController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
-        return Gym::destroy(1);
+        return Gym::destroy($id);
     }
 
 
@@ -100,7 +107,7 @@ class GymController extends Controller
             return GymEquipment::create([
                 'gym_equipement_name' => $request->gym_equipement_name,
                 'gym_equipment_image' => $request->file("gym_equipment_image")->hashName(),
-                'gym_id' => 1,
+                'gym_id' => $request->gym_id,
             ]);
         }
     }

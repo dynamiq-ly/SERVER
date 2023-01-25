@@ -192,6 +192,7 @@ Route::post('/entertainement', [EntertainementController::class, 'store']);
 
 // mini bar
 Route::get('/room-service/mini-bar', [ServiceRoomMiniBarController::class, 'index']);
+Route::get('/room-service/mini-bar/{id}', [ServiceRoomMiniBarController::class, 'show']);
 Route::post('/room-service/mini-bar', [ServiceRoomMiniBarController::class, 'store']);
 Route::patch('/room-service/mini-bar/{id}', [ServiceRoomMiniBarController::class, 'update']);
 Route::delete('/room-service/mini-bar/{id}', [ServiceRoomMiniBarController::class, 'destroy']);
@@ -221,13 +222,14 @@ Route::get('/directory', [PhoneDirectoryController::class, 'index']);
 Route::get('/directory/{id}', [PhoneDirectoryController::class, 'show']);
 Route::post('/directory', [PhoneDirectoryController::class, 'store']);
 Route::patch('/directory/{id}', [PhoneDirectoryController::class, 'update']);
-Route::delete('/directory/{id}', [PhoneDirectoryController::class, 'destory']);
+Route::delete('/directory/{id}', [PhoneDirectoryController::class, 'destroy']);
 
 
 /**
  * gym
  */
-Route::get('/gym', [GymController::class, 'show']);
+Route::get('/gym', [GymController::class, 'index']);
+Route::get('/gym/{id}', [GymController::class, 'show']);
 Route::post('/gym', [GymController::class, 'store']);
 Route::patch('/gym', [GymController::class, 'update']);
 Route::delete('/gym', [GymController::class, 'destroy']);
