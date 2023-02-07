@@ -182,9 +182,10 @@ Route::delete('/PointInterest/{id}', [PointInterestController::class, 'destroy']
 /**
  * entertainement
  */
-Route::get('/entertainement&status={bool}/{type?}', [EntertainementController::class, 'index'])->where('bool', '1|0|-1');
-Route::get('/entertainement/{id}', [EntertainementController::class, 'show']);
+Route::get('/entertainement={type}', [EntertainementController::class, 'index']);
+Route::get('/entertainement={type}/{id}', [EntertainementController::class, 'show']);
 Route::post('/entertainement', [EntertainementController::class, 'store']);
+Route::delete('/entertainement/{id}', [EntertainementController::class, 'destroy']);
 
 /**
  * room service

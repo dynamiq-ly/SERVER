@@ -32,7 +32,6 @@ class EntertainementNightShow extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'id',
         'created_at',
         'updated_at',
         'entertainements_id'
@@ -46,6 +45,6 @@ class EntertainementNightShow extends Model
      */
     public function entertainement(): BelongsTo
     {
-        return $this->belongsTo(Entertainement::class, 'entertainements_id',);
+        return $this->belongsTo(Entertainement::class, 'entertainements_id', 'id');
     }
 }

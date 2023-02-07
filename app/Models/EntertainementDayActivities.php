@@ -17,6 +17,7 @@ class EntertainementDayActivities extends Model
      */
     protected $fillable = [
         'entertainements_id',
+        'day_activity_rated'
     ];
 
     /**
@@ -25,7 +26,6 @@ class EntertainementDayActivities extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'id',
         'created_at',
         'updated_at',
         'entertainements_id'
@@ -39,6 +39,6 @@ class EntertainementDayActivities extends Model
      */
     public function entertainement(): BelongsTo
     {
-        return $this->belongsTo(Entertainement::class, 'entertainements_id',);
+        return $this->belongsTo(Entertainement::class, 'entertainements_id', 'id');
     }
 }

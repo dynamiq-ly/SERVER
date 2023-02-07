@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Entertainement;
+use App\Models\EntertainementDayActivities;
+use App\Models\EntertainementNightShow;
 use Illuminate\Http\Request;
 
 class EntertainementController extends Controller
@@ -15,29 +17,15 @@ class EntertainementController extends Controller
      * @param string $type
      * @return \Illuminate\Http\Response
      */
-    public function index($bool = null, $type = '')
+    public function index($type = '')
     {
-        if ($type == '') {
-            if ($bool == 1)
-                return Entertainement::with('timings', 'images')->where('entertainements_status', 1)->get();
-            else if ($bool == -1)
-                return Entertainement::with('timings', 'images')->where('entertainements_status', 0)->get();
-            else if ($bool == 0)
-                return Entertainement::with('timings', 'images')->get();
-        } else {
-
-            switch ($type) {
-                case 'nightShows':
-                    if ($bool == 1)
-                        return Entertainement::with('timings', 'images', 'nightShows')->where('entertainements_status', 1)->where('entertainements_type', 'night shows')->get();
-                    else if ($bool == 0)
-                        return Entertainement::with('timings', 'images')->where('entertainements_status', 0)->where('entertainements_type', 'night shows')->get();
-                case 'dayActivities':
-                    if ($bool == 1)
-                        return Entertainement::with('timings', 'images', 'dayActivities')->where('entertainements_status', 1)->where('entertainements_type', 'day activities')->get();
-                    else if ($bool == 0)
-                        return Entertainement::with('timings', 'images')->where('entertainements_status', 0)->where('entertainements_type', 'day activities')->get();
-            }
+        switch ($type) {
+            case 'night-shows':
+                return EntertainementNightShow::with('entertainement.images', 'entertainement.timings')->get();
+            case 'day-activities':
+                return EntertainementDayActivities::with('entertainement.images', 'entertainement.timings')->get();
+            default:
+                return Entertainement::with('timings', 'images');
         }
     }
 
@@ -109,9 +97,16 @@ class EntertainementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($type, $id)
     {
-        return Entertainement::with('timings', 'images', 'nightShows', 'dayActivities')->find($id);
+        switch ($type) {
+            case 'night-shows':
+                return EntertainementNightShow::with('entertainement.images', 'entertainement.timings')->find($id);
+            case 'day-activities':
+                return EntertainementDayActivities::with('entertainement.images', 'entertainement.timings')->find($id);
+            default:
+                return Entertainement::with('timings', 'images')->find($id);
+        }
     }
 
     /**
@@ -134,6 +129,6 @@ class EntertainementController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Entertainement::destroy($id);
     }
 }
