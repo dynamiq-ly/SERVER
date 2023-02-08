@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\FoodServiceController;
 use App\Http\Controllers\Api\FoodServicePlateController;
 use App\Http\Controllers\Api\FoodServicePlateSupplementController;
 use App\Http\Controllers\Api\GymController;
+use App\Http\Controllers\Api\OtherRequestController;
 use App\Http\Controllers\Api\PhoneDirectoryController;
 use App\Http\Controllers\Api\PointInterestController;
 use App\Http\Controllers\Api\PointInterestTypeController;
@@ -28,6 +29,7 @@ use App\Http\Controllers\Api\RoomTypeController;
 use App\Http\Controllers\Api\ServiceRoomMiniBarController;
 use App\Http\Controllers\Api\SwimmingPoolController;
 use App\Http\Controllers\Api\SwimmingPoolListController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -260,3 +262,12 @@ Route::get('/banks/{id}', [BankATMController::class, 'show']);
 Route::post('/banks', [BankATMController::class, 'store']);
 Route::patch('/banks/{id}', [BankATMController::class, 'update']);
 Route::delete('/banks/{id}', [BankATMController::class, 'destroy']);
+
+/**
+ * other request
+ */
+Route::get('/other-request', [OtherRequestController::class, 'index']);
+Route::get('/other-request/{id}', [OtherRequestController::class, 'show']);
+Route::post('/other-request', [OtherRequestController::class, 'store']);
+Route::patch('/other-request/{id}', [OtherRequestController::class, 'update']);
+Route::delete('/other-request/{id}', [OtherRequestController::class, 'destroy']);
