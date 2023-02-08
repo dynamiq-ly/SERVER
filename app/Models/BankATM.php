@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ReminderCall extends Model
+class BankATM extends Model
 {
     use HasFactory;
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'reminder_title',
-        'reminder_date',
-        'reminder_priority',
+        'bank_name',
+        'bank_description',
+        'bank_location_textual',
+        'bank_location_coords',
     ];
 
     /**
@@ -27,6 +27,6 @@ class ReminderCall extends Model
      */
     protected $hidden = [
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 }

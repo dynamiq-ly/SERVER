@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\SafetyMeasuresController;
 use App\Http\Controllers\Api\ReminderCallController;
 use App\Http\Controllers\Api\ActivitiesController;
 use App\Http\Controllers\Api\ActivityListController;
+use App\Http\Controllers\Api\BankATMController;
 use App\Http\Controllers\Api\BarController;
 use App\Http\Controllers\Api\BarMenuController;
 use App\Http\Controllers\Api\BarMenuDrinksController;
@@ -249,3 +250,13 @@ Route::get('/connectivity', [ConnectivityController::class, 'index']);
 Route::get('/connectivity/{id}', [ConnectivityController::class, 'show']);
 Route::post('/connectivity', [ConnectivityController::class, 'store']);
 Route::patch('/connectivity/{id}', [ConnectivityController::class, 'update']);
+Route::delete('/connectivity/{id}', [ConnectivityController::class, 'destroy']);
+
+/**
+ * bank and atm
+ */
+Route::get('/banks', [BankATMController::class, 'index']);
+Route::get('/banks/{id}', [BankATMController::class, 'show']);
+Route::post('/banks', [BankATMController::class, 'store']);
+Route::patch('/banks/{id}', [BankATMController::class, 'update']);
+Route::delete('/banks/{id}', [BankATMController::class, 'destroy']);
