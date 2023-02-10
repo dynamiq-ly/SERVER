@@ -29,7 +29,7 @@ use App\Http\Controllers\Api\RoomTypeController;
 use App\Http\Controllers\Api\ServiceRoomMiniBarController;
 use App\Http\Controllers\Api\SwimmingPoolController;
 use App\Http\Controllers\Api\SwimmingPoolListController;
-
+use App\Http\Controllers\Api\TourAgencyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -271,3 +271,12 @@ Route::get('/other-request/{id}', [OtherRequestController::class, 'show']);
 Route::post('/other-request', [OtherRequestController::class, 'store']);
 Route::patch('/other-request/{id}', [OtherRequestController::class, 'update']);
 Route::delete('/other-request/{id}', [OtherRequestController::class, 'destroy']);
+
+/**
+ * tour operators
+ */
+Route::get('/tour-operator/agency', [TourAgencyController::class, 'index']);
+Route::get('/tour-operator/agency/{id}', [TourAgencyController::class, 'show']);
+Route::post('/tour-operator/agency', [TourAgencyController::class, 'store']);
+Route::patch('/tour-operator/agency/{id}', [TourAgencyController::class, 'update']);
+Route::delete('/tour-operator/agency/{id}', [TourAgencyController::class, 'destroy']);
