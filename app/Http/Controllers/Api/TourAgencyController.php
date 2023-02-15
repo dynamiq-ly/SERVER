@@ -15,7 +15,7 @@ class TourAgencyController extends Controller
      */
     public function index()
     {
-        return TourAgency::with('services', 'guides')->get();
+        return TourAgency::with('services', 'guides.timing')->get();
     }
 
     /**
@@ -46,7 +46,7 @@ class TourAgencyController extends Controller
      */
     public function show($id)
     {
-        return TourAgency::with('services', 'guides')->find($id);
+        return TourAgency::with('services', 'guides.timing')->find($id);
     }
 
     /**
