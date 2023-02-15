@@ -30,6 +30,8 @@ use App\Http\Controllers\Api\ServiceRoomMiniBarController;
 use App\Http\Controllers\Api\SwimmingPoolController;
 use App\Http\Controllers\Api\SwimmingPoolListController;
 use App\Http\Controllers\Api\TourAgencyController;
+use App\Http\Controllers\Api\TourAgencyGuideController;
+use App\Http\Controllers\Api\TourAgencyServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,13 +88,13 @@ Route::get('/excursion', [ActivitiesController::class, 'indexWithRelations']);
  * swimming pool
  */
 Route::get('/swimming-pool', [SwimmingPoolController::class, 'index']);
-route::post('/swimming-pool', [SwimmingPoolController::class, 'store']);
+Route::post('/swimming-pool', [SwimmingPoolController::class, 'store']);
 Route::get('/swimming-pool/{id}', [SwimmingPoolController::class, 'show']);
 Route::patch('/swimming-pool/{id}', [SwimmingPoolController::class, 'update']);
 Route::delete('/swimming-pool/{id}', [SwimmingPoolController::class, 'destroy']);
 Route::get('/pools', [SwimmingPoolListController::class, 'index']);
 Route::post('/swimming-pool/pools', [SwimmingPoolListController::class, 'store']);
-Route::get(('/swimming-pool/pools/type={id}'), [SwimmingPoolListController::class, 'searchByPoolType']);
+Route::get('/swimming-pool/pools/type={id}', [SwimmingPoolListController::class, 'searchByPoolType']);
 Route::get('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'show']);
 Route::patch('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'update']);
 Route::delete('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'destroy']);
@@ -280,3 +282,15 @@ Route::get('/tour-operator/agency/{id}', [TourAgencyController::class, 'show']);
 Route::post('/tour-operator/agency', [TourAgencyController::class, 'store']);
 Route::patch('/tour-operator/agency/{id}', [TourAgencyController::class, 'update']);
 Route::delete('/tour-operator/agency/{id}', [TourAgencyController::class, 'destroy']);
+// tour operators services
+Route::get('/tour-operator/services', [TourAgencyServiceController::class, 'index']);
+Route::get('/tour-operator/services/{id}', [TourAgencyServiceController::class, 'show']);
+Route::post('/tour-operator/services', [TourAgencyServiceController::class, 'store']);
+Route::patch('/tour-operator/services/{id}', [TourAgencyServiceController::class, 'update']);
+Route::delete('/tour-operator/services/{id}', [TourAgencyServiceController::class, 'destroy']);
+// tour operators guide
+Route::get('/tour-operator/guides', [TourAgencyGuideController::class, 'index']);
+Route::get('/tour-operator/guides/{id}', [TourAgencyGuideController::class, 'show']);
+Route::post('/tour-operator/guides', [TourAgencyGuideController::class, 'store']);
+Route::patch('/tour-operator/guides/{id}', [TourAgencyGuideController::class, 'update']);
+Route::delete('/tour-operator/guides/{id}', [TourAgencyGuideController::class, 'destroy']);
