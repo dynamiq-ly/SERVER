@@ -25,6 +25,7 @@ use App\Http\Controllers\Api\PointInterestTypeController;
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\RestaurantMenu;
 use App\Http\Controllers\Api\RoomController;
+use App\Http\Controllers\Api\RoomRequestController;
 use App\Http\Controllers\Api\RoomTypeController;
 use App\Http\Controllers\Api\ServiceRoomMiniBarController;
 use App\Http\Controllers\Api\SwimmingPoolController;
@@ -294,3 +295,12 @@ Route::get('/tour-operator/guides/{id}', [TourAgencyGuideController::class, 'sho
 Route::post('/tour-operator/guides', [TourAgencyGuideController::class, 'store']);
 Route::patch('/tour-operator/guides/{id}', [TourAgencyGuideController::class, 'update']);
 Route::delete('/tour-operator/guides/{id}', [TourAgencyGuideController::class, 'destroy']);
+
+/**
+ * room request
+ */
+Route::get('/room-request', [RoomRequestController::class, 'index']);
+Route::get('/room-request/{id}', [RoomRequestController::class, 'show']);
+Route::post('/room-request', [RoomRequestController::class, 'store']);
+Route::patch('/room-request/{id}', [RoomRequestController::class, 'update']);
+Route::delete('/room-request/{id}', [RoomRequestController::class, 'destroy']);
