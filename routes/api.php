@@ -322,3 +322,12 @@ Route::get('/television/{id}', [HouseKeepingController::class, 'show']);
 Route::post('/television', [HouseKeepingController::class, 'store']);
 Route::patch('/television/{id}', [HouseKeepingController::class, 'update']);
 Route::delete('/television/{id}', [HouseKeepingController::class, 'destroy']);
+
+/**
+ * pool towels
+ */
+Route::get('/television',[PoolTowelsController::class,'index']);
+Route::get('/television/{id}', [PoolTowelsController::class, 'show']);
+Route::post('/television', [PoolTowelsController::class, 'store']);
+Route::patch('/television/{id}', [PoolTowelsController::class, 'update']);
+Route::delete('/television/{id}', [PoolTowelsController::class, 'destroy']);
