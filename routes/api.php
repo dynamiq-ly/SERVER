@@ -304,12 +304,21 @@ Route::get('/room-request/{id}', [RoomRequestController::class, 'show']);
 Route::post('/room-request', [RoomRequestController::class, 'store']);
 Route::patch('/room-request/{id}', [RoomRequestController::class, 'update']);
 Route::delete('/room-request/{id}', [RoomRequestController::class, 'destroy']);
+
 /**
  * house keeping 
  */
-
 Route::get('/house-keeping',[HouseKeepingController::class,'index']);
 Route::get('/house-keeping/{id}', [HouseKeepingController::class, 'show']);
 Route::post('/house-keeping', [HouseKeepingController::class, 'store']);
 Route::patch('/house-keeping/{id}', [HouseKeepingController::class, 'update']);
 Route::delete('/house-keeping/{id}', [HouseKeepingController::class, 'destroy']);
+
+/**
+ * television
+ */
+Route::get('/television',[HouseKeepingController::class,'index']);
+Route::get('/television/{id}', [HouseKeepingController::class, 'show']);
+Route::post('/television', [HouseKeepingController::class, 'store']);
+Route::patch('/television/{id}', [HouseKeepingController::class, 'update']);
+Route::delete('/television/{id}', [HouseKeepingController::class, 'destroy']);
