@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Laundry extends Model
+class LaundryMenu extends Model
 {
     use HasFactory;
     /**
@@ -15,9 +15,14 @@ class Laundry extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'LaundryInstruction',
+        'Clothes_type',
+        'laundry',
+        'dry_cleaning',
+        'pressing',
+        'laundry_id',
         
     ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -27,5 +32,5 @@ class Laundry extends Model
         'updated_at',
         'created_at',
     ];
-
+    
 }

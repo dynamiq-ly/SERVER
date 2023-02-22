@@ -7,17 +7,21 @@ use App\Http\Controllers\Api\SafetyMeasuresController;
 use App\Http\Controllers\Api\ReminderCallController;
 use App\Http\Controllers\Api\ActivitiesController;
 use App\Http\Controllers\Api\ActivityListController;
+use App\Http\Controllers\Api\AirConditionnerController;
 use App\Http\Controllers\Api\BankATMController;
 use App\Http\Controllers\Api\BarController;
 use App\Http\Controllers\Api\BarMenuController;
 use App\Http\Controllers\Api\BarMenuDrinksController;
 use App\Http\Controllers\Api\ConnectivityController;
 use App\Http\Controllers\Api\DrinkServiceCategoryController;
+use App\Http\Controllers\Api\ElectricityController;
 use App\Http\Controllers\Api\EntertainementController;
 use App\Http\Controllers\Api\FoodServiceController;
 use App\Http\Controllers\Api\FoodServicePlateController;
 use App\Http\Controllers\Api\FoodServicePlateSupplementController;
 use App\Http\Controllers\Api\GymController;
+use App\Http\Controllers\Api\LaundriesController;
+use App\Http\Controllers\Api\LaundryTypeController;
 use App\Http\Controllers\Api\OtherRequestController;
 use App\Http\Controllers\Api\PhoneDirectoryController;
 use App\Http\Controllers\Api\PointInterestController;
@@ -344,8 +348,32 @@ Route::delete('/towels/{id}', [TowelsController::class, 'destroy']);
 /**
  * Laundry
  */
-Route::get('/laundry',[TowelsController::class,'index']);
-Route::get('/laundry/{id}', [TowelsController::class, 'show']);
-Route::post('/laundry', [TowelsController::class, 'store']);
-Route::patch('/laundry/{id}', [TowelsController::class, 'update']);
-Route::delete('/laundry/{id}', [TowelsController::class, 'destroy']);
+Route::get('/laundry',[LaundriesController::class,'index']);
+Route::get('/laundry/{id}', [LaundriesController::class, 'show']);
+Route::post('/laundry', [LaundriesController::class, 'store']);
+Route::patch('/laundry/{id}', [LaundriesController::class, 'update']);
+Route::delete('/laundry/{id}', [LaundriesController::class, 'destroy']);
+ // Laundry Menu
+Route::get('/laundry-menu',[LaundryTypeController::class,'index']);
+Route::get('/laundry-menu/{id}', [LaundryTypeController::class, 'show']);
+Route::post('/laundry-menu', [LaundryTypeController::class, 'store']);
+Route::patch('/laundry-menu/{id}', [LaundryTypeController::class, 'update']);
+Route::delete('/laundry-menu/{id}', [LaundryTypeController::class, 'destroy']);
+
+/**
+ * Electricity and cables
+ */
+Route::get('/electricity',[ElectricityController::class,'index']);
+Route::get('/electricity/{id}', [ElectricityController::class, 'show']);
+Route::post('/electricity', [ElectricityController::class, 'store']);
+Route::patch('/electricity/{id}', [ElectricityController::class, 'update']);
+Route::delete('/electricity/{id}', [ElectricityController::class, 'destroy']);
+
+/**
+ * Air Conditionner
+ */
+Route::get('/air-conditionner',[AirConditionnerController::class,'index']);
+Route::get('/air-conditionner/{id}', [AirConditionnerController::class, 'show']);
+Route::post('/air-conditionner', [AirConditionnerController::class, 'store']);
+Route::patch('/air-conditionner/{id}', [AirConditionnerController::class, 'update']);
+Route::delete('/air-conditionner/{id}', [AirConditionnerController::class, 'destroy']);
