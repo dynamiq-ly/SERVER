@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\FoodServiceController;
 use App\Http\Controllers\Api\FoodServicePlateController;
 use App\Http\Controllers\Api\FoodServicePlateSupplementController;
 use App\Http\Controllers\Api\GymController;
+use App\Http\Controllers\Api\HairDryerController;
 use App\Http\Controllers\Api\LaundriesController;
 use App\Http\Controllers\Api\LaundryTypeController;
 use App\Http\Controllers\Api\OtherRequestController;
@@ -377,3 +378,12 @@ Route::get('/air-conditionner/{id}', [AirConditionnerController::class, 'show'])
 Route::post('/air-conditionner', [AirConditionnerController::class, 'store']);
 Route::patch('/air-conditionner/{id}', [AirConditionnerController::class, 'update']);
 Route::delete('/air-conditionner/{id}', [AirConditionnerController::class, 'destroy']);
+
+/**
+ * Hair Dryer
+ */
+Route::get('/hair-dryer',[HairDryerController::class,'index']);
+Route::get('/hair-dryer/{id}', [HairDryerController::class, 'show']);
+Route::post('/hair-dryer', [HairDryerController::class, 'store']);
+Route::patch('/hair-dryer/{id}', [HairDryerController::class, 'update']);
+Route::delete('/hair-dryer/{id}', [HairDryerController::class, 'destroy']);

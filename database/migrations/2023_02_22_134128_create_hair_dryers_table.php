@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('air_conditionners', function (Blueprint $table) {
+        Schema::create('hair_dryers', function (Blueprint $table) {
             $table->id();
-            $table->string('AirConditionnerInstruction');
-            $table->boolean('AirConditionnerWarning');
+            $table->string('HairDryerInstruction');
+            $table->boolean('HairDryerWarning');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('air_conditionners');
+        Schema::dropIfExists('hair_dryers');
     }
 };
