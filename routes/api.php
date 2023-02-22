@@ -326,8 +326,18 @@ Route::delete('/television/{id}', [HouseKeepingController::class, 'destroy']);
 /**
  * pool towels
  */
-Route::get('/television',[PoolTowelsController::class,'index']);
-Route::get('/television/{id}', [PoolTowelsController::class, 'show']);
-Route::post('/television', [PoolTowelsController::class, 'store']);
-Route::patch('/television/{id}', [PoolTowelsController::class, 'update']);
-Route::delete('/television/{id}', [PoolTowelsController::class, 'destroy']);
+Route::get('/pool-towels',[PoolTowelsController::class,'index']);
+Route::get('/pool-towels/{id}', [PoolTowelsController::class, 'show']);
+Route::post('/pool-towels', [PoolTowelsController::class, 'store']);
+Route::patch('/pool-towels/{id}', [PoolTowelsController::class, 'update']);
+Route::delete('/pool-towels/{id}', [PoolTowelsController::class, 'destroy']);
+
+/**
+ * towels
+ */
+Route::get('/towels',[TowelsController::class,'index']);
+Route::get('/towels/{id}', [TowelsController::class, 'show']);
+Route::post('/towels', [TowelsController::class, 'store']);
+Route::patch('/towels/{id}', [TowelsController::class, 'update']);
+Route::delete('/towels/{id}', [TowelsController::class, 'destroy']);
+
