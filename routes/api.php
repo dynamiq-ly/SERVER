@@ -341,3 +341,11 @@ Route::post('/towels', [TowelsController::class, 'store']);
 Route::patch('/towels/{id}', [TowelsController::class, 'update']);
 Route::delete('/towels/{id}', [TowelsController::class, 'destroy']);
 
+/**
+ * Laundry
+ */
+Route::get('/laundry',[TowelsController::class,'index']);
+Route::get('/laundry/{id}', [TowelsController::class, 'show']);
+Route::post('/laundry', [TowelsController::class, 'store']);
+Route::patch('/laundry/{id}', [TowelsController::class, 'update']);
+Route::delete('/laundry/{id}', [TowelsController::class, 'destroy']);
