@@ -17,12 +17,12 @@ class PointInterestController extends Controller
     public function index($bool = null)
     {
         if ($bool == 1)
-            return PointInterest::with('images', 'schedule', 'pointType')->where('point_status', 1)->get();
+            return PointInterest::with('schedule', 'pointType')->where('point_status', 1)->get();
         else if ($bool == -1)
-            return PointInterest::with('images', 'schedule', 'pointType')->where('point_status', 0)->get();
+            return PointInterest::with('schedule', 'pointType')->where('point_status', 0)->get();
         else 
     if ($bool == 0)
-            return PointInterest::with('images', 'pointType')->get();
+            return PointInterest::with('schedule', 'pointType')->get();
     }
 
     /**
@@ -43,20 +43,9 @@ class PointInterestController extends Controller
             'point_cords_location',
             'point_recommended_visit',
             'point_status',
+            'images',
             'point_interest_types_id'
         ));
-
-
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $image->store('public/points-of-interest');
-                $point->images()->create([
-                    'image' => $image->hashName(),
-                    'point_id' => $point->id
-                ]);
-            }
-        }
-
 
         $point->schedule()->create([
             'sunday' => $request->sunday,
@@ -68,6 +57,8 @@ class PointInterestController extends Controller
             'saturday' => $request->saturday,
             'point_id' => $point->id
         ]);
+
+        return $point;
     }
 
     /**
@@ -78,7 +69,7 @@ class PointInterestController extends Controller
      */
     public function show($id)
     {
-        return PointInterest::with('images', 'schedule')->leftJoin('point_interest_types', 'point_interest_types.id', '=', 'point_interests.id')->find($id);
+        return PointInterest::with('schedule', 'pointType')->leftJoin('point_interest_types', 'point_interest_types.id', '=', 'point_interests.id')->find($id);
     }
 
     /**
@@ -100,19 +91,9 @@ class PointInterestController extends Controller
             'point_cords_location',
             'point_recommended_visit',
             'point_status',
+            'images',
             'point_interest_types_id'
         ));
-
-
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $image->store('public/points-of-interest');
-                $point->images()->update([
-                    'image' => $image->hashName(),
-                    'point_id' => $point->id
-                ]);
-            }
-        }
 
 
         $point->schedule()->update([
@@ -136,5 +117,22 @@ class PointInterestController extends Controller
     public function destroy($id)
     {
         return PointInterest::destroy($id);
+    }
+
+    /**
+     * upload images
+     */
+    public function uploadImage(Request $request)
+    {
+        $imageuploads = [];
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $image->store('public/points-of-interest');
+                $imageuploads[] = $image->hashName();
+            }
+        }
+
+        return $imageuploads;
     }
 }

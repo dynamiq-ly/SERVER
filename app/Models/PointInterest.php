@@ -27,6 +27,7 @@ class PointInterest extends Model
         'point_cords_location',
         'point_recommended_visit',
         'point_status',
+        'images',
         'point_interest_types_id'
     ];
 
@@ -40,16 +41,6 @@ class PointInterest extends Model
         'updated_at',
         'point_interest_types_id'
     ];
-
-    /**
-     * Get all of the images for the PointInterest
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function images(): HasMany
-    {
-        return $this->hasMany(PointInterestImage::class, 'point_id', 'id');
-    }
 
     /**
      * Get the schedule associated with the PointInterest

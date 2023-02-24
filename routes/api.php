@@ -182,8 +182,10 @@ Route::delete('/point-of-interest/type/{id}', [PointInterestTypeController::clas
 Route::get('/point-of-interest&status={bool}', [PointInterestController::class, 'index'])->where('bool', '1|0|-1');
 Route::get('/point-of-interest/{id}', [PointInterestController::class, 'show']);
 Route::post('/point-of-interest', [PointInterestController::class, 'store']);
-Route::patch('/PointInterest/{id}', [PointInterestController::class, 'update']);
-Route::delete('/PointInterest/{id}', [PointInterestController::class, 'destroy']);
+Route::patch('/point-of-interest/{id}', [PointInterestController::class, 'update']);
+Route::delete('/point-of-interest/{id}', [PointInterestController::class, 'destroy']);
+// image upload
+Route::post('/point-of-interest/upload', [PointInterestController::class, 'uploadImage']);
 
 /**
  * entertainement
