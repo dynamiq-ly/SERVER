@@ -189,8 +189,6 @@ Route::get('/point-of-interest/{id}', [PointInterestController::class, 'show']);
 Route::post('/point-of-interest', [PointInterestController::class, 'store']);
 Route::patch('/point-of-interest/{id}', [PointInterestController::class, 'update']);
 Route::delete('/point-of-interest/{id}', [PointInterestController::class, 'destroy']);
-// image upload
-Route::post('/point-of-interest/upload', [PointInterestController::class, 'uploadImage']);
 
 /**
  * entertainement
@@ -315,7 +313,7 @@ Route::delete('/room-request/{id}', [RoomRequestController::class, 'destroy']);
 /**
  * house keeping 
  */
-Route::get('/house-keeping',[HouseKeepingController::class,'index']);
+Route::get('/house-keeping', [HouseKeepingController::class, 'index']);
 Route::get('/house-keeping/{id}', [HouseKeepingController::class, 'show']);
 Route::post('/house-keeping', [HouseKeepingController::class, 'store']);
 Route::patch('/house-keeping/{id}', [HouseKeepingController::class, 'update']);
@@ -324,7 +322,7 @@ Route::delete('/house-keeping/{id}', [HouseKeepingController::class, 'destroy'])
 /**
  * television
  */
-Route::get('/television',[HouseKeepingController::class,'index']);
+Route::get('/television', [HouseKeepingController::class, 'index']);
 Route::get('/television/{id}', [HouseKeepingController::class, 'show']);
 Route::post('/television', [HouseKeepingController::class, 'store']);
 Route::patch('/television/{id}', [HouseKeepingController::class, 'update']);
@@ -333,7 +331,7 @@ Route::delete('/television/{id}', [HouseKeepingController::class, 'destroy']);
 /**
  * pool towels
  */
-Route::get('/pool-towels',[PoolTowelsController::class,'index']);
+Route::get('/pool-towels', [PoolTowelsController::class, 'index']);
 Route::get('/pool-towels/{id}', [PoolTowelsController::class, 'show']);
 Route::post('/pool-towels', [PoolTowelsController::class, 'store']);
 Route::patch('/pool-towels/{id}', [PoolTowelsController::class, 'update']);
@@ -342,7 +340,7 @@ Route::delete('/pool-towels/{id}', [PoolTowelsController::class, 'destroy']);
 /**
  * towels
  */
-Route::get('/towels',[TowelsController::class,'index']);
+Route::get('/towels', [TowelsController::class, 'index']);
 Route::get('/towels/{id}', [TowelsController::class, 'show']);
 Route::post('/towels', [TowelsController::class, 'store']);
 Route::patch('/towels/{id}', [TowelsController::class, 'update']);
@@ -351,13 +349,13 @@ Route::delete('/towels/{id}', [TowelsController::class, 'destroy']);
 /**
  * Laundry
  */
-Route::get('/laundry',[LaundriesController::class,'index']);
+Route::get('/laundry', [LaundriesController::class, 'index']);
 Route::get('/laundry/{id}', [LaundriesController::class, 'show']);
 Route::post('/laundry', [LaundriesController::class, 'store']);
 Route::patch('/laundry/{id}', [LaundriesController::class, 'update']);
 Route::delete('/laundry/{id}', [LaundriesController::class, 'destroy']);
- // Laundry Menu
-Route::get('/laundry-menu',[LaundryTypeController::class,'index']);
+// Laundry Menu
+Route::get('/laundry-menu', [LaundryTypeController::class, 'index']);
 Route::get('/laundry-menu/{id}', [LaundryTypeController::class, 'show']);
 Route::post('/laundry-menu', [LaundryTypeController::class, 'store']);
 Route::patch('/laundry-menu/{id}', [LaundryTypeController::class, 'update']);
@@ -366,7 +364,7 @@ Route::delete('/laundry-menu/{id}', [LaundryTypeController::class, 'destroy']);
 /**
  * Electricity and cables
  */
-Route::get('/electricity',[ElectricityController::class,'index']);
+Route::get('/electricity', [ElectricityController::class, 'index']);
 Route::get('/electricity/{id}', [ElectricityController::class, 'show']);
 Route::post('/electricity', [ElectricityController::class, 'store']);
 Route::patch('/electricity/{id}', [ElectricityController::class, 'update']);
@@ -375,7 +373,7 @@ Route::delete('/electricity/{id}', [ElectricityController::class, 'destroy']);
 /**
  * Air Conditionner
  */
-Route::get('/air-conditionner',[AirConditionnerController::class,'index']);
+Route::get('/air-conditionner', [AirConditionnerController::class, 'index']);
 Route::get('/air-conditionner/{id}', [AirConditionnerController::class, 'show']);
 Route::post('/air-conditionner', [AirConditionnerController::class, 'store']);
 Route::patch('/air-conditionner/{id}', [AirConditionnerController::class, 'update']);
@@ -384,7 +382,7 @@ Route::delete('/air-conditionner/{id}', [AirConditionnerController::class, 'dest
 /**
  * Hair Dryer
  */
-Route::get('/hair-dryer',[HairDryerController::class,'index']);
+Route::get('/hair-dryer', [HairDryerController::class, 'index']);
 Route::get('/hair-dryer/{id}', [HairDryerController::class, 'show']);
 Route::post('/hair-dryer', [HairDryerController::class, 'store']);
 Route::patch('/hair-dryer/{id}', [HairDryerController::class, 'update']);
