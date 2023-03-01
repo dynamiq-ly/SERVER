@@ -49,7 +49,7 @@ class LaundriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return Laundry::find($id)->update($request->only('isAnsewred'));
+        return Laundry::find($id)->update($request->all());
     }
 
     /**

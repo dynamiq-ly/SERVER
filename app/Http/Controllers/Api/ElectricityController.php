@@ -49,7 +49,7 @@ class ElectricityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return Electricity::find($id)->update($request->only('isAnsewred'));
+        return Electricity::find($id)->update($request->all());
     }
 
     /**

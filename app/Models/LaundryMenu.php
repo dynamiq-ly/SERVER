@@ -15,12 +15,12 @@ class LaundryMenu extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'Clothes_type',
+        'clothes_type',
         'laundry',
         'dry_cleaning',
         'pressing',
         'laundry_id',
-        
+
     ];
 
     /**
@@ -32,5 +32,4 @@ class LaundryMenu extends Model
         'updated_at',
         'created_at',
     ];
-    
 }

@@ -49,7 +49,7 @@ class LaundryTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return LaundryMenu::find($id)->update($request->only('isAnsewred'));
+        return LaundryMenu::find($id)->update($request->all());
     }
 
     /**
