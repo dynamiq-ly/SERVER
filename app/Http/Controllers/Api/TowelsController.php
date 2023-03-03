@@ -49,7 +49,7 @@ class TowelsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return Towels::find($id)->update($request->only('isAnsewred'));
+        return Towels::find($id)->update($request->all());
     }
 
     /**

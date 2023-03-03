@@ -56,13 +56,13 @@ class SwimmingPoolController extends Controller
     public function update(Request $request, $id)
     {
         if ($request->hasFile('pool_image')) {
-            $request->file('pool_image')->store('public/excursions/thumbnails');
-            return Activities::find($id)->update([
+            $request->file('pool_image')->store('public/swimming-pool/thumbnails');
+            return SwimmingPool::find($id)->update([
                 'pool_type' => $request->pool_type,
                 'pool_image' => $request->file('pool_image')->hashName(),
             ]);
         } else {
-            return Activities::find($id)->update([
+            return SwimmingPool::find($id)->update([
                 'pool_type' => $request->pool_type,
             ]);
         }

@@ -49,7 +49,7 @@ class HairDryerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return HairDryer::find($id)->update($request->only('isAnsewred'));
+        return HairDryer::find($id)->update($request->all());
     }
 
     /**
