@@ -215,6 +215,7 @@ Route::post('/room-service/food-service', [FoodServiceController::class, 'store'
 Route::patch('/room-service/food-service/{id}', [FoodServiceController::class, 'update']);
 Route::delete('/room-service/food-service', [FoodServiceController::class, 'destroy']);
 // food service plates
+Route::get('/room-service/food-service/{id}/plate', [FoodServicePlateController::class, 'index']);
 Route::get('/room-service/food-service/plate/{id}', [FoodServicePlateController::class, 'show']);
 Route::post('/room-service/food-service/plate', [FoodServicePlateController::class, 'store']);
 Route::patch('/room-service/food-service/plate/{id}', [FoodServicePlateController::class, 'update']);

@@ -10,12 +10,12 @@ class FoodServicePlateController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        return FoodServicePlates::with('supplements', 'category')->where('food_service_categories_id', $id)->get();
     }
 
     /**
@@ -47,7 +47,7 @@ class FoodServicePlateController extends Controller
      */
     public function show($id)
     {
-        return FoodServicePlates::with('supplements')->find($id);
+        return FoodServicePlates::with('supplements', 'category')->find($id);
     }
 
     /**

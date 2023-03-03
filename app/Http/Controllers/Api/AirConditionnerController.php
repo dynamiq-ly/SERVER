@@ -49,7 +49,7 @@ class AirConditionnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return AirConditionner::find($id)->update($request->only('isAnsewred'));
+        return AirConditionner::find($id)->update($request->all());
     }
 
     /**
