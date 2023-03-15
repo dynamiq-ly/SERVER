@@ -49,7 +49,7 @@ class TelevisionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return Television::find($id)->update($request->only('isAnsewred'));
+        return Television::find($id)->update($request->all());
     }
 
     /**

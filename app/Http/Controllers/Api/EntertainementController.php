@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Entertainement;
 use App\Models\EntertainementDayActivities;
 use App\Models\EntertainementNightShow;
+use App\Models\EntertainementTiming;
 use Illuminate\Http\Request;
 
 class EntertainementController extends Controller
@@ -130,5 +131,14 @@ class EntertainementController extends Controller
     public function destroy($id)
     {
         return Entertainement::destroy($id);
+    }
+
+
+    /**
+     * get all timing for entertainement
+     */
+    public function getTiming()
+    {
+        return EntertainementTiming::with('entertainement')->get();
     }
 }

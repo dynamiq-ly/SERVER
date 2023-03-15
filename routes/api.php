@@ -21,6 +21,7 @@ use App\Http\Controllers\Api\FoodServicePlateController;
 use App\Http\Controllers\Api\FoodServicePlateSupplementController;
 use App\Http\Controllers\Api\GymController;
 use App\Http\Controllers\Api\HairDryerController;
+use App\Http\Controllers\Api\HouseKeepingController;
 use App\Http\Controllers\Api\LaundriesController;
 use App\Http\Controllers\Api\LaundryTypeController;
 use App\Http\Controllers\Api\OtherRequestController;
@@ -36,6 +37,7 @@ use App\Http\Controllers\Api\RoomTypeController;
 use App\Http\Controllers\Api\ServiceRoomMiniBarController;
 use App\Http\Controllers\Api\SwimmingPoolController;
 use App\Http\Controllers\Api\SwimmingPoolListController;
+use App\Http\Controllers\Api\TelevisionController;
 use App\Http\Controllers\Api\TourAgencyController;
 use App\Http\Controllers\Api\TourAgencyGuideController;
 use App\Http\Controllers\Api\TourAgencyServiceController;
@@ -199,6 +201,8 @@ Route::get('/entertainement={type}', [EntertainementController::class, 'index'])
 Route::get('/entertainement={type}/{id}', [EntertainementController::class, 'show']);
 Route::post('/entertainement', [EntertainementController::class, 'store']);
 Route::delete('/entertainement/{id}', [EntertainementController::class, 'destroy']);
+// entertainement timing
+Route::get('/entertainement/timing', [EntertainementController::class, 'getTiming']);
 
 /**
  * room service
@@ -325,11 +329,11 @@ Route::delete('/house-keeping/{id}', [HouseKeepingController::class, 'destroy'])
 /**
  * television
  */
-Route::get('/television', [HouseKeepingController::class, 'index']);
-Route::get('/television/{id}', [HouseKeepingController::class, 'show']);
-Route::post('/television', [HouseKeepingController::class, 'store']);
-Route::patch('/television/{id}', [HouseKeepingController::class, 'update']);
-Route::delete('/television/{id}', [HouseKeepingController::class, 'destroy']);
+Route::get('/television', [TelevisionController::class, 'index']);
+Route::get('/television/{id}', [TelevisionController::class, 'show']);
+Route::post('/television', [TelevisionController::class, 'store']);
+Route::patch('/television/{id}', [TelevisionController::class, 'update']);
+Route::delete('/television/{id}', [TelevisionController::class, 'destroy']);
 
 /**
  * pool towels

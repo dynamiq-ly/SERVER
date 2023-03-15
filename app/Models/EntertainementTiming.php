@@ -38,6 +38,6 @@ class EntertainementTiming extends Model
      */
     public function entertainement(): BelongsTo
     {
-        return $this->belongsTo(Entertainement::class, 'entertainements_id');
+        return $this->belongsTo(Entertainement::class, 'entertainements_id', 'id');
     }
 }
