@@ -14,8 +14,8 @@ class PoolTowels extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'poolTowelsInstruction',
-        
+        'PoolTowelsInstruction',
+
     ];
 
     /**
