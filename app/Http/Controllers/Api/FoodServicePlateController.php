@@ -86,6 +86,6 @@ class FoodServicePlateController extends Controller
      */
     public function destroy($id)
     {
-        return Activities::destroy($id);
+        return FoodServicePlates::destroy($id);
     }
 }
