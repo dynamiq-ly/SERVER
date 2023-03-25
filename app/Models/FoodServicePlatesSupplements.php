@@ -39,6 +39,6 @@ class FoodServicePlatesSupplements extends Model
      */
     public function plate(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'food_service_plates_id', 'id');
+        return $this->belongsTo(FoodServicePlates::class, 'food_service_plates_id', 'id');
     }
 }
