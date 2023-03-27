@@ -404,3 +404,12 @@ Route::get('/hair-dryer/{id}', [HairDryerController::class, 'show']);
 Route::post('/hair-dryer', [HairDryerController::class, 'store']);
 Route::patch('/hair-dryer/{id}', [HairDryerController::class, 'update']);
 Route::delete('/hair-dryer/{id}', [HairDryerController::class, 'destroy']);
+
+/**
+ * Report Incident
+ */
+Route::get('/report-incident', [ReportIncidentController::class, 'index']);
+Route::get('/report-incident/{id}', [ReportIncidentController::class, 'show']);
+Route::post('/report-incident', [ReportIncidentController::class, 'store']);
+Route::patch('/report-incident/{id}', [ReportIncidentController::class, 'update']);
+Route::delete('/report-incident/{id}', [ReportIncidentController::class, 'destroy']);
