@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\ConnectivityController;
 use App\Http\Controllers\Api\DrinkServiceCategoryController;
 use App\Http\Controllers\Api\ElectricityController;
 use App\Http\Controllers\Api\EntertainementController;
+use App\Http\Controllers\Api\FileManagerController;
 use App\Http\Controllers\Api\FoodServiceController;
 use App\Http\Controllers\Api\FoodServicePlateController;
 use App\Http\Controllers\Api\FoodServicePlateSupplementController;
@@ -57,6 +58,13 @@ use App\Http\Controllers\Api\TowelsController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/**
+ * file system manager
+ */
+Route::get('/file-manager', [FileManagerController::class, 'getFiles']);
+Route::get('/file-manager/directories', [FileManagerController::class, 'getAllDirectories']);
+
 
 /**
  * safety measures api
