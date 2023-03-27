@@ -30,6 +30,7 @@ use App\Http\Controllers\Api\PhoneDirectoryController;
 use App\Http\Controllers\Api\PointInterestController;
 use App\Http\Controllers\Api\PointInterestTypeController;
 use App\Http\Controllers\Api\PoolTowelsController;
+use App\Http\Controllers\Api\ReportIncidentController;
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\RestaurantMenu;
 use App\Http\Controllers\Api\RoomController;
