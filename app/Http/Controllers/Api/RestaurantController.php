@@ -126,17 +126,4 @@ class RestaurantController extends Controller
     {
         return Restaurant::destroy($id);
     }
-
-    /**
-     * extendable function to get the restaurant by the restaurant id
-     */
-
-    public function addRestaurantRegulation($id, Request $request)
-    {
-        return RestaurantRegulation::create([
-            'restaurant_id' => $id,
-            'restaurant_regulations_name' => $request->restaurant_regulations_name,
-            'restaurant_regulations_description' => $request->restaurant_regulations_description,
-        ]);
-    }
 }

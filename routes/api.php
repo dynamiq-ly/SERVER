@@ -33,6 +33,7 @@ use App\Http\Controllers\Api\PoolTowelsController;
 use App\Http\Controllers\Api\ReportIncidentController;
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\RestaurantMenu;
+use App\Http\Controllers\Api\RestaurantRegulationController;
 use App\Http\Controllers\Api\RoomController;
 use App\Http\Controllers\Api\RoomRequestController;
 use App\Http\Controllers\Api\RoomTypeController;
@@ -127,7 +128,11 @@ Route::post('/restaurant', [RestaurantController::class, 'store']);
 Route::patch('/restaurant/{id}', [RestaurantController::class, 'update']);
 Route::delete('/restaurant/{id}', [RestaurantController::class, 'destroy']);
 // restaurant regulations
-Route::post('/restaurant/regulations/{id}', [RestaurantController::class, 'addRestaurantRegulation']);
+Route::get('/restaurant/{id}/regulations', [RestaurantRegulationController::class, 'index']);
+Route::get('/restaurant/regulations/{id}', [RestaurantRegulationController::class, 'show']);
+Route::post('/restaurant/regulations', [RestaurantRegulationController::class, 'store']);
+Route::patch('/restaurant/regulations/{id}', [RestaurantRegulationController::class, 'update']);
+Route::delete('/restaurant/regulations/{id}', [RestaurantRegulationController::class, 'destroy']);
 // restaurant food menu
 Route::get('/restaurant/menu/food', [RestaurantMenu::class, 'index']);
 Route::get('/restaurant/menu/food={id}', [RestaurantMenu::class, 'indexFood']);
