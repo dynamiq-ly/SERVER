@@ -66,7 +66,7 @@ class RestaurantController extends Controller
             }
         }
 
-        if ($request->hasFile('restaurant_chef_exec_image') || $request->hasFile('restaurant_chef_name')) {
+        if ($request->hasFile('restaurant_chef_exec_image') || $request->hasFile('restaurant_chef_image')) {
 
             $request->file('restaurant_chef_exec_image')->store('public/restaurants/chefs');
             $request->file('restaurant_chef_image')->store('public/restaurants/chefs');

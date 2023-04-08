@@ -28,7 +28,8 @@ class RestaurantRegulation extends Model
      */
     protected $hidden = [
         'created_at',
-        'updated_at'
+        'updated_at',
+        'restaurant_id'
     ];
 
     /**
@@ -38,6 +39,6 @@ class RestaurantRegulation extends Model
      */
     public function restaurant(): BelongsTo
     {
-        return $this->belongsTo(Restaurant::class, 'restaurant_id');
+        return $this->belongsTo(Restaurant::class, 'restaurant_id', 'id');
     }
 }

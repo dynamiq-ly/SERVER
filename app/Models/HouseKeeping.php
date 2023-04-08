@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class HouseKeeping extends Model
 {
     use HasFactory;
-/**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
         'request',
-        'isAnsewred',
+        'isAnsexred',
         'room_number',
     ];
 
@@ -28,5 +28,4 @@ class HouseKeeping extends Model
         'updated_at',
         'created_at',
     ];
-
 }
