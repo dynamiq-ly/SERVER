@@ -47,6 +47,7 @@ use App\Http\Controllers\restaurant\RestaurantChefController;
 use App\Http\Controllers\restaurant\RestaurantController;
 use App\Http\Controllers\restaurant\RestaurantDrinkMenuController;
 use App\Http\Controllers\restaurant\RestaurantFoodMenuController;
+use App\Http\Controllers\restaurant\RestaurantRegulationsController;
 use App\Http\Controllers\restaurant\RestaurantServingController;
 use App\Http\Controllers\restaurant\RestaurantSpecialityController;
 
@@ -127,6 +128,13 @@ Route::delete('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, '
  * restaurant
  */
 Route::prefix('/restaurant')->group(function () {
+    // regulations
+    Route::get('/regulations', [RestaurantRegulationsController::class, 'index']);
+    Route::get('/regulations/{id}', [RestaurantRegulationsController::class, 'show']);
+    Route::post('/regulations', [RestaurantRegulationsController::class, 'store']);
+    Route::patch('/regulations/{id}', [RestaurantRegulationsController::class, 'update']);
+    Route::delete('/regulations/{id}', [RestaurantRegulationsController::class, 'destroy']);
+
     // drink cataog
     Route::get('/drink', [RestaurantDrinkMenuController::class, 'index']);
     Route::get('/drink/{id}', [RestaurantDrinkMenuController::class, 'show']);

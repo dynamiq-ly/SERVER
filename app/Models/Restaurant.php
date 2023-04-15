@@ -113,4 +113,14 @@ class Restaurant extends Model
     {
         return $this->hasOne(RestaurantWeeklySchedule::class, 'restaurant_id', 'id');
     }
+
+    /**
+     * Get all of the regulations for the Restaurant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function regulations(): HasMany
+    {
+        return $this->hasMany(RestaurantRegulation::class, 'restaurant_id', 'id');
+    }
 }

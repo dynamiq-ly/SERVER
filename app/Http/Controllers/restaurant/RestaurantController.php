@@ -16,7 +16,7 @@ class RestaurantController extends Controller
     public function index(Request $request)
     {
         $status = $request->input('status');
-        $restaurants = Restaurant::with('images', 'servings', 'booking', 'chefs', 'specialities', 'foodCatalog', 'drinkCatalog', 'schedule');
+        $restaurants = Restaurant::with('images', 'servings', 'booking', 'chefs', 'specialities', 'foodCatalog', 'drinkCatalog', 'schedule', 'regulations');
 
         if ($status !== null) {
             $restaurants->where('isVisible', $status);
@@ -96,7 +96,7 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        return Restaurant::with('images', 'servings', 'booking', 'chefs', 'specialities', 'foodCatalog', 'drinkCatalog', 'schedule')->find($id);
+        return Restaurant::with('images', 'servings', 'booking', 'chefs', 'specialities', 'foodCatalog', 'drinkCatalog', 'schedule', 'regulations')->find($id);
     }
 
     /**
