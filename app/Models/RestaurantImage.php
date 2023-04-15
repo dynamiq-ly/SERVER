@@ -17,7 +17,8 @@ class RestaurantImage extends Model
      */
     protected $fillable = [
         'image',
-        'restaurant_id',
+        'image_description',
+        'restaurant_id'
     ];
 
     /**
@@ -26,18 +27,18 @@ class RestaurantImage extends Model
      * @var array<int, string>
      */
     protected $hidden = [
+        'restaurant_id',
         'created_at',
-        'updated_at',
-        'restaurant_id'
+        'updated_at'
     ];
 
     /**
-     * Get the restaurants that owns the RestaurantImage
+     * Get the restaurant that owns the RestaurantImage
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function restaurant(): BelongsTo
     {
-        return $this->belongsTo(Restaurant::class, 'restaurant_id');
+        return $this->belongsTo(Restaurant::class, 'restaurant_id', 'id');
     }
 }

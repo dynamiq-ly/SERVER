@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('restaurant_drink_menu_softs', function (Blueprint $table) {
+        Schema::create('restaurant_drink_menus', function (Blueprint $table) {
             $table->id();
-            $table->string('soft_drink_name');
-            $table->float('soft_drink_price');
-            $table->string('soft_drink_variants');
-            $table->foreignId('restaurant_soft_drink_id')->constrained('restaurant_drink_menu_categories')->onDelete('cascade');
+            $table->string('menu_name');
+            $table->enum('menu_type', ['alcohol', 'soft']);
+            $table->foreignId('restaurant_id')->constrained('restaurants')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restaurantt_drink_menu_softs');
+        Schema::dropIfExists('restaurant_drink_menus');
     }
 };

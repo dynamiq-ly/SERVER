@@ -16,11 +16,10 @@ class RestaurantChef extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'restaurant_chef_exec_name',
-        'restaurant_chef_exec_image',
-        'restaurant_chef_name',
-        'restaurant_chef_image',
-        'restaurant_id',
+        'chef_name',
+        'chef_image',
+        'chef_role',
+        'restaurant_id'
     ];
 
     /**
@@ -30,8 +29,8 @@ class RestaurantChef extends Model
      */
     protected $hidden = [
         'restaurant_id',
-        'updated_at',
-        'created_at'
+        'created_at',
+        'updated_at'
     ];
 
     /**
@@ -41,6 +40,6 @@ class RestaurantChef extends Model
      */
     public function restaurant(): BelongsTo
     {
-        return $this->belongsTo(Restaurant::class, 'restaurant_id');
+        return $this->belongsTo(Restaurant::class, 'restaurant_id', 'id');
     }
 }

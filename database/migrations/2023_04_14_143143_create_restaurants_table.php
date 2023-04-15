@@ -16,16 +16,13 @@ return new class extends Migration
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
             $table->string('restaurant_name');
-            $table->string('restaurant_website');
-            $table->text('restaurant_descripton');
-            $table->string('restaurant_opens');
-            $table->string('restaurant_closes');
-            $table->string('restaurant_location');
-            $table->string('restaurant_speciality');
-            $table->boolean('restaurant_status')->default(true);
-            $table->integer('restaurant_capacity')->default(30);
-            $table->boolean('restaurant_can_book')->default(true);
-            $table->string('restaurant_booked_capacity')->default(0);
+            $table->text('restaurant_description');
+            $table->string('restaurant_email')->nullable();
+            $table->string('restaurant_phone')->nullable();
+            $table->string('restaurant_website')->nullable();
+            $table->string('restaurant_location')->nullable();
+            $table->string('restaurant_position')->nullable();
+            $table->boolean('isVisible')->default(true);
             $table->timestamps();
         });
     }

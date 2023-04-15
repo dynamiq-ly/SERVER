@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class RestaurantWeeklyTheme extends Model
+class RestaurantDrinkMenu extends Model
 {
     use HasFactory;
 
@@ -16,13 +16,8 @@ class RestaurantWeeklyTheme extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'sunday',
-        'monday',
-        'tuesday',
-        'wednesday',
-        'thursday',
-        'friday',
-        'saturday',
+        'menu_name',
+        'menu_type',
         'restaurant_id',
     ];
 
@@ -34,17 +29,16 @@ class RestaurantWeeklyTheme extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
-        'restaurant_id',
-        'id'
+        'restaurant_id'
     ];
 
     /**
-     * Get the restaurant that owns the RestaurantWeeklyTheme
+     * Get the restaurant that owns the RestaurantDrinkMenu
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function restaurant(): BelongsTo
     {
-        return $this->belongsTo(Restaurant::class, 'restaurant_id');
+        return $this->belongsTo(Restaurant::class, 'restaurant_id', 'id');
     }
 }

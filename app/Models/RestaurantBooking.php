@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class RestaurantFoodMenuCategory extends Model
+class RestaurantBooking extends Model
 {
     use HasFactory;
 
@@ -17,8 +16,9 @@ class RestaurantFoodMenuCategory extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'restaurant_food_category',
-        'restaurant_food_image',
+        'can_book',
+        'booking_capacity',
+        'booking_terms',
         'restaurant_id'
     ];
 
@@ -28,28 +28,18 @@ class RestaurantFoodMenuCategory extends Model
      * @var array<int, string>
      */
     protected $hidden = [
+        'restaurant_id',
         'created_at',
-        'updated_at',
-        'restaurant_id'
+        'updated_at'
     ];
 
     /**
-     * Get the restaurants that owns the RestaurantMenu
+     * Get the restaurant that owns the RestaurantBooking
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function restaurant(): BelongsTo
     {
-        return $this->belongsTo(Restaurant::class, 'restaurant_id');
-    }
-
-    /**
-     * Get all of the dishes for the RestaurantFoodMenuCategory
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function dishes(): HasMany
-    {
-        return $this->hasMany(RestaurantFoodMenuList::class, 'restaurant_food_categories_id', 'id');
+        return $this->belongsTo(Restaurant::class, 'restaurant_id', 'id');
     }
 }

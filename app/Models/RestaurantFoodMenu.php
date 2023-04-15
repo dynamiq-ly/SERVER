@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class RestaurantRegulation extends Model
+class RestaurantFoodMenu extends Model
 {
     use HasFactory;
 
@@ -16,9 +16,8 @@ class RestaurantRegulation extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'restaurant_regulations_name',
-        'restaurant_regulations_description',
-        'restaurant_id'
+        'menu_name',
+        'restaurant_id',
     ];
 
     /**
@@ -33,7 +32,7 @@ class RestaurantRegulation extends Model
     ];
 
     /**
-     * Get the restaurant that owns the RestaurantRegulation
+     * Get the restaurant that owns the RestaurantFoodMenu
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

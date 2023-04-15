@@ -18,16 +18,13 @@ class Restaurant extends Model
      */
     protected $fillable = [
         'restaurant_name',
+        'restaurant_description',
+        'restaurant_email',
+        'restaurant_phone',
         'restaurant_website',
-        'restaurant_descripton',
-        'restaurant_opens',
-        'restaurant_closes',
         'restaurant_location',
-        'restaurant_speciality',
-        'restaurant_status',
-        'restaurant_capacity',
-        'restaurant_can_book',
-        'restaurant_booked_capacity'
+        'restaurant_position',
+        'isVisible'
     ];
 
     /**
@@ -35,10 +32,7 @@ class Restaurant extends Model
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'created_at',
-        'updated_at'
-    ];
+    protected $hidden = [];
 
     /**
      * Get all of the images for the Restaurant
@@ -51,52 +45,62 @@ class Restaurant extends Model
     }
 
     /**
-     * Get the chefs associated with the Restaurant
+     * Get all of the servings for the Restaurant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function servings(): HasMany
+    {
+        return $this->hasMany(RestaurantServings::class, 'restaurant_id', 'id');
+    }
+
+    /**
+     * Get the booking associated with the Restaurant
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function chefs(): HasOne
+    public function booking(): HasOne
     {
-        return $this->hasOne(RestaurantChef::class, 'restaurant_id', 'id');
+        return $this->hasOne(RestaurantBooking::class, 'restaurant_id', 'id');
     }
 
     /**
-     * Get all of the regulations for the Restaurant
+     * Get all of the chefs for the Restaurant
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function regulations(): HasMany
+    public function chefs(): HasMany
     {
-        return $this->hasMany(RestaurantRegulation::class, 'restaurant_id', 'id');
+        return $this->hasMany(RestaurantChef::class, 'restaurant_id', 'id');
     }
 
     /**
-     * Get the schedule associated with the Restaurant
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function schedule(): HasOne
-    {
-        return $this->hasOne(RestaurantWeeklyTheme::class, 'restaurant_id', 'id');
-    }
-
-    /**
-     * Get all of the foodCategories for the Restaurant
+     * Get all of the specialities for the Restaurant
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function foodCategories(): HasMany
+    public function specialities(): HasMany
     {
-        return $this->hasMany(RestaurantFoodMenuCategory::class, 'restaurant_id', 'id');
+        return $this->hasMany(RestaurantSpeciality::class, 'restaurant_id', 'id');
     }
 
     /**
-     * Get all of the drinkCategories for the Restaurant
+     * Get all of the foodMenu for the Restaurant
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function drinkCategories(): HasMany
+    public function foodCatalog(): HasMany
     {
-        return $this->hasMany(RestaurantDrinkMenuCategory::class, 'restaurant_id', 'id');
+        return $this->hasMany(RestaurantFoodMenu::class, 'restaurant_id', 'id');
+    }
+
+    /**
+     * Get all of the drinkCatalog for the Restaurant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function drinkCatalog(): HasMany
+    {
+        return $this->hasMany(RestaurantDrinkMenu::class, 'restaurant_id', 'id');
     }
 }

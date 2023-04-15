@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class RestaurantDrinkMenuSoft extends Model
+class RestaurantServings extends Model
 {
     use HasFactory;
 
@@ -16,10 +16,11 @@ class RestaurantDrinkMenuSoft extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'soft_drink_name',
-        'soft_drink_price',
-        'soft_drink_variants',
-        'restaurant_soft_drink_id'
+        'serving_name',
+        'restaurant_description',
+        'serving_opens',
+        'serving_closes',
+        'restaurant_id',
     ];
 
     /**
@@ -30,16 +31,16 @@ class RestaurantDrinkMenuSoft extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
-        'restaurant_soft_drink_id'
+        'restaurant_id',
     ];
 
     /**
-     * Get the restaurant that owns the RestaurantDrinkMenuCategory
+     * Get the restaurant that owns the RestaurantServings
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function restaurant(): BelongsTo
     {
-        return $this->belongsTo(RestaurantDrinkMenuCategory::class, 'restaurant_soft_drink_id');
+        return $this->belongsTo(Restaurant::class, 'restaurant_id', 'id');
     }
 }

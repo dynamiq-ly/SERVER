@@ -31,9 +31,6 @@ use App\Http\Controllers\Api\PointInterestController;
 use App\Http\Controllers\Api\PointInterestTypeController;
 use App\Http\Controllers\Api\PoolTowelsController;
 use App\Http\Controllers\Api\ReportIncidentController;
-use App\Http\Controllers\Api\RestaurantController;
-use App\Http\Controllers\Api\RestaurantMenu;
-use App\Http\Controllers\Api\RestaurantRegulationController;
 use App\Http\Controllers\Api\RoomController;
 use App\Http\Controllers\Api\RoomRequestController;
 use App\Http\Controllers\Api\RoomTypeController;
@@ -45,6 +42,11 @@ use App\Http\Controllers\Api\TourAgencyController;
 use App\Http\Controllers\Api\TourAgencyGuideController;
 use App\Http\Controllers\Api\TourAgencyServiceController;
 use App\Http\Controllers\Api\TowelsController;
+use App\Http\Controllers\restaurant\RestaurantChefController;
+use App\Http\Controllers\restaurant\RestaurantController;
+use App\Http\Controllers\restaurant\RestaurantFoodMenuController;
+use App\Http\Controllers\restaurant\RestaurantServingController;
+use App\Http\Controllers\restaurant\RestaurantSpecialityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,44 +124,43 @@ Route::delete('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, '
 /**
  * restaurant
  */
-Route::get('/restaurant&status={bool}', [RestaurantController::class, 'index'])->where('bool', '1|0|-1');
-Route::get('/restaurant/{id}', [RestaurantController::class, 'show']);
-Route::post('/restaurant', [RestaurantController::class, 'store']);
-Route::patch('/restaurant/{id}', [RestaurantController::class, 'update']);
-Route::delete('/restaurant/{id}', [RestaurantController::class, 'destroy']);
-// restaurant regulations
-Route::get('/restaurant/{id}/regulations', [RestaurantRegulationController::class, 'index']);
-Route::get('/restaurant/regulations/{id}', [RestaurantRegulationController::class, 'show']);
-Route::post('/restaurant/regulations', [RestaurantRegulationController::class, 'store']);
-Route::patch('/restaurant/regulations/{id}', [RestaurantRegulationController::class, 'update']);
-Route::delete('/restaurant/regulations/{id}', [RestaurantRegulationController::class, 'destroy']);
-// restaurant food menu
-Route::get('/restaurant/menu/food', [RestaurantMenu::class, 'index']);
-Route::get('/restaurant/menu/food={id}', [RestaurantMenu::class, 'indexFood']);
-Route::get('/restaurant/menu/food/{id}', [RestaurantMenu::class, 'showFood']);
-Route::post('/restaurant/menu/food', [RestaurantMenu::class, 'storeFood']);
-Route::patch('/restaurant/menu/food/{id}', [RestaurantMenu::class, 'updateFood']);
-Route::delete('/restaurant/menu/food/{id}', [RestaurantMenu::class, 'destroyFood']);
-// restaurant dishes
-Route::get('/restaurant/menu/food?dish', [RestaurantMenu::class, 'indexDish']);
-Route::get('/restaurant/menu/dish/{id}', [RestaurantMenu::class, 'indexFoodDish']);
-Route::post('/restaurant/menu/food?dish', [RestaurantMenu::class, 'storeFoodDish']);
-// restaurant drink menu
-Route::get('/restaurant/menu/drink', [RestaurantMenu::class, 'index2']);
-Route::get('/restaurant/menu/drink={id}', [RestaurantMenu::class, 'indexDrink']);
-Route::get('/restaurant/menu/drink/{id}', [RestaurantMenu::class, 'showDrink']);
-Route::post('/restaurant/menu/drink', [RestaurantMenu::class, 'storeDrink']);
-Route::patch('/restaurant/menu/drink/{id}', [RestaurantMenu::class, 'updateDrink']);
-Route::delete('/restaurant/menu/drink/{id}', [RestaurantMenu::class, 'destroyDrink']);
-// restaurant drink menu soft drinks
-Route::get('/restaurant/drinks/soft', [RestaurantMenu::class, 'indexSoftDrinks']);
-Route::get('/restaurant/drinks/soft={id}', [RestaurantMenu::class, 'indexSoftDrink']);
-Route::post('/restaurant/drinks/soft', [RestaurantMenu::class, 'storeSoftDrink']);
-// restaurant drink menu alcohol drinks
-Route::get('/restaurant/drinks/alcohol', [RestaurantMenu::class, 'indexAlcoholDrinks']);
-Route::get('/restaurant/drinks/alcohol={id}', [RestaurantMenu::class, 'indexAlcoholDrink']);
-Route::post('/restaurant/drinks/alcohol', [RestaurantMenu::class, 'storeAlcoholDrink']);
-Route::get('/restaurant/drinks/alcohol/{id}', [RestaurantMenu::class, 'findAlcoholDrink']);
+Route::prefix('/restaurant')->group(function () {
+    // food catalog
+    Route::get('/menu', [RestaurantFoodMenuController::class, 'index']);
+    Route::get('/menu/{id}', [RestaurantFoodMenuController::class, 'show']);
+    Route::post('/menu', [RestaurantFoodMenuController::class, 'store']);
+    Route::patch('/menu/{id}', [RestaurantFoodMenuController::class, 'update']);
+    Route::delete('/menu/{id}', [RestaurantFoodMenuController::class, 'destroy']);
+
+    // speciality
+    Route::get('/speciality', [RestaurantSpecialityController::class, 'index']);
+    Route::get('/speciality/{id}', [RestaurantSpecialityController::class, 'show']);
+    Route::post('/speciality', [RestaurantSpecialityController::class, 'store']);
+    Route::patch('/speciality/{id}', [RestaurantSpecialityController::class, 'update']);
+    Route::delete('/speciality/{id}', [RestaurantSpecialityController::class, 'destroy']);
+
+    // chefs
+    Route::get('/chef', [RestaurantChefController::class, 'index']);
+    Route::get('/chef/{id}', [RestaurantChefController::class, 'show']);
+    Route::post('/chef', [RestaurantChefController::class, 'store']);
+    Route::patch('/chef/{id}', [RestaurantChefController::class, 'update']);
+    Route::delete('/chef/{id}', [RestaurantChefController::class, 'destroy']);
+
+    // serving list
+    Route::get('/serving', [RestaurantServingController::class, 'index']);
+    Route::get('/serving/{id}', [RestaurantServingController::class, 'show']);
+    Route::post('/serving', [RestaurantServingController::class, 'store']);
+    Route::patch('/serving/{id}', [RestaurantServingController::class, 'update']);
+    Route::delete('/serving/{id}', [RestaurantServingController::class, 'destroy']);
+
+    // restaurant
+    Route::get('/', [RestaurantController::class, 'index'])->name('Restaurant.Main');
+    Route::get('/{id}', [RestaurantController::class, 'show']);
+    Route::post('/', [RestaurantController::class, 'store']);
+    Route::patch('/restaurant/{id}', [RestaurantController::class, 'update']);
+    Route::delete('/{id}', [RestaurantController::class, 'destroy']);
+});
+
 
 /**
  * bar

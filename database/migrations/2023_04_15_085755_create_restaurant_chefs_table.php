@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('restaurant_food_menu_categories', function (Blueprint $table) {
+        Schema::create('restaurant_chefs', function (Blueprint $table) {
             $table->id();
-            $table->string('restaurant_food_category');
-            $table->string('restaurant_food_image');
-            $table->foreignId('restaurant_id')->constrained('restaurants')->onDelete('cascade');
+            $table->string("chef_name");
+            $table->string("chef_image");
+            $table->string("chef_role")->nullable();
+            $table->foreignId('restaurant_id')->constrained('restaurants')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restaurant_food_menu_categories');
+        Schema::dropIfExists('restaurant_chefs');
     }
 };

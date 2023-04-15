@@ -1,21 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\restaurant;
 
 use App\Http\Controllers\Controller;
-use App\Models\RestaurantRegulation;
+use App\Models\RestaurantSpeciality;
 use Illuminate\Http\Request;
 
-class RestaurantRegulationController extends Controller
+class RestaurantSpecialityController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index(Request $request)
     {
-        return RestaurantRegulation::where('restaurant_id', $id)->get();
+        $query = $request->input('query');
+        $speciality = RestaurantSpeciality::with('restaurant');
+
+        if ($query !== null) {
+            $speciality->where('restaurant_id', $query);
+        }
+
+        return $speciality->get();
     }
 
     /**
@@ -26,11 +33,7 @@ class RestaurantRegulationController extends Controller
      */
     public function store(Request $request)
     {
-        return RestaurantRegulation::create([
-            'restaurant_id' => $request->restaurant_id,
-            'restaurant_regulations_name' => $request->restaurant_regulations_name,
-            'restaurant_regulations_description' => $request->restaurant_regulations_description,
-        ]);
+        return RestaurantSpeciality::create($request->all());
     }
 
     /**
@@ -41,7 +44,7 @@ class RestaurantRegulationController extends Controller
      */
     public function show($id)
     {
-        return RestaurantRegulation::find($id);
+        return RestaurantSpeciality::with('restaurant')->find($id);
     }
 
     /**
@@ -53,11 +56,7 @@ class RestaurantRegulationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return RestaurantRegulation::find($id)->update([
-            'restaurant_id' => $request->restaurant_id,
-            'restaurant_regulations_name' => $request->restaurant_regulations_name,
-            'restaurant_regulations_description' => $request->restaurant_regulations_description,
-        ]);
+        return RestaurantSpeciality::find($id)->update($request->all());
     }
 
     /**
@@ -68,6 +67,6 @@ class RestaurantRegulationController extends Controller
      */
     public function destroy($id)
     {
-        return RestaurantRegulation::destroy($id);
+        return RestaurantSpeciality::destroy($id);
     }
 }
