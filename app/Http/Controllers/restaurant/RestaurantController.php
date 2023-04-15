@@ -16,7 +16,7 @@ class RestaurantController extends Controller
     public function index(Request $request)
     {
         $status = $request->input('status');
-        $restaurants = Restaurant::with('images', 'servings', 'booking', 'chefs', 'specialities', 'foodCatalog', 'drinkCatalog');
+        $restaurants = Restaurant::with('images', 'servings', 'booking', 'chefs', 'specialities', 'foodCatalog', 'drinkCatalog', 'schedule');
 
         if ($status !== null) {
             $restaurants->where('isVisible', $status);
@@ -68,6 +68,19 @@ class RestaurantController extends Controller
                 'restaurant_id' => $restaurant->id,
             ]);
 
+            /* weekly schedule */
+            $restaurant->schedule()->create([
+                'isBuffet' => $request->input('isBuffet'),
+                'monday' => $request->input('monday'),
+                'tuesday' => $request->input('tuesday'),
+                'wednesday' => $request->input('wednesday'),
+                'thursday' => $request->input('thursday'),
+                'friday' => $request->input('friday'),
+                'saturday' => $request->input('saturday'),
+                'sunday' => $request->input('sunday'),
+                'restaurant_id' => $restaurant->id,
+            ]);
+
             return $restaurant;
         }
         return response()->json(['message' => 'No images found'], 400);
@@ -83,7 +96,7 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        return Restaurant::with('images', 'servings', 'booking', 'chefs', 'specialities', 'foodCatalog', 'drinkCatalog')->find($id);
+        return Restaurant::with('images', 'servings', 'booking', 'chefs', 'specialities', 'foodCatalog', 'drinkCatalog', 'schedule')->find($id);
     }
 
     /**
@@ -121,10 +134,24 @@ class RestaurantController extends Controller
             }
         }
 
-        $restaurant->booking()->create([
+        $restaurant->booking()->update([
             'can_book' => $request->input('can_book'),
             'booking_capacity' => $request->input('booking_capacity'),
             'booking_terms' => $request->input('booking_terms'),
+            'restaurant_id' => $restaurant->id,
+        ]);
+
+        /* weekly schedule */
+
+        $restaurant->schedule()->update([
+            'isBuffet' => $request->input('isBuffet'),
+            'monday' => $request->input('monday'),
+            'tuesday' => $request->input('tuesday'),
+            'wednesday' => $request->input('wednesday'),
+            'thursday' => $request->input('thursday'),
+            'friday' => $request->input('friday'),
+            'saturday' => $request->input('saturday'),
+            'sunday' => $request->input('sunday'),
             'restaurant_id' => $restaurant->id,
         ]);
 

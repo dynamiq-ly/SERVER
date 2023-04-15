@@ -103,4 +103,14 @@ class Restaurant extends Model
     {
         return $this->hasMany(RestaurantDrinkMenu::class, 'restaurant_id', 'id');
     }
+
+    /**
+     * Get the schedule associated with the Restaurant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function schedule(): HasOne
+    {
+        return $this->hasOne(RestaurantWeeklySchedule::class, 'restaurant_id', 'id');
+    }
 }

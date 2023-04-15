@@ -45,6 +45,7 @@ use App\Http\Controllers\Api\TourAgencyServiceController;
 use App\Http\Controllers\Api\TowelsController;
 use App\Http\Controllers\restaurant\RestaurantChefController;
 use App\Http\Controllers\restaurant\RestaurantController;
+use App\Http\Controllers\restaurant\RestaurantDrinkMenuController;
 use App\Http\Controllers\restaurant\RestaurantFoodMenuController;
 use App\Http\Controllers\restaurant\RestaurantServingController;
 use App\Http\Controllers\restaurant\RestaurantSpecialityController;
@@ -126,6 +127,13 @@ Route::delete('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, '
  * restaurant
  */
 Route::prefix('/restaurant')->group(function () {
+    // drink cataog
+    Route::get('/drink', [RestaurantDrinkMenuController::class, 'index']);
+    Route::get('/drink/{id}', [RestaurantDrinkMenuController::class, 'show']);
+    Route::post('/drink', [RestaurantDrinkMenuController::class, 'store']);
+    Route::patch('/drink/{id}', [RestaurantDrinkMenuController::class, 'update']);
+    Route::delete('/drink/{id}', [RestaurantDrinkMenuController::class, 'destroy']);
+
     // food catalog
     Route::get('/menu', [RestaurantFoodMenuController::class, 'index']);
     Route::get('/menu/{id}', [RestaurantFoodMenuController::class, 'show']);
