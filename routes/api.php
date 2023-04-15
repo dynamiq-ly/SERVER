@@ -25,6 +25,7 @@ use App\Http\Controllers\Api\HairDryerController;
 use App\Http\Controllers\Api\HouseKeepingController;
 use App\Http\Controllers\Api\LaundriesController;
 use App\Http\Controllers\Api\LaundryTypeController;
+use App\Http\Controllers\Api\MedicalAssistanceController;
 use App\Http\Controllers\Api\OtherRequestController;
 use App\Http\Controllers\Api\PhoneDirectoryController;
 use App\Http\Controllers\Api\PointInterestController;
@@ -420,3 +421,12 @@ Route::get('/report-incident/{id}', [ReportIncidentController::class, 'show']);
 Route::post('/report-incident', [ReportIncidentController::class, 'store']);
 Route::patch('/report-incident/{id}', [ReportIncidentController::class, 'update']);
 Route::delete('/report-incident/{id}', [ReportIncidentController::class, 'destroy']);
+
+/**
+ * MedicalAssistance
+ */
+Route::get('/medical-assistance', [MedicalAssistanceController::class, 'index']);
+Route::get('/medical-assistance/{id}', [MedicalAssistanceController::class, 'show']);
+Route::post('/medical-assistance', [MedicalAssistanceController::class, 'store']);
+Route::patch('/medical-assistance/{id}', [MedicalAssistanceController::class, 'update']);
+Route::delete('/medical-assistance/{id}', [MedicalAssistanceController::class, 'destroy']);
