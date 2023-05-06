@@ -48,6 +48,7 @@ use App\Http\Controllers\restaurant\RestaurantController;
 use App\Http\Controllers\restaurant\RestaurantDrinkMenuController;
 use App\Http\Controllers\restaurant\RestaurantFoodMenuController;
 use App\Http\Controllers\restaurant\RestaurantRegulationsController;
+use App\Http\Controllers\restaurant\RestaurantReservationController;
 use App\Http\Controllers\restaurant\RestaurantServingController;
 use App\Http\Controllers\restaurant\RestaurantSpecialityController;
 
@@ -128,6 +129,13 @@ Route::delete('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, '
  * restaurant
  */
 Route::prefix('/restaurant')->group(function () {
+    // reservations
+    Route::get('/reservations', [RestaurantReservationController::class, 'index']);
+    Route::get('/reservations/{id}', [RestaurantReservationController::class, 'show']);
+    Route::post('/reservations', [RestaurantReservationController::class, 'store']);
+    Route::patch('/reservations/{id}', [RestaurantReservationController::class, 'update']);
+    Route::delete('/reservations/{id}', [RestaurantReservationController::class, 'destroy']);
+
     // regulations
     Route::get('/regulations', [RestaurantRegulationsController::class, 'index']);
     Route::get('/regulations/{id}', [RestaurantRegulationsController::class, 'show']);
@@ -174,7 +182,7 @@ Route::prefix('/restaurant')->group(function () {
     Route::get('/', [RestaurantController::class, 'index'])->name('Restaurant.Main');
     Route::get('/{id}', [RestaurantController::class, 'show']);
     Route::post('/', [RestaurantController::class, 'store']);
-    Route::patch('/restaurant/{id}', [RestaurantController::class, 'update']);
+    Route::patch('/{id}', [RestaurantController::class, 'update']);
     Route::delete('/{id}', [RestaurantController::class, 'destroy']);
 });
 

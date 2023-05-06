@@ -123,4 +123,14 @@ class Restaurant extends Model
     {
         return $this->hasMany(RestaurantRegulation::class, 'restaurant_id', 'id');
     }
+
+    /**
+     * Get all of the reservations for the Restaurant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reservations(): HasMany
+    {
+        return $this->hasMany(RestaurantReservation::class, 'restaurant_id', 'id');
+    }
 }

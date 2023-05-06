@@ -16,7 +16,7 @@ class RestaurantRegulationsController extends Controller
     public function index(Request $request)
     {
         $query = $request->input('query');
-        $regulations = RestaurantFoodMenu::with('restaurant');
+        $regulations = RestaurantRegulation::with('restaurant');
 
         if ($query !== null) {
             $regulations->where('restaurant_id', $query);
@@ -33,18 +33,16 @@ class RestaurantRegulationsController extends Controller
      */
     public function store(Request $request)
     {
-        $imageuploads = [];
+        if ($request->hasFile('regulation_images')) {
 
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $image->store('public/restaurants/regulations');
-                $imageuploads[] = $image->hashName();
-            }
+            $imageName = str_replace(' ', '_', $request->input('regulation_name')) . time() . '.' . $request->file('regulation_images')->extension();
+            $request->file('regulation_images')->storeAs('public/restaurants/regulations', $imageName);
 
-            RestaurantRegulation::create([
+            return RestaurantRegulation::create([
                 'regulation_name' => $request->input('regulation_name'),
                 'regulation_description' => $request->input('regulation_description'),
-                'regulation_images' => json_encode($imageuploads),
+                'regulation_images' => $imageName,
+                'restaurant_id' => $request->input('restaurant_id'),
             ]);
         }
     }
@@ -74,15 +72,10 @@ class RestaurantRegulationsController extends Controller
         $regulation->regulation_name = $request->input('regulation_name');
         $regulation->regulation_description = $request->input('regulation_description');
 
-        if ($request->hasFile('images')) {
-            $imageuploads = [];
-
-            foreach ($request->file('images') as $image) {
-                $image->store('public/restaurants/regulations');
-                $imageuploads[] = $image->hashName();
-            }
-
-            $regulation->regulation_images = json_encode($imageuploads);
+        if ($request->hasFile('regulation_images')) {
+            $imageName = str_replace(' ', '_', $request->input('regulation_name')) . time() . '.' . $request->file('regulation_images')->extension();
+            $request->file('regulation_images')->storeAs('public/restaurants/regulations', $imageName);
+            $regulation->regulation_images = $imageName;
         }
 
         $regulation->save();
