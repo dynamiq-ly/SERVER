@@ -17,9 +17,11 @@ class RestaurantReservation extends Model
      */
     protected $fillable = [
         'reservation_name',
-        'reservation_number_of_people',
-        'reservation_date_time',
         'reservation_description',
+        'reservation_date_time_start',
+        'reservation_date_time_end',
+        'reservation_number_of_people',
+        'reservation_is_status',
         'user_id',
         'restaurant_id',
     ];
@@ -42,7 +44,7 @@ class RestaurantReservation extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function restraurant(): BelongsTo
+    public function restaurant(): BelongsTo
     {
         return $this->belongsTo(Restaurant::class, 'restaurant_id', 'id');
     }

@@ -43,6 +43,7 @@ use App\Http\Controllers\Api\TourAgencyController;
 use App\Http\Controllers\Api\TourAgencyGuideController;
 use App\Http\Controllers\Api\TourAgencyServiceController;
 use App\Http\Controllers\Api\TowelsController;
+use App\Http\Controllers\Pension\PensionController;
 use App\Http\Controllers\restaurant\RestaurantChefController;
 use App\Http\Controllers\restaurant\RestaurantController;
 use App\Http\Controllers\restaurant\RestaurantDrinkMenuController;
@@ -124,6 +125,18 @@ Route::get('/swimming-pool/pools/type={id}', [SwimmingPoolListController::class,
 Route::get('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'show']);
 Route::patch('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'update']);
 Route::delete('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'destroy']);
+
+/**
+ * pension upgrade
+ */
+Route::prefix('/pension')->group(function () {
+
+    Route::get('/', [PensionController::class, 'index']);
+    Route::post('/', [PensionController::class, 'store']);
+    Route::get('/{id}', [PensionController::class, 'show']);
+    Route::patch('/{id}', [PensionController::class, 'update']);
+    Route::delete('/{id}', [PensionController::class, 'destroy']);
+});
 
 /**
  * restaurant
