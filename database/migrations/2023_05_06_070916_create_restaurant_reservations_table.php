@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('reservation_name');
-            $table->integer('reservation_number_of_people');
-            $table->string('reservation_date_time');
             $table->string('reservation_description');
+            $table->timestamp('reservation_date_time_start')->nullable();
+            $table->timestamp('reservation_date_time_end')->nullable();
+            $table->integer('reservation_number_of_people');
+            $table->boolean('reservation_is_status')->default(true);
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('restaurant_id')->constrained('restaurants')->onDelete('cascade')->onUpdate('cascade');
         });
