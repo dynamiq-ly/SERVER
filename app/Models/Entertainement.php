@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Entertainement extends Model
 {
@@ -37,6 +38,15 @@ class Entertainement extends Model
         'updated_at',
     ];
 
+    /**
+     * Get the shows associated with the Entertainement
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function show(): HasOne
+    {
+        return $this->hasOne(EntertainementsNightShows::class, 'entertainement_id', 'id');
+    }
 
     /**
      * Get all of the images for the Entertainement
