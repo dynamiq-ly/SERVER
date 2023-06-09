@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('entertainement_images', function (Blueprint $table) {
-            $table->id();
-            $table->string('image');
+        Schema::create('hotel_location_parts', function (Blueprint $table) {
+            $table->string('location_name')->unique();
+            $table->string('location_description')->nullable();
+            $table->enum('location_restriction', ['PUBLIC', 'PRIVATE', 'RESTRICTED', 'HIDDEN']);
             $table->timestamps();
-            $table->foreignId('entertainements_id')->constrained('entertainements')->onDelete('cascade');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entertainement_images');
+        Schema::dropIfExists('hotel_location_parts');
     }
 };

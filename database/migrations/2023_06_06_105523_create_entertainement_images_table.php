@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('entertainement_day_activities', function (Blueprint $table) {
+        Schema::create('entertainement_images', function (Blueprint $table) {
             $table->id();
-            $table->enum('day_activity_rated', ['ADULTS', 'TEENS', 'FAMILIES', 'KIDS']);
-            $table->foreignId('entertainements_id')->constrained('entertainements')->onDelete('cascade');
+            $table->string('image');
+            $table->string('image_description')->nullable();
+            $table->foreignId('entertainement_id')->constrained('entertainements')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entertainement_day_activities');
+        Schema::dropIfExists('entertainement_images');
     }
 };

@@ -15,7 +15,6 @@ use App\Http\Controllers\Api\BarMenuDrinksController;
 use App\Http\Controllers\Api\ConnectivityController;
 use App\Http\Controllers\Api\DrinkServiceCategoryController;
 use App\Http\Controllers\Api\ElectricityController;
-use App\Http\Controllers\Api\EntertainementController;
 use App\Http\Controllers\Api\FileManagerController;
 use App\Http\Controllers\Api\FoodServiceController;
 use App\Http\Controllers\Api\FoodServicePlateController;
@@ -43,6 +42,9 @@ use App\Http\Controllers\Api\TourAgencyController;
 use App\Http\Controllers\Api\TourAgencyGuideController;
 use App\Http\Controllers\Api\TourAgencyServiceController;
 use App\Http\Controllers\Api\TowelsController;
+use App\Http\Controllers\entertainement\EntertainementController;
+use App\Http\Controllers\entertainement\EntertainementDayController;
+use App\Http\Controllers\hotel\HotelLocationPartsController;
 use App\Http\Controllers\Pension\PensionController;
 use App\Http\Controllers\restaurant\RestaurantChefController;
 use App\Http\Controllers\restaurant\RestaurantController;
@@ -69,11 +71,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 /**
+ * hotel
+ */
+Route::prefix('/hotel')->group(function () {
+    // location parts
+    Route::get('/location-parts', [HotelLocationPartsController::class, 'index']);
+    Route::post('/location-parts', [HotelLocationPartsController::class, 'store']);
+    Route::get('/location-parts/{id}', [HotelLocationPartsController::class, 'show']);
+    Route::patch('/location-parts/{id}', [HotelLocationPartsController::class, 'update']);
+    Route::delete('/location-parts/{id}', [HotelLocationPartsController::class, 'destroy']);
+});
+
+/**
  * file system manager
  */
 Route::get('/file-manager', [FileManagerController::class, 'getFiles']);
 Route::get('/file-manager/directories', [FileManagerController::class, 'getAllDirectories']);
-
 
 /**
  * safety measures api
@@ -199,6 +212,21 @@ Route::prefix('/restaurant')->group(function () {
     Route::delete('/{id}', [RestaurantController::class, 'destroy']);
 });
 
+/**
+ * entertainment
+ */
+Route::prefix('/entertainement')->group(function () {
+
+    // day activities
+    Route::get('/day-activities', [EntertainementDayController::class, 'index']);
+    Route::get('/day-activities/{id}', [EntertainementDayController::class, 'show']);
+    Route::post('/day-activities', [EntertainementDayController::class, 'store']);
+    Route::patch('/day-activities/{id}', [EntertainementDayController::class, 'update']);
+    Route::delete('/day-activities/{id}', [EntertainementDayController::class, 'destroy']);
+
+    // helpers
+    Route::get('/weekly-count', [EntertainementController::class, 'totalTiming']);
+});
 
 /**
  * bar
@@ -246,16 +274,6 @@ Route::get('/point-of-interest/{id}', [PointInterestController::class, 'show']);
 Route::post('/point-of-interest', [PointInterestController::class, 'store']);
 Route::patch('/point-of-interest/{id}', [PointInterestController::class, 'update']);
 Route::delete('/point-of-interest/{id}', [PointInterestController::class, 'destroy']);
-
-/**
- * entertainement
- */
-Route::get('/entertainement={type}', [EntertainementController::class, 'index']);
-Route::get('/entertainement={type}/{id}', [EntertainementController::class, 'show']);
-Route::post('/entertainement', [EntertainementController::class, 'store']);
-Route::delete('/entertainement/{id}', [EntertainementController::class, 'destroy']);
-// entertainement timing
-Route::get('/entertainement/timing', [EntertainementController::class, 'getTiming']);
 
 /**
  * room service

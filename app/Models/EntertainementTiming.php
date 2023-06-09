@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,8 +17,12 @@ class EntertainementTiming extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'entertainement_timings_date',
-        'entertainements_id',
+        'date',
+        'time_start',
+        'time_end',
+        'duration',
+        'is_repetetive',
+        'entertainement_id'
     ];
 
     /**
@@ -26,9 +31,9 @@ class EntertainementTiming extends Model
      * @var array<int, string>
      */
     protected $hidden = [
+        'entertainement_id',
         'created_at',
-        'updated_at',
-        'entertainements_id'
+        'updated_at'
     ];
 
     /**
@@ -38,6 +43,6 @@ class EntertainementTiming extends Model
      */
     public function entertainement(): BelongsTo
     {
-        return $this->belongsTo(Entertainement::class, 'entertainements_id', 'id');
+        return $this->belongsTo(Entertainement::class, 'entertainement_id', 'id');
     }
 }

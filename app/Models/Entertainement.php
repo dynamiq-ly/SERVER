@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Entertainement extends Model
 {
@@ -17,14 +16,15 @@ class Entertainement extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'entertainements_title',
-        'entertainements_type',
-        'entertainements_summary',
-        'entertainements_description',
-        'entertainements_location',
-        'entertainements_duration',
-        'entertainements_location_can_join',
-        'entertainements_status'
+        'entertainement_name',
+        'entertainement_summary',
+        'entertainement_description',
+        'entertainement_type',
+        'entertainement_age',
+        'entertainement_location',
+        'entertainement_duration',
+        'entertainement_joinable',
+        'isVisible',
     ];
 
     /**
@@ -37,15 +37,6 @@ class Entertainement extends Model
         'updated_at',
     ];
 
-    /**
-     * Get all of the timings for the Entertainement
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function timings(): HasMany
-    {
-        return $this->hasMany(EntertainementTiming::class, 'entertainements_id', 'id');
-    }
 
     /**
      * Get all of the images for the Entertainement
@@ -54,26 +45,16 @@ class Entertainement extends Model
      */
     public function images(): HasMany
     {
-        return $this->hasMany(EntertainementImage::class, 'entertainements_id', 'id');
+        return $this->hasMany(EntertainementImage::class, 'entertainement_id', 'id');
     }
 
     /**
-     * Get all of the nightShows for the Entertainement
+     * Get all of the timings for the Entertainement
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function nightShows(): HasOne
+    public function timings(): HasMany
     {
-        return $this->hasOne(EntertainementNightShow::class, 'entertainements_id', 'id');
-    }
-
-    /**
-     * Get the dayActivities associated with the Entertainement
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function dayActivities(): HasOne
-    {
-        return $this->hasOne(User::class, 'entertainements_id', 'id');
+        return $this->hasMany(EntertainementTiming::class, 'entertainement_id', 'id');
     }
 }

@@ -17,7 +17,8 @@ class EntertainementImage extends Model
      */
     protected $fillable = [
         'image',
-        'entertainements_id',
+        'image_description',
+        'entertainement_id'
     ];
 
     /**
@@ -26,9 +27,9 @@ class EntertainementImage extends Model
      * @var array<int, string>
      */
     protected $hidden = [
+        'entertainement_id',
         'created_at',
-        'updated_at',
-        'entertainements_id'
+        'updated_at'
     ];
 
     /**
@@ -38,6 +39,6 @@ class EntertainementImage extends Model
      */
     public function entertainement(): BelongsTo
     {
-        return $this->belongsTo(Entertainement::class, 'entertainements_id');
+        return $this->belongsTo(Entertainement::class, 'entertainement_id', 'id');
     }
 }

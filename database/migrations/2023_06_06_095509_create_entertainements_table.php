@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('entertainements', function (Blueprint $table) {
             $table->id();
-            $table->string('entertainements_title');
-            $table->enum('entertainements_type', ['day activities', 'night shows', 'tv sport program', 'event programs']);
-            $table->string('entertainements_summary');
-            $table->string('entertainements_duration');
-            $table->string('entertainements_description');
-            $table->string('entertainements_location');
-            $table->boolean('entertainements_location_can_join')->default(false);
-            $table->boolean('entertainements_status')->default(true);
+            $table->string('entertainement_name');
+            $table->string('entertainement_summary');
+            $table->string('entertainement_description');
+            $table->enum('entertainement_type', ['SPORT', 'NIGHT', 'DAY', 'OTHER']);
+            $table->enum('entertainement_age', ['KIDS', 'ADULTS', 'TEENS', 'FAMILY', 'OTHER']);
+            $table->string('entertainement_location');
+            $table->enum('entertainement_joinable', ['YES', 'NO', 'DEPENDS']);
+            $table->boolean('isVisible')->default(true);
             $table->timestamps();
         });
     }

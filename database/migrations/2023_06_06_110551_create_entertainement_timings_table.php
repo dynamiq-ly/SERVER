@@ -15,8 +15,12 @@ return new class extends Migration
     {
         Schema::create('entertainement_timings', function (Blueprint $table) {
             $table->id();
-            $table->string('entertainement_timings_date');
-            $table->foreignId('entertainements_id')->constrained('entertainements')->onDelete('cascade');
+            $table->string('date')->nullable();
+            $table->string('time_start')->nullable();
+            $table->string('time_end')->nullable();
+            $table->string('duration')->nullable();
+            $table->boolean('is_repetetive')->default(false);
+            $table->foreignId('entertainement_id')->constrained('entertainements')->onDelete('cascade');
             $table->timestamps();
         });
     }
