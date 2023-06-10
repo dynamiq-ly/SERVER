@@ -49,6 +49,16 @@ class Entertainement extends Model
     }
 
     /**
+     * Get the sport associated with the Entertainement
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function sport(): HasOne
+    {
+        return $this->hasOne(EntertainementsSportEvents::class, 'entertainement_id', 'id');
+    }
+
+    /**
      * Get all of the images for the Entertainement
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

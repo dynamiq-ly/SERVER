@@ -45,6 +45,7 @@ use App\Http\Controllers\Api\TowelsController;
 use App\Http\Controllers\entertainement\EntertainementController;
 use App\Http\Controllers\entertainement\EntertainementDayController;
 use App\Http\Controllers\entertainement\EntertainementNightController;
+use App\Http\Controllers\entertainement\EntertainementSportController;
 use App\Http\Controllers\hotel\HotelLocationPartsController;
 use App\Http\Controllers\Pension\PensionController;
 use App\Http\Controllers\restaurant\RestaurantChefController;
@@ -217,6 +218,13 @@ Route::prefix('/restaurant')->group(function () {
  * entertainment
  */
 Route::prefix('/entertainement')->group(function () {
+
+    // sport events
+    Route::get('/sport-events', [EntertainementSportController::class, 'index']);
+    Route::get('/sport-events/{id}', [EntertainementSportController::class, 'show']);
+    Route::post('/sport-events', [EntertainementSportController::class, 'store']);
+    Route::patch('/sport-events/{id}', [EntertainementSportController::class, 'update']);
+    Route::delete('/sport-events/{id}', [EntertainementSportController::class, 'destroy']);
 
     // night shows
     Route::get('/night-shows', [EntertainementNightController::class, 'index']);
