@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\policies\hotel;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SafetyMeasures extends Model
+class HotelPolicies extends Model
 {
     use HasFactory;
 
@@ -15,9 +15,10 @@ class SafetyMeasures extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'measure_icon',
-        'measure_name',
-        'measure_content',
+        'title',
+        'subTitle',
+        'filePath',
+        'type',
     ];
 
     /**
@@ -26,6 +27,5 @@ class SafetyMeasures extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'created_at',
     ];
 }

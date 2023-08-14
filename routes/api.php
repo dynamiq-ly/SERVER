@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Api\SafetyMeasuresController;
 use App\Http\Controllers\Api\ReminderCallController;
 use App\Http\Controllers\Api\ActivitiesController;
 use App\Http\Controllers\Api\ActivityListController;
@@ -57,6 +56,8 @@ use App\Http\Controllers\restaurant\RestaurantReservationController;
 use App\Http\Controllers\restaurant\RestaurantServingController;
 use App\Http\Controllers\restaurant\RestaurantSpecialityController;
 
+use \App\Http\Controllers\policies\hotel\HotelPoliciesController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -89,15 +90,6 @@ Route::prefix('/hotel')->group(function () {
  */
 Route::get('/file-manager', [FileManagerController::class, 'getFiles']);
 Route::get('/file-manager/directories', [FileManagerController::class, 'getAllDirectories']);
-
-/**
- * safety measures api
- */
-Route::get('/measures', [SafetyMeasuresController::class, 'index']);
-Route::post('/measures', [SafetyMeasuresController::class, 'store']);
-Route::get('/measures/{_uid}', [SafetyMeasuresController::class, 'show']);
-Route::patch('/measures/{_uid}', [SafetyMeasuresController::class, 'update']);
-Route::delete('/measures/{_uid}', [SafetyMeasuresController::class, 'destroy']);
 
 /**
  * reminder call api
@@ -140,6 +132,18 @@ Route::get('/swimming-pool/pools/type={id}', [SwimmingPoolListController::class,
 Route::get('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'show']);
 Route::patch('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'update']);
 Route::delete('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'destroy']);
+
+/**
+ * policies
+ */
+Route::prefix('/policies')->group(function() {
+    Route::get('/', [HotelPoliciesController::class, 'index']);
+    Route::post('/', [HotelPoliciesController::class, 'store']);
+    Route::get('/{id}', [HotelPoliciesController::class, 'show']);
+    Route::patch('/{id}', [HotelPoliciesController::class, 'update']);
+    Route::delete('/{id}', [HotelPoliciesController::class, 'destroy']);
+});
+
 
 /**
  * pension upgrade
@@ -407,7 +411,7 @@ Route::patch('/room-request/{id}', [RoomRequestController::class, 'update']);
 Route::delete('/room-request/{id}', [RoomRequestController::class, 'destroy']);
 
 /**
- * house keeping 
+ * house keeping
  */
 Route::get('/house-keeping', [HouseKeepingController::class, 'index']);
 Route::get('/house-keeping/{id}', [HouseKeepingController::class, 'show']);
