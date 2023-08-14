@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('safety_measures', function (Blueprint $table) {
+        Schema::create('hotel_policies', function (Blueprint $table) {
             $table->id();
-            $table->string('measure_name')->unique();
-            $table->string('measure_icon')->default('ri-error-warning-line');
-            $table->text('measure_content');
+            $table->string('title');
+            $table->string('subTitle');
+            $table->text('filePath');
+            $table->enum('type', ['APPLICATION', 'HOTEL']);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('safety_measures');
+        Schema::dropIfExists('hotel_policies');
     }
 };
