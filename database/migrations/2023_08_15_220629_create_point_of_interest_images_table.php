@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('point_interest_types', function (Blueprint $table) {
+        Schema::create('point_of_interest_images', function (Blueprint $table) {
             $table->id();
-            $table->string('point_type');
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('point_interest_types');
+        Schema::dropIfExists('point_of_interest_images');
     }
 };

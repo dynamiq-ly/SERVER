@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('point_interest_images', function (Blueprint $table) {
+        Schema::create('point_of_interests', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-            $table->foreignId('point_id')->constrained('point_interests')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('point_interest_images');
+        Schema::dropIfExists('point_of_interests');
     }
 };
