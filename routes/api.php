@@ -57,6 +57,8 @@ use App\Http\Controllers\restaurant\RestaurantSpecialityController;
 
 use \App\Http\Controllers\policies\hotel\HotelPoliciesController;
 use \App\Http\Controllers\gym\GymController;
+use \App\Http\Controllers\gym\GymEquipementController;
+use \App\Http\Controllers\gym\GymStaffController;
 
 /*
 |--------------------------------------------------------------------------
@@ -137,6 +139,19 @@ Route::delete('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, '
  * gym
  */
 Route::prefix('/gym')->group(function () {
+    // gym equipements
+    Route::get('/equipements', [GymEquipementController::class, 'index']);
+    Route::post('/equipements', [GymEquipementController::class, 'store']);
+    Route::get('/equipements/{id}', [GymEquipementController::class, 'show']);
+    Route::patch('/equipements/{id}', [GymEquipementController::class, 'update']);
+    Route::delete('/equipements/{id}', [GymEquipementController::class, 'destroy']);
+
+    // gym staff
+    Route::get('/staff', [GymStaffController::class, 'index']);
+    Route::post('/staff', [GymStaffController::class, 'store']);
+    Route::get('/staff/{id}', [GymStaffController::class, 'show']);
+    Route::patch('/staff/{id}', [GymStaffController::class, 'update']);
+    Route::delete('/staff/{id}', [GymStaffController::class, 'destroy']);
 
     Route::get('/', [GymController::class, 'index']);
     Route::post('/', [GymController::class, 'store']);

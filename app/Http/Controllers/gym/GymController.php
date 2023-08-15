@@ -17,7 +17,7 @@ class GymController extends Controller
      */
     public function index()
     {
-        return Gym::all();
+        return Gym::with('staff', 'equipements')->get();
     }
 
     /**
@@ -58,7 +58,7 @@ class GymController extends Controller
      */
     public function show($id)
     {
-        return Gym::find($id);
+        return Gym::with('staff', 'equipements')->find($id);
     }
 
     /**
