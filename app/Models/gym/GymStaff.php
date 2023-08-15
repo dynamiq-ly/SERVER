@@ -1,23 +1,25 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\gym;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class GymEquipment extends Model
+class GymStaff extends Model
 {
     use HasFactory;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'gym_equipement_name',
-        'gym_equipment_image',
-        'gym_id'
+        'name',
+        'job_title',
+        'image',
+        'gym_id',
     ];
 
     /**
@@ -29,11 +31,11 @@ class GymEquipment extends Model
         'created_at',
         'updated_at',
         'gym_id'
-
     ];
 
+
     /**
-     * Get the gym that owns the GymEquipment
+     * Get the user that owns the Activity_Lists
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -41,4 +43,5 @@ class GymEquipment extends Model
     {
         return $this->belongsTo(Gym::class, 'gym_id', 'id');
     }
+
 }

@@ -1,26 +1,24 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\gym;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Gym extends Model
+class GymEquipement extends Model
 {
     use HasFactory;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'gym_name',
-        'gym_image',
-        'gym_description',
-        'gym_floor',
-        'gym_term_of_use',
-        'gym_timing',
+        'name',
+        'image',
+        'gym_id'
     ];
 
     /**
@@ -31,16 +29,16 @@ class Gym extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
-
+        'gym_id'
     ];
 
     /**
-     * Get all of the equipments for the Gym
+     * Get the user that owns the Activity_Lists
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function equipments(): HasMany
+    public function gym(): BelongsTo
     {
-        return $this->hasMany(GymEquipment::class, 'gym_id', 'id');
+        return $this->belongsTo(Gym::class, 'gym_id', 'id');
     }
 }
