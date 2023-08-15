@@ -56,6 +56,7 @@ use App\Http\Controllers\restaurant\RestaurantServingController;
 use App\Http\Controllers\restaurant\RestaurantSpecialityController;
 
 use \App\Http\Controllers\policies\hotel\HotelPoliciesController;
+use \App\Http\Controllers\gym\GymController;
 
 /*
 |--------------------------------------------------------------------------
@@ -135,6 +136,15 @@ Route::delete('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, '
 /**
  * gym
  */
+Route::prefix('/gym')->group(function () {
+
+    Route::get('/', [GymController::class, 'index']);
+    Route::post('/', [GymController::class, 'store']);
+    Route::get('/{id}', [GymController::class, 'show']);
+    Route::patch('/{id}', [GymController::class, 'update']);
+    Route::delete('/{id}', [GymController::class, 'destroy']);
+});
+
 
 /**
  * policies
