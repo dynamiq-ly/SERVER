@@ -75,14 +75,14 @@ class GymController extends Controller
 
         if ($request->hasFile("image")) {
             Storage::delete('public/pdf/gym/' . $gym->terms);
-            $imagePath = $request->file('image')->store('public/gym/thumbnails');
-            $gym->image = $imagePath;
+            $request->file('image')->store('public/gym/thumbnails');
+            $gym->image = $request->file('image')->hashName();
         }
 
         if ($request->hasFile("terms")) {
             Storage::delete('public/pdf/gym/' . $gym->terms);
-            $termsPath = $request->file('terms')->store('public/pdf/gym');
-            $gym->terms = $termsPath;
+            $request->file('terms')->store('public/pdf/gym');
+            $gym->terms = $request->file('terms')->hashName();
         }
 
         $gym->name = $request->name;

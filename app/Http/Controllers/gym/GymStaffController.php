@@ -35,7 +35,7 @@ class GymStaffController extends Controller
     public function store(Request $request)
     {
         if($request->hasFile('image')){
-            $request->file('image')->store('public/gym/equipements');
+            $request->file('image')->store('public/gym/staffs');
 
             return GymStaff::create([
                 'name' => $request->input('name'),
@@ -76,8 +76,8 @@ class GymStaffController extends Controller
         ];
 
         if ($request->hasFile('image')) {
-            Storage::delete('public/gym/equipements/' . $gymEquipement->image);
-            $request->file('image')->store('public/gym/equipements');
+            Storage::delete('public/gym/staffs/' . $gymEquipement->image);
+            $request->file('image')->store('public/gym/staffs');
             $data['image'] = $request->file('image')->hashName();
         }
 
