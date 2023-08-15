@@ -18,7 +18,6 @@ use App\Http\Controllers\Api\FileManagerController;
 use App\Http\Controllers\Api\FoodServiceController;
 use App\Http\Controllers\Api\FoodServicePlateController;
 use App\Http\Controllers\Api\FoodServicePlateSupplementController;
-use App\Http\Controllers\Api\GymController;
 use App\Http\Controllers\Api\HairDryerController;
 use App\Http\Controllers\Api\HouseKeepingController;
 use App\Http\Controllers\Api\LaundriesController;
@@ -132,6 +131,10 @@ Route::get('/swimming-pool/pools/type={id}', [SwimmingPoolListController::class,
 Route::get('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'show']);
 Route::patch('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'update']);
 Route::delete('/swimming-pool/pools/{id}', [SwimmingPoolListController::class, 'destroy']);
+
+/**
+ * gym
+ */
 
 /**
  * policies
@@ -335,23 +338,6 @@ Route::get('/directory/{id}', [PhoneDirectoryController::class, 'show']);
 Route::post('/directory', [PhoneDirectoryController::class, 'store']);
 Route::patch('/directory/{id}', [PhoneDirectoryController::class, 'update']);
 Route::delete('/directory/{id}', [PhoneDirectoryController::class, 'destroy']);
-
-
-/**
- * gym
- */
-Route::get('/gym', [GymController::class, 'index']);
-Route::get('/gym/{id}', [GymController::class, 'show']);
-Route::post('/gym', [GymController::class, 'store']);
-Route::patch('/gym', [GymController::class, 'update']);
-Route::delete('/gym', [GymController::class, 'destroy']);
-// gym_equipment
-Route::get('/gym/equipments', [GymController::class, 'gymEquipment']);
-Route::get('/gym/equipments/{id}', [GymController::class, 'show_gym_equipment']);
-Route::post('/gym/equipments', [GymController::class, 'add_gym_equipment']);
-Route::patch('/gym/equipments/{id}', [GymController::class, 'update_gym_equipment']);
-Route::delete('/gym/equipments/{id}', [GymController::class, 'destroy_gym_equipment']);
-
 
 /**
  * connectivity
