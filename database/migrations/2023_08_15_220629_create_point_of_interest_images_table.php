@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('point_of_interest_images', function (Blueprint $table) {
             $table->id();
             $table->string('image');
+            $table->foreignId('point_id')->constrained('point_of_interests')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

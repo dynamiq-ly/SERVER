@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('point_of_interest_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->boolean('visible')->default(true);
             $table->timestamps();
         });
