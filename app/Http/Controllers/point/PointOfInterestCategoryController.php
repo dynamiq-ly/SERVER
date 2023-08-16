@@ -18,10 +18,10 @@ class PointOfInterestCategoryController extends Controller
         $query = $request->input('query');
 
         if ($query !== null) {
-            return PointOfInterestCategory::where('visible', $query)->with('points')->get();
+            return PointOfInterestCategory::where('visible', $query)->get();
         }
 
-        return PointOfInterestCategory::with('points.images')->get();
+        return PointOfInterestCategory::all();
     }
 
     /**
