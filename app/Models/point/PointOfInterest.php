@@ -56,7 +56,7 @@ class PointOfInterest extends Model
      */
     public function schedule(): HasOne
     {
-        return $this->hasOne(PointOfInterestSchedule::class, 'point_id', 'point_id');
+        return $this->hasOne(PointOfInterestSchedule::class, 'point_id', 'id');
     }
 
 }
