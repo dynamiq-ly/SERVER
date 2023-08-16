@@ -16,13 +16,16 @@ class PointOfInterestController extends Controller
      */
     public function index(Request $request)
     {
-        $visible = $request->input('visible');
+        $points = PointOfInterest::with('images', 'schedule', 'category');
 
-        if ($visible != null) {
-            return PointOfInterest::with('images', 'schedule', 'category')->where('visible', $visible)->get();
+        $visible = $request->input('visible');
+        $category = $request->input('query');
+
+        if ($visible != null && $category != null) {
+            return $points->where('visible', $visible)->where('point_id', $category)->get();
         }
 
-        return PointOfInterest::with('images', 'schedule', 'category')->get();
+        return $points->get();
     }
 
     /**
