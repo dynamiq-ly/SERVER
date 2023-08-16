@@ -25,8 +25,6 @@ use App\Http\Controllers\Api\LaundryTypeController;
 use App\Http\Controllers\Api\MedicalAssistanceController;
 use App\Http\Controllers\Api\OtherRequestController;
 use App\Http\Controllers\Api\PhoneDirectoryController;
-use App\Http\Controllers\Api\PointInterestController;
-use App\Http\Controllers\Api\PointInterestTypeController;
 use App\Http\Controllers\Api\PoolTowelsController;
 use App\Http\Controllers\Api\ReportIncidentController;
 use App\Http\Controllers\Api\RoomController;
@@ -40,12 +38,16 @@ use App\Http\Controllers\Api\TourAgencyController;
 use App\Http\Controllers\Api\TourAgencyGuideController;
 use App\Http\Controllers\Api\TourAgencyServiceController;
 use App\Http\Controllers\Api\TowelsController;
+
 use App\Http\Controllers\entertainement\EntertainementController;
 use App\Http\Controllers\entertainement\EntertainementDayController;
 use App\Http\Controllers\entertainement\EntertainementNightController;
 use App\Http\Controllers\entertainement\EntertainementSportController;
+
 use App\Http\Controllers\hotel\HotelLocationPartsController;
+
 use App\Http\Controllers\Pension\PensionController;
+
 use App\Http\Controllers\restaurant\RestaurantChefController;
 use App\Http\Controllers\restaurant\RestaurantController;
 use App\Http\Controllers\restaurant\RestaurantDrinkMenuController;
@@ -55,10 +57,14 @@ use App\Http\Controllers\restaurant\RestaurantReservationController;
 use App\Http\Controllers\restaurant\RestaurantServingController;
 use App\Http\Controllers\restaurant\RestaurantSpecialityController;
 
-use \App\Http\Controllers\policies\hotel\HotelPoliciesController;
-use \App\Http\Controllers\gym\GymController;
-use \App\Http\Controllers\gym\GymEquipementController;
-use \App\Http\Controllers\gym\GymStaffController;
+use App\Http\Controllers\policies\hotel\HotelPoliciesController;
+
+use App\Http\Controllers\gym\GymController;
+use App\Http\Controllers\gym\GymEquipementController;
+use App\Http\Controllers\gym\GymStaffController;
+
+use App\Http\Controllers\point\PointOfInterestCategoryController;
+use App\Http\Controllers\point\PointOfInterestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -172,6 +178,24 @@ Route::prefix('/policies')->group(function() {
     Route::delete('/{id}', [HotelPoliciesController::class, 'destroy']);
 });
 
+/**
+ * point of interest
+ */
+Route::prefix('/point-of-interest')->group(function () {
+    // categories
+    Route::get('/categories', [PointOfInterestCategoryController::class, 'index']);
+    route::post('/categories', [PointOfInterestCategoryController::class, 'store']);
+    Route::get('/categories/{id}', [PointOfInterestCategoryController::class, 'show']);
+    Route::patch('/categories/{id}', [PointOfInterestCategoryController::class, 'update']);
+    Route::delete('/categories/{id}', [PointOfInterestCategoryController::class, 'destroy']);
+
+    // points of interest
+    Route::get('/', [PointOfInterestController::class, 'index']);
+    Route::post('/', [PointOfInterestController::class, 'store']);
+    Route::get('/{id}', [PointOfInterestController::class, 'show']);
+    Route::patch('/{id}', [PointOfInterestController::class, 'update']);
+    Route::delete('/{id}', [PointOfInterestController::class, 'destroy']);
+});
 
 /**
  * pension upgrade
@@ -307,21 +331,6 @@ Route::patch('/rooms/room-category/{id}', [RoomTypeController::class, 'update'])
 Route::delete('/rooms/room-category/{id}', [RoomTypeController::class, 'destroy']);
 // room listing
 Route::get('/rooms&status={bool}', [RoomController::class, 'index'])->where('bool', '1|0|-1');
-
-/**
- * point interest
- */
-Route::get('/point-of-interest/type', [PointInterestTypeController::class, 'index']);
-Route::get('/point-of-interest/type/{id}', [PointInterestTypeController::class, 'show']);
-Route::post('/point-of-interest/type', [PointInterestTypeController::class, 'store']);
-Route::patch('/point-of-interest/type/{id}', [PointInterestTypeController::class, 'update']);
-Route::delete('/point-of-interest/type/{id}', [PointInterestTypeController::class, 'destroy']);
-// point of interest
-Route::get('/point-of-interest&status={bool}', [PointInterestController::class, 'index'])->where('bool', '1|0|-1');
-Route::get('/point-of-interest/{id}', [PointInterestController::class, 'show']);
-Route::post('/point-of-interest', [PointInterestController::class, 'store']);
-Route::patch('/point-of-interest/{id}', [PointInterestController::class, 'update']);
-Route::delete('/point-of-interest/{id}', [PointInterestController::class, 'destroy']);
 
 /**
  * room service

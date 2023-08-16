@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('point_interests', function (Blueprint $table) {
-            $table->text('images')->after('point_status')->nullable();
+        Schema::create('point_of_interest_categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->unique();
+            $table->boolean('visible')->default(true);
+            $table->timestamps();
         });
     }
 
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('point_of_interest_categories');
     }
 };

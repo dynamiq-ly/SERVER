@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('point_interest_schedules', function (Blueprint $table) {
+        Schema::create('point_of_interest_schedules', function (Blueprint $table) {
             $table->id();
-            $table->string('sunday')->nullable();
             $table->string('monday')->nullable();
             $table->string('tuesday')->nullable();
             $table->string('wednesday')->nullable();
             $table->string('thursday')->nullable();
             $table->string('friday')->nullable();
             $table->string('saturday')->nullable();
-            $table->foreignId('point_id')->constrained('point_interests')->onDelete('cascade');
+            $table->string('sunday')->nullable();
+            $table->foreignId('point_id')->constrained('point_of_interests')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('point_interest_schedules');
+        Schema::dropIfExists('point_of_interest_schedules');
     }
 };
