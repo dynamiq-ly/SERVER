@@ -27,9 +27,7 @@ use App\Http\Controllers\Api\OtherRequestController;
 use App\Http\Controllers\Api\PhoneDirectoryController;
 use App\Http\Controllers\Api\PoolTowelsController;
 use App\Http\Controllers\Api\ReportIncidentController;
-use App\Http\Controllers\Api\RoomController;
 use App\Http\Controllers\Api\RoomRequestController;
-use App\Http\Controllers\Api\RoomTypeController;
 use App\Http\Controllers\Api\ServiceRoomMiniBarController;
 use App\Http\Controllers\Api\SwimmingPoolController;
 use App\Http\Controllers\Api\SwimmingPoolListController;
@@ -65,6 +63,10 @@ use App\Http\Controllers\gym\GymStaffController;
 
 use App\Http\Controllers\point\PointOfInterestCategoryController;
 use App\Http\Controllers\point\PointOfInterestController;
+
+use App\Http\Controllers\room\RoomCategoryController;
+use App\Http\Controllers\room\RoomAddOnController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -166,6 +168,25 @@ Route::prefix('/gym')->group(function () {
     Route::delete('/{id}', [GymController::class, 'destroy']);
 });
 
+/**
+ * rooms
+ */
+Route::prefix('/rooms')->group(function () {
+
+    // categories
+    Route::get('/categories', [RoomCategoryController::class, 'index']);
+    route::post('/categories', [RoomCategoryController::class, 'store']);
+    Route::get('/categories/{id}', [RoomCategoryController::class, 'show']);
+    Route::patch('/categories/{id}', [RoomCategoryController::class, 'update']);
+    Route::delete('/categories/{id}', [RoomCategoryController::class, 'destroy']);
+
+    // addons
+    Route::get('/addons', [RoomAddOnController::class, 'index']);
+    Route::post('/addons', [RoomAddOnController::class, 'store']);
+    Route::get('/addons/{id}', [RoomAddOnController::class, 'show']);
+    Route::patch('/addons/{id}', [RoomAddOnController::class, 'update']);
+    Route::delete('/addons/{id}', [RoomAddOnController::class, 'destroy']);
+});
 
 /**
  * policies
@@ -321,16 +342,6 @@ Route::post('/bar/menu/drinks', [BarMenuDrinksController::class, 'store']);
 Route::post('/bar/menu/drinks/{id}', [BarMenuDrinksController::class, 'update']);
 Route::delete('/bar/menu/drinks/{id}', [BarMenuDrinksController::class, 'destroy']);
 
-/**
- * room type
- */
-Route::get('/rooms/room-category', [RoomTypeController::class, 'index']);
-Route::get('/rooms/room-category/{id}', [RoomTypeController::class, 'show']);
-Route::post('/rooms/room-category', [RoomTypeController::class, 'store']);
-Route::patch('/rooms/room-category/{id}', [RoomTypeController::class, 'update']);
-Route::delete('/rooms/room-category/{id}', [RoomTypeController::class, 'destroy']);
-// room listing
-Route::get('/rooms&status={bool}', [RoomController::class, 'index'])->where('bool', '1|0|-1');
 
 /**
  * room service

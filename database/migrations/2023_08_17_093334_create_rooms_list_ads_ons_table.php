@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('room_types', function (Blueprint $table) {
+        Schema::create('rooms_list_ads_ons', function (Blueprint $table) {
             $table->id();
-            $table->string('room_type_name');
+            $table->string('label')->unique();
+            $table->boolean('featured')->default(false);
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('room_types');
+        Schema::dropIfExists('rooms_list_ads_ons');
     }
 };

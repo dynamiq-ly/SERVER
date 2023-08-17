@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('room_images', function (Blueprint $table) {
+        Schema::create('room_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-            $table->foreignId('room_id')->constrained('rooms')->onDelete('cascade');
+            $table->string('label')->unique();
+            $table->boolean('visible')->default(true);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('room_images');
+        Schema::dropIfExists('room_categories');
     }
 };
