@@ -66,6 +66,7 @@ use App\Http\Controllers\point\PointOfInterestController;
 
 use App\Http\Controllers\room\RoomCategoryController;
 use App\Http\Controllers\room\RoomAddOnController;
+use App\Http\Controllers\room\RoomController;
 
 
 /*
@@ -186,6 +187,14 @@ Route::prefix('/rooms')->group(function () {
     Route::get('/addons/{id}', [RoomAddOnController::class, 'show']);
     Route::patch('/addons/{id}', [RoomAddOnController::class, 'update']);
     Route::delete('/addons/{id}', [RoomAddOnController::class, 'destroy']);
+
+    // rooms
+    route::get('/', [RoomController::class, 'index']);
+    Route::post('/', [RoomController::class, 'store']);
+    Route::get('/{id}', [RoomController::class, 'show']);
+    Route::patch('/{id}', [RoomController::class, 'update']);
+    Route::delete('/{id}', [RoomController::class, 'destroy']);
+
 });
 
 /**
