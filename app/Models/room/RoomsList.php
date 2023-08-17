@@ -49,4 +49,15 @@ class RoomsList extends Model
     {
         return $this->hasOne(RoomsListConfig::class, 'room_id', 'id');
     }
+
+    /**
+     * Get all of the features for the RoomsList
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function features(): HasMany
+    {
+        return $this->hasMany(RoomsListFeatures::class, 'room_id', 'id');
+    }
+
 }
