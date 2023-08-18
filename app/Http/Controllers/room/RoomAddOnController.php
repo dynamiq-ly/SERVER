@@ -15,7 +15,7 @@ class RoomAddOnController extends Controller
      */
     public function index()
     {
-     return RoomsListAdsOns::with('rooms')->get();
+        return RoomsListAdsOns::with('rooms')->get();
     }
 
     /**
