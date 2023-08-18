@@ -26,9 +26,7 @@ class RoomAddOnController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->only([
-            'label',
-            'featured',
+        $data = $request->only(['label',
         ]);
 
         if ($request->hasFile('image')) {
@@ -59,9 +57,7 @@ class RoomAddOnController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->only([
-            'label',
-            'featured',
+        $data = $request->only(['label',
         ]);
 
         if ($request->hasFile('image')) {

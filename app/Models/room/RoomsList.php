@@ -60,4 +60,14 @@ class RoomsList extends Model
         return $this->hasMany(RoomsListFeatures::class, 'room_id', 'id');
     }
 
+    /**
+     * Get all of the addons for the RoomsList
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function addons(): HasMany
+    {
+        return $this->hasMany(RoomAddonsManyToMany::class, 'room_id', 'id');
+    }
+
 }

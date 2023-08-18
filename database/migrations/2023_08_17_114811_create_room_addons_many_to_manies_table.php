@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rooms_list_ads_ons', function (Blueprint $table) {
+        Schema::create('room_addons_many_to_manies', function (Blueprint $table) {
             $table->id();
-            $table->string('label')->unique();
-            $table->text('image')->nullable();
+            $table->boolean('featured')->default(false);
+            $table->foreignId('room_id')->constrained('rooms_lists')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('addon_id')->constrained('rooms_list_ads_ons')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rooms_list_ads_ons');
+        Schema::dropIfExists('room_addons_many_to_manies');
     }
 };
