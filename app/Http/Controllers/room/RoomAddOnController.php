@@ -61,8 +61,8 @@ class RoomAddOnController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/rooms/room-add-ons');
-            $data['image'] = $imagePath;
+            $request->file('image')->store('public/rooms/room-add-ons');
+            $data['image'] = $request->file('image')->hashName();;
         }
 
         $roomsAddons = RoomsListAdsOns::findOrFail($id);
