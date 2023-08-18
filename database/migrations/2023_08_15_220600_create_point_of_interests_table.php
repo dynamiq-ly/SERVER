@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('coordinates')->nullable();
             $table->string('phone')->nullable();
             $table->string('website')->nullable();
-            $table->string('description');
+            $table->text('description');
             $table->boolean('visible')->default(true);
             $table->foreignId('point_id')->constrained('point_of_interest_categories')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
