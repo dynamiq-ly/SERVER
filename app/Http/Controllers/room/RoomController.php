@@ -17,7 +17,7 @@ class RoomController extends Controller
     {
         $query = $request->input('query');
 
-        $roomsQuery = RoomsList::with('images', 'config', 'features', 'addons');
+        $roomsQuery = RoomsList::with('category', 'images', 'config', 'features', 'addons.addon');
 
         if ($query !== null) {
             $roomsQuery->whereHas('config', function ($configQuery) use ($query) {
@@ -81,7 +81,7 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        return RoomsList::with('images', 'config', 'features', 'addons')->find($id);
+        return RoomsList::with('category', 'images', 'config', 'features', 'addons.addon')->find($id);
     }
 
     /**

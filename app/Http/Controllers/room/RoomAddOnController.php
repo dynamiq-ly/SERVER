@@ -15,7 +15,7 @@ class RoomAddOnController extends Controller
      */
     public function index()
     {
-        return RoomsListAdsOns::all();
+     return RoomsListAdsOns::with('rooms')->get();
     }
 
     /**
@@ -26,8 +26,7 @@ class RoomAddOnController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->only(['label',
-        ]);
+        $data = $request->only(['label']);
 
         if ($request->hasFile('image')) {
             $request->file('image')->store('public/rooms/room-add-ons');
@@ -45,7 +44,7 @@ class RoomAddOnController extends Controller
      */
     public function show($id)
     {
-        return RoomsListAdsOns::find($id);
+        return RoomsListAdsOns::with('rooms')->find($id);
     }
 
     /**

@@ -31,6 +31,16 @@ class RoomsList extends Model
 
 
     /**
+     * Get the category that owns the RoomsList
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(RoomCategory::class, 'room_id', 'id');
+    }
+
+    /**
      * Get all of the images for the RoomsListImage
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
