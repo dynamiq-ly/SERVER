@@ -27,9 +27,7 @@ use App\Http\Controllers\Api\OtherRequestController;
 use App\Http\Controllers\Api\PhoneDirectoryController;
 use App\Http\Controllers\Api\PoolTowelsController;
 use App\Http\Controllers\Api\ReportIncidentController;
-use App\Http\Controllers\Api\RoomController;
 use App\Http\Controllers\Api\RoomRequestController;
-use App\Http\Controllers\Api\RoomTypeController;
 use App\Http\Controllers\Api\ServiceRoomMiniBarController;
 use App\Http\Controllers\Api\SwimmingPoolController;
 use App\Http\Controllers\Api\SwimmingPoolListController;
@@ -65,6 +63,13 @@ use App\Http\Controllers\gym\GymStaffController;
 
 use App\Http\Controllers\point\PointOfInterestCategoryController;
 use App\Http\Controllers\point\PointOfInterestController;
+
+use App\Http\Controllers\room\RoomCategoryController;
+use App\Http\Controllers\room\RoomAddOnController;
+use App\Http\Controllers\room\RoomController;
+use App\Http\Controllers\room\RoomFeaturesController;
+use App\Http\Controllers\room\RoomAddonsManytoManyController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -166,6 +171,46 @@ Route::prefix('/gym')->group(function () {
     Route::delete('/{id}', [GymController::class, 'destroy']);
 });
 
+/**
+ * rooms
+ */
+Route::prefix('/rooms')->group(function () {
+    // addons *.* room -> {ManytoMany}
+    Route::get('/link-addons-room', [RoomAddonsManytoManyController::class, 'index']);
+    Route::post('/link-addons-room', [RoomAddonsManytoManyController::class, 'store']);
+    Route::get('/link-addons-room/{id}', [RoomAddonsManytoManyController::class, 'show']);
+    Route::patch('/link-addons-room/{id}', [RoomAddonsManytoManyController::class, 'update']);
+    Route::delete('/link-addons-room/{id}', [RoomAddonsManytoManyController::class, 'destroy']);
+
+    // categories
+    Route::get('/categories', [RoomCategoryController::class, 'index']);
+    route::post('/categories', [RoomCategoryController::class, 'store']);
+    Route::get('/categories/{id}', [RoomCategoryController::class, 'show']);
+    Route::patch('/categories/{id}', [RoomCategoryController::class, 'update']);
+    Route::delete('/categories/{id}', [RoomCategoryController::class, 'destroy']);
+
+    // addons
+    Route::get('/addons', [RoomAddOnController::class, 'index']);
+    Route::post('/addons', [RoomAddOnController::class, 'store']);
+    Route::get('/addons/{id}', [RoomAddOnController::class, 'show']);
+    Route::patch('/addons/{id}', [RoomAddOnController::class, 'update']);
+    Route::delete('/addons/{id}', [RoomAddOnController::class, 'destroy']);
+
+    // features
+    Route::get('/features', [RoomFeaturesController::class, 'index']);
+    Route::post('/features', [RoomFeaturesController::class, 'store']);
+    Route::get('/features/{id}', [RoomFeaturesController::class, 'show']);
+    Route::patch('/features/{id}', [RoomFeaturesController::class, 'update']);
+    Route::delete('/features/{id}', [RoomFeaturesController::class, 'destroy']);
+
+    // rooms
+    route::get('/', [RoomController::class, 'index']);
+    Route::post('/', [RoomController::class, 'store']);
+    Route::get('/{id}', [RoomController::class, 'show']);
+    Route::patch('/{id}', [RoomController::class, 'update']);
+    Route::delete('/{id}', [RoomController::class, 'destroy']);
+
+});
 
 /**
  * policies
@@ -321,16 +366,6 @@ Route::post('/bar/menu/drinks', [BarMenuDrinksController::class, 'store']);
 Route::post('/bar/menu/drinks/{id}', [BarMenuDrinksController::class, 'update']);
 Route::delete('/bar/menu/drinks/{id}', [BarMenuDrinksController::class, 'destroy']);
 
-/**
- * room type
- */
-Route::get('/rooms/room-category', [RoomTypeController::class, 'index']);
-Route::get('/rooms/room-category/{id}', [RoomTypeController::class, 'show']);
-Route::post('/rooms/room-category', [RoomTypeController::class, 'store']);
-Route::patch('/rooms/room-category/{id}', [RoomTypeController::class, 'update']);
-Route::delete('/rooms/room-category/{id}', [RoomTypeController::class, 'destroy']);
-// room listing
-Route::get('/rooms&status={bool}', [RoomController::class, 'index'])->where('bool', '1|0|-1');
 
 /**
  * room service
