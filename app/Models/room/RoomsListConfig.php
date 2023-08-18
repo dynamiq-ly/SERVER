@@ -15,7 +15,7 @@ class RoomsListConfig extends Model
         'booking',
         'upgrade-price',
         'downgrade-price',
-        'description',
+        'upgrade-description',
         'room_id',
     ];
 
