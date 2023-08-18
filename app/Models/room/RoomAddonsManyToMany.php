@@ -14,6 +14,7 @@ class RoomAddonsManyToMany extends Model
     protected $fillable = [
         'room_id',
         'addon_id',
+        'featured'
     ];
 
     protected $hidden = [

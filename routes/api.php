@@ -68,6 +68,7 @@ use App\Http\Controllers\room\RoomCategoryController;
 use App\Http\Controllers\room\RoomAddOnController;
 use App\Http\Controllers\room\RoomController;
 use App\Http\Controllers\room\RoomFeaturesController;
+use App\Http\Controllers\room\RoomAddonsManytoManyController;
 
 
 /*
@@ -174,6 +175,12 @@ Route::prefix('/gym')->group(function () {
  * rooms
  */
 Route::prefix('/rooms')->group(function () {
+    // addons *.* room -> {ManytoMany}
+    Route::get('/link-addons-room', [RoomAddonsManytoManyController::class, 'index']);
+    Route::post('/link-addons-room', [RoomAddonsManytoManyController::class, 'store']);
+    Route::get('/link-addons-room/{id}', [RoomAddonsManytoManyController::class, 'show']);
+    Route::patch('/link-addons-room/{id}', [RoomAddonsManytoManyController::class, 'update']);
+    Route::delete('/link-addons-room/{id}', [RoomAddonsManytoManyController::class, 'destroy']);
 
     // categories
     Route::get('/categories', [RoomCategoryController::class, 'index']);
