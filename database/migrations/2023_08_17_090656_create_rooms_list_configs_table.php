@@ -19,7 +19,7 @@ return new class extends Migration
             $table->boolean('booking')->default(false);
             $table->float('upgrade-price')->nullable();
             $table->float('downgrade-price')->nullable();
-            $table->text('description')->nullable();
+            $table->text('upgrade-description')->nullable();
             $table->foreignId('room_id')->constrained('rooms_lists')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

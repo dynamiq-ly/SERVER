@@ -17,7 +17,7 @@ class RoomController extends Controller
     {
         $query = $request->input('query');
 
-        $roomsQuery = RoomsList::with('images', 'config', 'features', 'addons');
+        $roomsQuery = RoomsList::with('category', 'images', 'config', 'features', 'addons.addon');
 
         if ($query !== null) {
             $roomsQuery->whereHas('config', function ($configQuery) use ($query) {
@@ -66,7 +66,7 @@ class RoomController extends Controller
                 'booking' => $request->booking,
                 'upgrade-price' => $request->input('upgrade-price'),
                 'downgrade-price' => $request->input('downgrade-price'),
-                'description' => $request->description,
+                'upgrade-description' => $request->input('upgrade-description'),
                 'room_id' => $room->id
             ]);
             return $room;
@@ -81,7 +81,7 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        return RoomsList::with('images', 'config', 'features')->find($id);
+        return RoomsList::with('category', 'images', 'config', 'features', 'addons.addon')->find($id);
     }
 
     /**
@@ -123,7 +123,7 @@ class RoomController extends Controller
             'booking' => $request->booking,
             'upgrade-price' => $request->input('upgrade-price'),
             'downgrade-price' => $request->input('downgrade-price'),
-            'description' => $request->description,
+            'upgrade-description' => $request->input('upgrade-description'),
             'room_id' => $room->id,
         ]);
         return $room;
