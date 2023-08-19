@@ -27,8 +27,7 @@ return new class extends Migration
             $table->boolean('adults_only')->default(false);
 
             $table->text('menu_a_la_carte')->nullable();
-
-
+            $table->boolean('visible')->default(true);
             $table->timestamps();
         });
     }

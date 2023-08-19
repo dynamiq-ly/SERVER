@@ -21,6 +21,7 @@ class BarsList extends Model
         'reservation_required',
         'adults_only',
         'menu_a_la_carte',
+        'visible',
     ];
 
     protected $hidden = [

@@ -8,9 +8,6 @@ use App\Http\Controllers\Api\ActivitiesController;
 use App\Http\Controllers\Api\ActivityListController;
 use App\Http\Controllers\Api\AirConditionnerController;
 use App\Http\Controllers\Api\BankATMController;
-use App\Http\Controllers\Api\BarController;
-use App\Http\Controllers\Api\BarMenuController;
-use App\Http\Controllers\Api\BarMenuDrinksController;
 use App\Http\Controllers\Api\ConnectivityController;
 use App\Http\Controllers\Api\DrinkServiceCategoryController;
 use App\Http\Controllers\Api\ElectricityController;
@@ -36,7 +33,7 @@ use App\Http\Controllers\Api\TourAgencyController;
 use App\Http\Controllers\Api\TourAgencyGuideController;
 use App\Http\Controllers\Api\TourAgencyServiceController;
 use App\Http\Controllers\Api\TowelsController;
-
+use App\Http\Controllers\bar\BarsListController;
 use App\Http\Controllers\entertainement\EntertainementController;
 use App\Http\Controllers\entertainement\EntertainementDayController;
 use App\Http\Controllers\entertainement\EntertainementNightController;
@@ -68,6 +65,7 @@ use App\Http\Controllers\room\RoomCategoryController;
 use App\Http\Controllers\room\RoomAddOnController;
 use App\Http\Controllers\room\RoomController;
 use App\Http\Controllers\room\RoomFeaturesController;
+
 use App\Http\Controllers\room\RoomAddonsManytoManyController;
 
 
@@ -254,6 +252,19 @@ Route::prefix('/pension')->group(function () {
     Route::delete('/{id}', [PensionController::class, 'destroy']);
 });
 
+
+/**
+ * bars
+ */
+Route::prefix('/bars')->group(function () {
+    // bars
+    Route::get('/', [BarsListController::class, 'index']);
+    Route::post('/', [BarsListController::class, 'store']);
+    Route::get('/{id}', [BarsListController::class, 'show']);
+    Route::patch('/{id}', [BarsListController::class, 'update']);
+    Route::delete('/{id}', [BarsListController::class, 'destroy']);
+});
+
 /**
  * restaurant
  */
@@ -344,27 +355,6 @@ Route::prefix('/entertainement')->group(function () {
     // helpers
     Route::get('/weekly-count', [EntertainementController::class, 'totalTiming']);
 });
-
-/**
- * bar
- */
-Route::get('/bar&status={bool}', [BarController::class, 'index'])->where('bool', '1|0|-1');
-Route::get('/bar/{id}', [BarController::class, 'show']);
-Route::post('/bar', [BarController::class, 'store']);
-Route::patch('/bar/{id}', [BarController::class, 'update']);
-Route::delete('/bar/{id}', [BarController::class, 'destroy']);
-// bar menu
-Route::get('/bar/menu/type={id}', [BarMenuController::class, 'index']);
-Route::get('/bar/menu/{id}', [BarMenuController::class, 'show']);
-Route::post('/bar/menu', [BarMenuController::class, 'store']);
-Route::patch('/bar/menu/{id}', [BarMenuController::class, 'update']);
-Route::delete('/bar/menu/{id}', [BarMenuController::class, 'destroy']);
-// bar menu drinks
-Route::get('/bar/menu/drinks/{id}', [BarMenuDrinksController::class, 'index']);
-Route::get('/bar/menu/drinks/search/{id}', [BarMenuDrinksController::class, 'show']);
-Route::post('/bar/menu/drinks', [BarMenuDrinksController::class, 'store']);
-Route::post('/bar/menu/drinks/{id}', [BarMenuDrinksController::class, 'update']);
-Route::delete('/bar/menu/drinks/{id}', [BarMenuDrinksController::class, 'destroy']);
 
 
 /**
