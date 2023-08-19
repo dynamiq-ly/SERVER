@@ -35,6 +35,7 @@ use App\Http\Controllers\Api\TourAgencyServiceController;
 use App\Http\Controllers\Api\TowelsController;
 
 use App\Http\Controllers\bar\BarsListController;
+use App\Http\Controllers\bar\BarsMenuController;
 use App\Http\Controllers\bar\BarsStaffController;
 
 use App\Http\Controllers\entertainement\EntertainementController;
@@ -259,6 +260,14 @@ Route::prefix('/pension')->group(function () {
  * bars
  */
 Route::prefix('/bars')->group(function () {
+
+    // menu
+    Route::get('/menu', [BarsMenuController::class, 'index']);
+    Route::post('/menu', [BarsMenuController::class, 'store']);
+    Route::get('/menu/{id}', [BarsMenuController::class, 'show']);
+    Route::patch('/menu/{id}', [BarsMenuController::class, 'update']);
+    Route::delete('/menu/{id}', [BarsMenuController::class, 'destroy']);
+
     // staff
     Route::get('/staff', [BarsStaffController::class, 'index']);
     Route::post('/staff', [BarsStaffController::class, 'store']);

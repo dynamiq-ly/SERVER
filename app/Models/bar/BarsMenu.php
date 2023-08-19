@@ -12,9 +12,10 @@ class BarsMenu extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'description',
-        'price',
+        'name',
+        'image',
+        'type',
+        'categories',
         'bar_id',
     ];
 
