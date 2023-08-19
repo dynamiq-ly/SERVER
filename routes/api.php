@@ -36,6 +36,7 @@ use App\Http\Controllers\Api\TowelsController;
 
 use App\Http\Controllers\bar\BarsListController;
 use App\Http\Controllers\bar\BarsMenuAlcoholictDrinkController;
+use App\Http\Controllers\bar\BarsMenuAlcoholictDrinkFeaturesController;
 use App\Http\Controllers\bar\BarsMenuController;
 use App\Http\Controllers\bar\BarsMenuSoftDrinkController;
 use App\Http\Controllers\bar\BarsStaffController;
@@ -262,6 +263,13 @@ Route::prefix('/pension')->group(function () {
  * bars
  */
 Route::prefix('/bars')->group(function () {
+
+    // alcohol drinks feature
+    Route::get('/menu/alcohol-drinks/features', [BarsMenuAlcoholictDrinkFeaturesController::class, 'index']);
+    Route::post('/menu/alcohol-drinks/features', [BarsMenuAlcoholictDrinkFeaturesController::class, 'store']);
+    Route::get('/menu/alcohol-drinks/features/{id}', [BarsMenuAlcoholictDrinkFeaturesController::class, 'show']);
+    Route::patch('/menu/alcohol-drinks/features/{id}', [BarsMenuAlcoholictDrinkFeaturesController::class, 'update']);
+    Route::delete('/menu/alcohol-drinks/features/{id}', [BarsMenuAlcoholictDrinkFeaturesController::class, 'destroy']);
 
     // alcohol drinks
     Route::get('/menu/alcohol-drinks', [BarsMenuAlcoholictDrinkController::class, 'index']);
