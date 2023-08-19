@@ -18,10 +18,10 @@ class BarsMenuController extends Controller
         $query = $request->query('query');
 
         if ($query != null) {
-            return BarsMenu::with('bar')->where('bar_id', $query)->get();
+            return BarsMenu::with('soft', 'alcohol.features')->where('bar_id', $query)->get();
         }
 
-        return BarsMenu::with('bar')->get();
+        return BarsMenu::with('soft', 'alcohol.features')->get();
     }
 
     /**
@@ -56,7 +56,7 @@ class BarsMenuController extends Controller
      */
     public function show($id)
     {
-        return BarsMenu::with('bar')->find($id);
+        return BarsMenu::with('soft', 'alcohol.features', 'bar')->find($id);
     }
 
     /**

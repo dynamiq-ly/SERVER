@@ -35,7 +35,9 @@ use App\Http\Controllers\Api\TourAgencyServiceController;
 use App\Http\Controllers\Api\TowelsController;
 
 use App\Http\Controllers\bar\BarsListController;
+use App\Http\Controllers\bar\BarsMenuAlcoholictDrinkController;
 use App\Http\Controllers\bar\BarsMenuController;
+use App\Http\Controllers\bar\BarsMenuSoftDrinkController;
 use App\Http\Controllers\bar\BarsStaffController;
 
 use App\Http\Controllers\entertainement\EntertainementController;
@@ -260,6 +262,20 @@ Route::prefix('/pension')->group(function () {
  * bars
  */
 Route::prefix('/bars')->group(function () {
+
+    // alcohol drinks
+    Route::get('/menu/alcohol-drinks', [BarsMenuAlcoholictDrinkController::class, 'index']);
+    Route::post('/menu/alcohol-drinks', [BarsMenuAlcoholictDrinkController::class, 'store']);
+    Route::get('/menu/alcohol-drinks/{id}', [BarsMenuAlcoholictDrinkController::class, 'show']);
+    Route::patch('/menu/alcohol-drinks/{id}', [BarsMenuAlcoholictDrinkController::class, 'update']);
+    Route::delete('/menu/alcohol-drinks/{id}', [BarsMenuAlcoholictDrinkController::class, 'destroy']);
+
+    // soft drinks
+    Route::get('/menu/soft-drinks', [BarsMenuSoftDrinkController::class, 'index']);
+    Route::post('/menu/soft-drinks', [BarsMenuSoftDrinkController::class, 'store']);
+    Route::get('/menu/soft-drinks/{id}', [BarsMenuSoftDrinkController::class, 'show']);
+    Route::patch('/menu/soft-drinks/{id}', [BarsMenuSoftDrinkController::class, 'update']);
+    Route::delete('/menu/soft-drinks/{id}', [BarsMenuSoftDrinkController::class, 'destroy']);
 
     // menu
     Route::get('/menu', [BarsMenuController::class, 'index']);

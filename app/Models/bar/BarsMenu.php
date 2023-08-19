@@ -51,7 +51,7 @@ class BarsMenu extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function alcoholic(): HasMany
+    public function alcohol(): HasMany
     {
         return $this->hasMany(BarsAlcoholDrink::class, 'drink_id', 'id');
     }

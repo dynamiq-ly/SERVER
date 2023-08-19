@@ -5,6 +5,7 @@ namespace App\Models\bar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class BarsAlcoholDrink extends Model
 {
@@ -40,5 +41,15 @@ class BarsAlcoholDrink extends Model
     public function menu(): BelongsTo
     {
         return $this->belongsTo(BarsMenu::class, 'drink_id', 'id');
+    }
+
+    /**
+     * Get all of the features for the BarsAlcoholDrink
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function features(): HasMany
+    {
+        return $this->hasMany(BarsAlcoholDrinkFeature::class, 'drink_id', 'id');
     }
 }
