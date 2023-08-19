@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bar_images', function (Blueprint $table) {
+        Schema::create('bars_menus', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
+            $table->string('name');
+            $table->text('image');
+            $table->enum('type', ['soft', 'alcohol']);
+            $table->string('categories')->nullable();
+            $table->foreignId('bar_id')->constrained('bars_lists')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
-            $table->foreignId('bar_id')->constrained('bars')->onDelete('cascade');
         });
     }
 
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bar_images');
+        Schema::dropIfExists('bars_menus');
     }
 };

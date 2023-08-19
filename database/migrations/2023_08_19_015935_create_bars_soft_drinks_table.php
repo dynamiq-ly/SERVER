@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('service_room_mini_bars', function (Blueprint $table) {
+        Schema::create('bars_soft_drinks', function (Blueprint $table) {
             $table->id();
-            $table->string('mini_bar_item_name');
-            $table->float('mini_bar_item_price');
-            $table->enum('min_bar_item_type', ['alcohol', 'soft', 'snacks']);
+            $table->string('name');
+            $table->float('price');
+            $table->text('ingredients');
+            $table->foreignId('drink_id')->constrained('bars_menus')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_room_mini_bars');
+        Schema::dropIfExists('bars_soft_drinks');
     }
 };

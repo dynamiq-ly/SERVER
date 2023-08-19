@@ -8,9 +8,6 @@ use App\Http\Controllers\Api\ActivitiesController;
 use App\Http\Controllers\Api\ActivityListController;
 use App\Http\Controllers\Api\AirConditionnerController;
 use App\Http\Controllers\Api\BankATMController;
-use App\Http\Controllers\Api\BarController;
-use App\Http\Controllers\Api\BarMenuController;
-use App\Http\Controllers\Api\BarMenuDrinksController;
 use App\Http\Controllers\Api\ConnectivityController;
 use App\Http\Controllers\Api\DrinkServiceCategoryController;
 use App\Http\Controllers\Api\ElectricityController;
@@ -36,6 +33,13 @@ use App\Http\Controllers\Api\TourAgencyController;
 use App\Http\Controllers\Api\TourAgencyGuideController;
 use App\Http\Controllers\Api\TourAgencyServiceController;
 use App\Http\Controllers\Api\TowelsController;
+
+use App\Http\Controllers\bar\BarsListController;
+use App\Http\Controllers\bar\BarsMenuAlcoholictDrinkController;
+use App\Http\Controllers\bar\BarsMenuAlcoholictDrinkFeaturesController;
+use App\Http\Controllers\bar\BarsMenuController;
+use App\Http\Controllers\bar\BarsMenuSoftDrinkController;
+use App\Http\Controllers\bar\BarsStaffController;
 
 use App\Http\Controllers\entertainement\EntertainementController;
 use App\Http\Controllers\entertainement\EntertainementDayController;
@@ -254,6 +258,55 @@ Route::prefix('/pension')->group(function () {
     Route::delete('/{id}', [PensionController::class, 'destroy']);
 });
 
+
+/**
+ * bars
+ */
+Route::prefix('/bars')->group(function () {
+
+    // alcohol drinks feature
+    Route::get('/menu/alcohol-drinks/features', [BarsMenuAlcoholictDrinkFeaturesController::class, 'index']);
+    Route::post('/menu/alcohol-drinks/features', [BarsMenuAlcoholictDrinkFeaturesController::class, 'store']);
+    Route::get('/menu/alcohol-drinks/features/{id}', [BarsMenuAlcoholictDrinkFeaturesController::class, 'show']);
+    Route::patch('/menu/alcohol-drinks/features/{id}', [BarsMenuAlcoholictDrinkFeaturesController::class, 'update']);
+    Route::delete('/menu/alcohol-drinks/features/{id}', [BarsMenuAlcoholictDrinkFeaturesController::class, 'destroy']);
+
+    // alcohol drinks
+    Route::get('/menu/alcohol-drinks', [BarsMenuAlcoholictDrinkController::class, 'index']);
+    Route::post('/menu/alcohol-drinks', [BarsMenuAlcoholictDrinkController::class, 'store']);
+    Route::get('/menu/alcohol-drinks/{id}', [BarsMenuAlcoholictDrinkController::class, 'show']);
+    Route::patch('/menu/alcohol-drinks/{id}', [BarsMenuAlcoholictDrinkController::class, 'update']);
+    Route::delete('/menu/alcohol-drinks/{id}', [BarsMenuAlcoholictDrinkController::class, 'destroy']);
+
+    // soft drinks
+    Route::get('/menu/soft-drinks', [BarsMenuSoftDrinkController::class, 'index']);
+    Route::post('/menu/soft-drinks', [BarsMenuSoftDrinkController::class, 'store']);
+    Route::get('/menu/soft-drinks/{id}', [BarsMenuSoftDrinkController::class, 'show']);
+    Route::patch('/menu/soft-drinks/{id}', [BarsMenuSoftDrinkController::class, 'update']);
+    Route::delete('/menu/soft-drinks/{id}', [BarsMenuSoftDrinkController::class, 'destroy']);
+
+    // menu
+    Route::get('/menu', [BarsMenuController::class, 'index']);
+    Route::post('/menu', [BarsMenuController::class, 'store']);
+    Route::get('/menu/{id}', [BarsMenuController::class, 'show']);
+    Route::patch('/menu/{id}', [BarsMenuController::class, 'update']);
+    Route::delete('/menu/{id}', [BarsMenuController::class, 'destroy']);
+
+    // staff
+    Route::get('/staff', [BarsStaffController::class, 'index']);
+    Route::post('/staff', [BarsStaffController::class, 'store']);
+    Route::get('/staff/{id}', [BarsStaffController::class, 'show']);
+    Route::patch('/staff/{id}', [BarsStaffController::class, 'update']);
+    Route::delete('/staff/{id}', [BarsStaffController::class, 'destroy']);
+
+    // bars
+    Route::get('/', [BarsListController::class, 'index']);
+    Route::post('/', [BarsListController::class, 'store']);
+    Route::get('/{id}', [BarsListController::class, 'show']);
+    Route::patch('/{id}', [BarsListController::class, 'update']);
+    Route::delete('/{id}', [BarsListController::class, 'destroy']);
+});
+
 /**
  * restaurant
  */
@@ -344,27 +397,6 @@ Route::prefix('/entertainement')->group(function () {
     // helpers
     Route::get('/weekly-count', [EntertainementController::class, 'totalTiming']);
 });
-
-/**
- * bar
- */
-Route::get('/bar&status={bool}', [BarController::class, 'index'])->where('bool', '1|0|-1');
-Route::get('/bar/{id}', [BarController::class, 'show']);
-Route::post('/bar', [BarController::class, 'store']);
-Route::patch('/bar/{id}', [BarController::class, 'update']);
-Route::delete('/bar/{id}', [BarController::class, 'destroy']);
-// bar menu
-Route::get('/bar/menu/type={id}', [BarMenuController::class, 'index']);
-Route::get('/bar/menu/{id}', [BarMenuController::class, 'show']);
-Route::post('/bar/menu', [BarMenuController::class, 'store']);
-Route::patch('/bar/menu/{id}', [BarMenuController::class, 'update']);
-Route::delete('/bar/menu/{id}', [BarMenuController::class, 'destroy']);
-// bar menu drinks
-Route::get('/bar/menu/drinks/{id}', [BarMenuDrinksController::class, 'index']);
-Route::get('/bar/menu/drinks/search/{id}', [BarMenuDrinksController::class, 'show']);
-Route::post('/bar/menu/drinks', [BarMenuDrinksController::class, 'store']);
-Route::post('/bar/menu/drinks/{id}', [BarMenuDrinksController::class, 'update']);
-Route::delete('/bar/menu/drinks/{id}', [BarMenuDrinksController::class, 'destroy']);
 
 
 /**

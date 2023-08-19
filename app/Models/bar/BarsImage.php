@@ -1,43 +1,33 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\bar;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class BarImage extends Model
+class BarsImage extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
+        'image',
         'bar_id',
-        'image'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
+        'bar_id',
         'created_at',
         'updated_at',
-        'bar_id'
     ];
 
     /**
-     * Get the bar that owns the BarImage
+     * Get the bar that owns the BarsImage
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function bar(): BelongsTo
     {
-        return $this->belongsTo(Bar::class, 'bar_id');
+        return $this->belongsTo(BarsList::class, 'bar_id', 'id');
     }
 }
