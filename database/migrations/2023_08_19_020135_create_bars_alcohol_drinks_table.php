@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('size');
             $table->float('price');
             $table->float('small_price')->nullable();
-            $table->string('category');
+            $table->string('category')->nullable();
             $table->enum('type', ['glass', 'bottle']);
             $table->text('served_slug')->nullable();
             $table->text('served_with')->nullable();
