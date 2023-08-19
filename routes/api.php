@@ -33,7 +33,10 @@ use App\Http\Controllers\Api\TourAgencyController;
 use App\Http\Controllers\Api\TourAgencyGuideController;
 use App\Http\Controllers\Api\TourAgencyServiceController;
 use App\Http\Controllers\Api\TowelsController;
+
 use App\Http\Controllers\bar\BarsListController;
+use App\Http\Controllers\bar\BarsStaffController;
+
 use App\Http\Controllers\entertainement\EntertainementController;
 use App\Http\Controllers\entertainement\EntertainementDayController;
 use App\Http\Controllers\entertainement\EntertainementNightController;
@@ -65,7 +68,6 @@ use App\Http\Controllers\room\RoomCategoryController;
 use App\Http\Controllers\room\RoomAddOnController;
 use App\Http\Controllers\room\RoomController;
 use App\Http\Controllers\room\RoomFeaturesController;
-
 use App\Http\Controllers\room\RoomAddonsManytoManyController;
 
 
@@ -257,6 +259,13 @@ Route::prefix('/pension')->group(function () {
  * bars
  */
 Route::prefix('/bars')->group(function () {
+    // staff
+    Route::get('/staff', [BarsStaffController::class, 'index']);
+    Route::post('/staff', [BarsStaffController::class, 'store']);
+    Route::get('/staff/{id}', [BarsStaffController::class, 'show']);
+    Route::patch('/staff/{id}', [BarsStaffController::class, 'update']);
+    Route::delete('/staff/{id}', [BarsStaffController::class, 'destroy']);
+
     // bars
     Route::get('/', [BarsListController::class, 'index']);
     Route::post('/', [BarsListController::class, 'store']);
