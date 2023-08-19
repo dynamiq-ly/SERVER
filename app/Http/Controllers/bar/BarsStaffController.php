@@ -35,7 +35,7 @@ class BarsStaffController extends Controller
         if ($request->hasFile('image')) {
 
             $imageFile = $request->file('image');
-            $imageFile->store('public/images/bars/staff'); // You might want to change the directory
+            $imageFile->store('public/bars/staff'); // You might want to change the directory
 
             $data = $request->only([
                 'name',
