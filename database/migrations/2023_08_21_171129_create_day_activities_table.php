@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('entertainement_images', function (Blueprint $table) {
+        Schema::create('day_activities', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-            $table->string('image_description')->nullable();
-            $table->foreignId('entertainement_id')->constrained('entertainements')->onDelete('cascade');
+            $table->text('image');
+            $table->string('name');
+            $table->string('description');
+            $table->string('location');
+            $table->boolean('visible')->default(true);
+            $table->boolean('joinable')->default(false);
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entertainement_images');
+        Schema::dropIfExists('day_activities');
     }
 };
