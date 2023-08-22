@@ -13,14 +13,23 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('day_activities', function (Blueprint $table) {
+        Schema::create('night_shows', function (Blueprint $table) {
             $table->id();
             $table->text('image');
             $table->string('name');
             $table->text('description');
-            $table->string('location');
+            $table->string('genre');
             $table->boolean('visible')->default(true);
             $table->boolean('joinable')->default(false);
+
+            $table->text('youtube_link')->nullable();
+            $table->text('website_link')->nullable();
+
+            $table->string('host_name')->nullable();
+            $table->string('host_image')->nullable();
+            $table->string('host_role')->nullable();
+            $table->string('host_description')->nullable();
+
             $table->timestamps();
         });
     }
@@ -32,6 +41,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('day_activities');
+        Schema::dropIfExists('night_shows');
     }
 };

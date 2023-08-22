@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('day_activities', function (Blueprint $table) {
+        Schema::create('night_show_timings', function (Blueprint $table) {
             $table->id();
-            $table->text('image');
-            $table->string('name');
-            $table->text('description');
-            $table->string('location');
-            $table->boolean('visible')->default(true);
-            $table->boolean('joinable')->default(false);
+            $table->string('day');
+            $table->string('start_time');
+            $table->string('end_time')->nullable();
+            $table->string('location')->nullable();
+            $table->foreignId('et_id')->constrained('night_shows')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('day_activities');
+        Schema::dropIfExists('night_show_timings');
     }
 };

@@ -43,9 +43,10 @@ use App\Http\Controllers\bar\BarsStaffController;
 
 use App\Http\Controllers\entertainement\DayActivityController;
 use App\Http\Controllers\entertainement\DayActivityTimingController;
+use App\Http\Controllers\entertainement\NightShowController;
+use App\Http\Controllers\entertainement\NightShowTimingController;
 
 use App\Http\Controllers\hotel\HotelLocationPartsController;
-
 use App\Http\Controllers\Pension\PensionController;
 
 use App\Http\Controllers\restaurant\RestaurantChefController;
@@ -373,11 +374,26 @@ Route::prefix('/entertainement')->group(function () {
     // grouping
     Route::prefix('/grouping')->group(function () {
         Route::get('/days', [DayActivityTimingController::class, 'groupBy']);
+        Route::get('/nights', [NightShowTimingController::class, 'groupBy']);
+    });
+
+    // night shows
+    Route::prefix('/night-shows')->group(function () {
+        Route::get('/timing', [NightShowTimingController::class, 'index']);
+        Route::get('/timing/{id}', [NightShowTimingController::class, 'show']);
+        Route::post('/timing', [NightShowTimingController::class, 'store']);
+        Route::patch('/timing/{id}', [NightShowTimingController::class, 'update']);
+        Route::delete('/timing/{id}', [NightShowTimingController::class, 'destroy']);
+
+        Route::get('/', [NightShowController::class, 'index']);
+        Route::get('/{id}', [NightShowController::class, 'show']);
+        Route::post('/', [NightShowController::class, 'store']);
+        Route::patch('/{id}', [NightShowController::class, 'update']);
+        Route::delete('/{id}', [NightShowController::class, 'destroy']);
     });
 
     // day activities
     Route::prefix('/day-activities')->group(function () {
-
         Route::get('/timing', [DayActivityTimingController::class, 'index']);
         Route::get('/timing/{id}', [DayActivityTimingController::class, 'show']);
         Route::post('/timing', [DayActivityTimingController::class, 'store']);
