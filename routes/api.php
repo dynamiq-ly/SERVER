@@ -45,6 +45,7 @@ use App\Http\Controllers\entertainement\DayActivityController;
 use App\Http\Controllers\entertainement\DayActivityTimingController;
 use App\Http\Controllers\entertainement\NightShowController;
 use App\Http\Controllers\entertainement\NightShowTimingController;
+use App\Http\Controllers\entertainement\SportProgramController;
 
 use App\Http\Controllers\hotel\HotelLocationPartsController;
 use App\Http\Controllers\Pension\PensionController;
@@ -375,6 +376,15 @@ Route::prefix('/entertainement')->group(function () {
     Route::prefix('/grouping')->group(function () {
         Route::get('/days', [DayActivityTimingController::class, 'groupBy']);
         Route::get('/nights', [NightShowTimingController::class, 'groupBy']);
+    });
+
+    // sport program
+    Route::prefix('/sport-programs')->group(function () {
+        Route::get('/', [SportProgramController::class, 'index']);
+        Route::get('/{id}', [SportProgramController::class, 'show']);
+        Route::post('/', [SportProgramController::class, 'store']);
+        Route::patch('/{id}', [SportProgramController::class, 'update']);
+        Route::delete('/{id}', [SportProgramController::class, 'destroy']);
     });
 
     // night shows
