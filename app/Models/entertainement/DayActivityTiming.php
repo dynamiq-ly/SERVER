@@ -19,7 +19,6 @@ class DayActivityTiming extends Model
     ];
 
     protected $hidden = [
-        'et_id',
         'created_at',
         'updated_at',
     ];

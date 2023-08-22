@@ -370,8 +370,14 @@ Route::prefix('/restaurant')->group(function () {
  * entertainment
  */
 Route::prefix('/entertainement')->group(function () {
+    // grouping
+    Route::prefix('/grouping')->group(function () {
+        Route::get('/days', [DayActivityTimingController::class, 'groupBy']);
+    });
+
     // day activities
     Route::prefix('/day-activities')->group(function () {
+
         Route::get('/timing', [DayActivityTimingController::class, 'index']);
         Route::get('/timing/{id}', [DayActivityTimingController::class, 'show']);
         Route::post('/timing', [DayActivityTimingController::class, 'store']);
@@ -384,6 +390,7 @@ Route::prefix('/entertainement')->group(function () {
         Route::patch('/{id}', [DayActivityController::class, 'update']);
         Route::delete('/{id}', [DayActivityController::class, 'destroy']);
     });
+
 });
 
 

@@ -62,4 +62,20 @@ class DayActivityTimingController extends Controller
     {
         return DayActivityTiming::destroy($id);
     }
+
+    /**
+    * fetch data grouped by date and day
+    */
+    public function groupBy(Request $request)
+    {
+        $timings = DayActivityTiming::with('activity')->get();
+        $groupedTimings = $timings->groupBy(function ($timing) {
+            return $timing->day;
+        })->map(function ($group) {
+            return $group->groupBy(function ($timing) {
+                return $timing->start_time;
+            });
+        });
+        return $groupedTimings;
+    }
 }
