@@ -41,13 +41,13 @@ use App\Http\Controllers\bar\BarsMenuController;
 use App\Http\Controllers\bar\BarsMenuSoftDrinkController;
 use App\Http\Controllers\bar\BarsStaffController;
 
-use App\Http\Controllers\entertainement\EntertainementController;
-use App\Http\Controllers\entertainement\EntertainementDayController;
-use App\Http\Controllers\entertainement\EntertainementNightController;
-use App\Http\Controllers\entertainement\EntertainementSportController;
+use App\Http\Controllers\entertainement\DayActivityController;
+use App\Http\Controllers\entertainement\DayActivityTimingController;
+use App\Http\Controllers\entertainement\NightShowController;
+use App\Http\Controllers\entertainement\NightShowTimingController;
+use App\Http\Controllers\entertainement\SportProgramController;
 
 use App\Http\Controllers\hotel\HotelLocationPartsController;
-
 use App\Http\Controllers\Pension\PensionController;
 
 use App\Http\Controllers\restaurant\RestaurantChefController;
@@ -372,30 +372,51 @@ Route::prefix('/restaurant')->group(function () {
  * entertainment
  */
 Route::prefix('/entertainement')->group(function () {
+    // grouping
+    Route::prefix('/grouping')->group(function () {
+        Route::get('/days', [DayActivityTimingController::class, 'groupBy']);
+        Route::get('/nights', [NightShowTimingController::class, 'groupBy']);
+    });
 
-    // sport events
-    Route::get('/sport-events', [EntertainementSportController::class, 'index']);
-    Route::get('/sport-events/{id}', [EntertainementSportController::class, 'show']);
-    Route::post('/sport-events', [EntertainementSportController::class, 'store']);
-    Route::patch('/sport-events/{id}', [EntertainementSportController::class, 'update']);
-    Route::delete('/sport-events/{id}', [EntertainementSportController::class, 'destroy']);
+    // sport program
+    Route::prefix('/sport-programs')->group(function () {
+        Route::get('/', [SportProgramController::class, 'index']);
+        Route::get('/{id}', [SportProgramController::class, 'show']);
+        Route::post('/', [SportProgramController::class, 'store']);
+        Route::patch('/{id}', [SportProgramController::class, 'update']);
+        Route::delete('/{id}', [SportProgramController::class, 'destroy']);
+    });
 
     // night shows
-    Route::get('/night-shows', [EntertainementNightController::class, 'index']);
-    Route::get('/night-shows/{id}', [EntertainementNightController::class, 'show']);
-    Route::post('/night-shows', [EntertainementNightController::class, 'store']);
-    Route::patch('/night-shows/{id}', [EntertainementNightController::class, 'update']);
-    Route::delete('/night-shows/{id}', [EntertainementNightController::class, 'destroy']);
+    Route::prefix('/night-shows')->group(function () {
+        Route::get('/timing', [NightShowTimingController::class, 'index']);
+        Route::get('/timing/{id}', [NightShowTimingController::class, 'show']);
+        Route::post('/timing', [NightShowTimingController::class, 'store']);
+        Route::patch('/timing/{id}', [NightShowTimingController::class, 'update']);
+        Route::delete('/timing/{id}', [NightShowTimingController::class, 'destroy']);
+
+        Route::get('/', [NightShowController::class, 'index']);
+        Route::get('/{id}', [NightShowController::class, 'show']);
+        Route::post('/', [NightShowController::class, 'store']);
+        Route::patch('/{id}', [NightShowController::class, 'update']);
+        Route::delete('/{id}', [NightShowController::class, 'destroy']);
+    });
 
     // day activities
-    Route::get('/day-activities', [EntertainementDayController::class, 'index']);
-    Route::get('/day-activities/{id}', [EntertainementDayController::class, 'show']);
-    Route::post('/day-activities', [EntertainementDayController::class, 'store']);
-    Route::patch('/day-activities/{id}', [EntertainementDayController::class, 'update']);
-    Route::delete('/day-activities/{id}', [EntertainementDayController::class, 'destroy']);
+    Route::prefix('/day-activities')->group(function () {
+        Route::get('/timing', [DayActivityTimingController::class, 'index']);
+        Route::get('/timing/{id}', [DayActivityTimingController::class, 'show']);
+        Route::post('/timing', [DayActivityTimingController::class, 'store']);
+        Route::patch('/timing/{id}', [DayActivityTimingController::class, 'update']);
+        Route::delete('/timing/{id}', [DayActivityTimingController::class, 'destroy']);
 
-    // helpers
-    Route::get('/weekly-count', [EntertainementController::class, 'totalTiming']);
+        Route::get('/', [DayActivityController::class, 'index']);
+        Route::get('/{id}', [DayActivityController::class, 'show']);
+        Route::post('/', [DayActivityController::class, 'store']);
+        Route::patch('/{id}', [DayActivityController::class, 'update']);
+        Route::delete('/{id}', [DayActivityController::class, 'destroy']);
+    });
+
 });
 
 
