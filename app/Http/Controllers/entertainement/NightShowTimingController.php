@@ -68,7 +68,7 @@ class NightShowTimingController extends Controller
      */
     public function groupBy(Request $request)
     {
-        $timings = NightShowTiming::with('night')->get();
+        $timings = NightShowTiming::with('night.timing')->get();
         $groupedTimings = $timings->groupBy(function ($timing) {
             return $timing->day;
         })->map(function ($group) {

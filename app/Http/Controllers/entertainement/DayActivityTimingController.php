@@ -68,7 +68,7 @@ class DayActivityTimingController extends Controller
     */
     public function groupBy(Request $request)
     {
-        $timings = DayActivityTiming::with('activity')->get();
+        $timings = DayActivityTiming::with('activity.timing')->get();
         $groupedTimings = $timings->groupBy(function ($timing) {
             return $timing->day;
         })->map(function ($group) {

@@ -34,7 +34,7 @@ class DayActivityController extends Controller
     public function store(Request $request)
     {
         if ($request->hasFile('image')) {
-            $request->file('image')->store('public/entertainement/days');
+            $request->file('image')->store('public/entertainment/days');
             return DayActivity::create([
                 'image' => $request->file('image')->hashName(),
                 'name' => $request->input('name'),
@@ -78,7 +78,7 @@ class DayActivityController extends Controller
         ];
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/entertainement/days');
+            $imagePath = $request->file('image')->store('public/entertainment/days');
             $data['image'] = $imagePath;
         }
 

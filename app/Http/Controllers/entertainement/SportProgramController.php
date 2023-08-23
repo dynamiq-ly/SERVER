@@ -36,17 +36,17 @@ class SportProgramController extends Controller
 
         // Handle image uploads for banner_image, home_team_logo, and away_team_logo
         if ($request->hasFile('banner_image')) {
-            $request->file('banner_image')->store('public/entertainement/sports');
+            $request->file('banner_image')->store('public/entertainment/sports');
             $data['banner_image'] = $request->file('banner_image')->hashName();
         }
 
         if ($request->hasFile('home_team_logo')) {
-            $request->file('home_team_logo')->store('public/entertainement/sports');
+            $request->file('home_team_logo')->store('public/entertainment/sports');
             $data['home_team_logo'] =  $request->file('home_team_logo')->hashName();
         }
 
         if ($request->hasFile('away_team_logo')) {
-            $request->file('away_team_logo')->store('public/entertainement/sports');
+            $request->file('away_team_logo')->store('public/entertainment/sports');
             $data['away_team_logo'] = $request->file('away_team_logo')->hashName();
         }
 
