@@ -28,8 +28,8 @@ return new class extends Migration
             $table->text('banner_image')->nullable();
 
 
-            $table->string('home_team_name');
-            $table->text('home_team_logo');
+            $table->string('home_team_name')->nullable();
+            $table->text('home_team_logo')->nullable();
 
             $table->string('away_team_name')->nullable();
             $table->text('away_team_logo')->nullable();

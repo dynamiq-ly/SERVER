@@ -79,7 +79,7 @@ class DayActivityController extends Controller
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('public/entertainment/days');
-            $data['image'] = $imagePath;
+            $data['image'] = $request->file('image')->hashName();
         }
 
         $dayActivity->update($data);

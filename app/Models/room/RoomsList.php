@@ -24,7 +24,6 @@ class RoomsList extends Model
     ];
 
     protected $hidden = [
-        'room_id',
         'created_at',
         'updated_at',
     ];

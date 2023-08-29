@@ -26,7 +26,6 @@ class PointOfInterest extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
-        'point_id'
     ];
 
     /**
