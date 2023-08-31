@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hotel_location_parts', function (Blueprint $table) {
-            $table->string('location_name')->unique();
-            $table->string('location_description')->nullable();
-            $table->enum('location_restriction', ['PUBLIC', 'PRIVATE', 'RESTRICTED', 'HIDDEN']);
+        Schema::create('location_managers', function (Blueprint $table) {
+            $table->id();
+            $table->string('label')->unique();
+            $table->boolean('belongToHotel')->default(true);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hotel_location_parts');
+        Schema::dropIfExists('location_managers');
     }
 };
