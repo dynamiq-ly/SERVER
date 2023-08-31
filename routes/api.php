@@ -48,7 +48,8 @@ use App\Http\Controllers\entertainement\NightShowTimingController;
 use App\Http\Controllers\entertainement\SportProgramController;
 
 use App\Http\Controllers\helpers\AgeManagerController;
-use App\Http\Controllers\hotel\HotelLocationPartsController;
+use App\Http\Controllers\helpers\LocationManagerController;
+
 use App\Http\Controllers\Pension\PensionController;
 
 use App\Http\Controllers\restaurant\RestaurantChefController;
@@ -65,7 +66,6 @@ use App\Http\Controllers\policies\hotel\HotelPoliciesController;
 use App\Http\Controllers\gym\GymController;
 use App\Http\Controllers\gym\GymEquipementController;
 use App\Http\Controllers\gym\GymStaffController;
-
 use App\Http\Controllers\point\PointOfInterestCategoryController;
 use App\Http\Controllers\point\PointOfInterestController;
 
@@ -105,12 +105,16 @@ Route::prefix('/helpers')->group(function () {
     });
 
     // location manager
-    Route::prefix('location-parts')->group(function () {
-        Route::get('/', [HotelLocationPartsController::class, 'index']);
-        Route::post('/', [HotelLocationPartsController::class, 'store']);
-        Route::get('/{id}', [HotelLocationPartsController::class, 'show']);
-        Route::patch('/{id}', [HotelLocationPartsController::class, 'update']);
-        Route::delete('/{id}', [HotelLocationPartsController::class, 'destroy']);
+    Route::prefix('location-manager')->group(function () {
+        Route::get('/',
+            [LocationManagerController::class, 'index']
+        );
+        Route::post('/',
+            [LocationManagerController::class, 'store']
+        );
+        Route::get('/{id}', [LocationManagerController::class, 'show']);
+        Route::patch('/{id}', [LocationManagerController::class, 'update']);
+        Route::delete('/{id}', [LocationManagerController::class, 'destroy']);
     });
 });
 

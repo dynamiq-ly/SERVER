@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\hotel;
+namespace App\Http\Controllers\helpers;
 
 use App\Http\Controllers\Controller;
-use App\Models\HotelLocationParts;
+use App\Models\helpers\LocationManager;
 use Illuminate\Http\Request;
 
-class HotelLocationPartsController extends Controller
+class LocationManagerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class HotelLocationPartsController extends Controller
      */
     public function index()
     {
-        return HotelLocationParts::all();
+        return LocationManager::all();
     }
 
     /**
@@ -26,7 +26,7 @@ class HotelLocationPartsController extends Controller
      */
     public function store(Request $request)
     {
-        return HotelLocationParts::create($request->all());
+        return LocationManager::create($request->all());
     }
 
     /**
@@ -37,7 +37,7 @@ class HotelLocationPartsController extends Controller
      */
     public function show($id)
     {
-        return HotelLocationParts::where('location_name', $id)->firstOrFail();
+        return LocationManager::find($id);
     }
 
     /**
@@ -49,7 +49,7 @@ class HotelLocationPartsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return HotelLocationParts::where('location_name', $id)->update($request->all());
+        return LocationManager::find($id)->update($request->all());
     }
 
     /**
@@ -60,6 +60,6 @@ class HotelLocationPartsController extends Controller
      */
     public function destroy($id)
     {
-        HotelLocationParts::where('location_name', $id)->delete();
+        return LocationManager::destroy($id);
     }
 }
