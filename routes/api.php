@@ -47,6 +47,7 @@ use App\Http\Controllers\entertainement\NightShowController;
 use App\Http\Controllers\entertainement\NightShowTimingController;
 use App\Http\Controllers\entertainement\SportProgramController;
 
+use App\Http\Controllers\helpers\AgeManagerController;
 use App\Http\Controllers\hotel\HotelLocationPartsController;
 use App\Http\Controllers\Pension\PensionController;
 
@@ -93,13 +94,24 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 /**
  * hotel
  */
-Route::prefix('/hotel')->group(function () {
-    // location parts
-    Route::get('/location-parts', [HotelLocationPartsController::class, 'index']);
-    Route::post('/location-parts', [HotelLocationPartsController::class, 'store']);
-    Route::get('/location-parts/{id}', [HotelLocationPartsController::class, 'show']);
-    Route::patch('/location-parts/{id}', [HotelLocationPartsController::class, 'update']);
-    Route::delete('/location-parts/{id}', [HotelLocationPartsController::class, 'destroy']);
+Route::prefix('/helpers')->group(function () {
+    // age manger
+    Route::prefix('age-manager')->group(function () {
+        Route::get('/', [AgeManagerController::class, 'index']);
+        Route::post('/', [AgeManagerController::class, 'store']);
+        Route::get('/{id}', [AgeManagerController::class, 'show']);
+        Route::patch('/{id}', [AgeManagerController::class, 'update']);
+        Route::delete('/{id}', [AgeManagerController::class, 'destroy']);
+    });
+
+    // location manager
+    Route::prefix('location-parts')->group(function () {
+        Route::get('/', [HotelLocationPartsController::class, 'index']);
+        Route::post('/', [HotelLocationPartsController::class, 'store']);
+        Route::get('/{id}', [HotelLocationPartsController::class, 'show']);
+        Route::patch('/{id}', [HotelLocationPartsController::class, 'update']);
+        Route::delete('/{id}', [HotelLocationPartsController::class, 'destroy']);
+    });
 });
 
 /**
