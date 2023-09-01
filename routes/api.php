@@ -11,7 +11,6 @@ use App\Http\Controllers\Api\BankATMController;
 use App\Http\Controllers\Api\ConnectivityController;
 use App\Http\Controllers\Api\DrinkServiceCategoryController;
 use App\Http\Controllers\Api\ElectricityController;
-use App\Http\Controllers\Api\FileManagerController;
 use App\Http\Controllers\Api\FoodServiceController;
 use App\Http\Controllers\Api\FoodServicePlateController;
 use App\Http\Controllers\Api\FoodServicePlateSupplementController;
@@ -49,6 +48,7 @@ use App\Http\Controllers\entertainement\SportProgramController;
 
 use App\Http\Controllers\helpers\AgeManagerController;
 use App\Http\Controllers\helpers\LocationManagerController;
+use App\Http\Controllers\helpers\FileSystemManagerController;
 
 use App\Http\Controllers\Pension\PensionController;
 
@@ -95,6 +95,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  * hotel
  */
 Route::prefix('/helpers')->group(function () {
+
+    // disk manager
+    Route::prefix('/file-manager')->group(function () {
+        Route::get('/files', [FileSystemManagerController::class, 'getFiles']);
+        Route::get('/directories', [FileSystemManagerController::class, 'getAllDirectories']);
+        Route::get('/detailed-file-structure', [FileSystemManagerController::class, 'getStructuredFiles']);
+    });
+
     // age manger
     Route::prefix('age-manager')->group(function () {
         Route::get('/', [AgeManagerController::class, 'index']);
@@ -117,12 +125,6 @@ Route::prefix('/helpers')->group(function () {
         Route::delete('/{id}', [LocationManagerController::class, 'destroy']);
     });
 });
-
-/**
- * file system manager
- */
-Route::get('/file-manager', [FileManagerController::class, 'getFiles']);
-Route::get('/file-manager/directories', [FileManagerController::class, 'getAllDirectories']);
 
 /**
  * reminder call api
