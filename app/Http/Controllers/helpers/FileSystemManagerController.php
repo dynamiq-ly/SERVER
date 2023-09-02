@@ -4,23 +4,82 @@ namespace App\Http\Controllers\helpers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class FileSystemManagerController extends Controller
 {
     public function getAllDirectories()
     {
-        $directories = Storage::disk('public')->directories();
-        sort($directories);
-        $data = [];
-        foreach ($directories as $id => $directory) {
-            $data[] = [
-                'id' => $directory,
-                'directory' => str_replace("_", " ", $directory)
-            ];
+        try {
+            $directories = Storage::disk('public')->directories();
+            sort($directories);
+            $data = [];
+
+            foreach ($directories as $directory) {
+                $directoryPath = storage_path('app/public/' . $directory);
+
+                if (is_dir($directoryPath)) {
+                    $directorySize = $this->getDirectorySize($directoryPath);
+                    $creationDate = $this->getDirectoryCreationDate($directoryPath);
+
+                    $data[] = [
+                        'id' => $directory,
+                        'directory' => str_replace("_", " ", $directory),
+                        'size' => $this->formatSizeUnits($directorySize),
+                        'creation_date' => $creationDate,
+                    ];
+                } else {
+                    // Handle the case where $directoryPath is not a directory
+                }
+            }
+
+            return response()->json($data);
+        } catch (\Exception $e) {
+            // Handle any exceptions that might occur
+            return response()->json(['error' => $e->getMessage()], 500);
         }
-        return response()->json($data);
     }
+
+    private function getDirectorySize($directory)
+    {
+        $totalSize = 0;
+
+        foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directory)) as $file) {
+            if ($file->isFile()) {
+                $totalSize += $file->getSize();
+            }
+        }
+
+        return $totalSize;
+    }
+
+    private function formatSizeUnits($bytes)
+    {
+        $units = ['B', 'KB', 'MB', 'GB', 'TB'];
+
+        for ($i = 0; $bytes >= 1024 && $i < 4; $i++) {
+            $bytes /= 1024;
+        }
+
+        return round($bytes, 2) . ' ' . $units[$i];
+    }
+
+    private function getDirectoryCreationDate($directory)
+    {
+        if (is_dir($directory)) {
+            // Use filectime() to get the inode change time (or creation time on Windows if supported)
+            $timestamp = filectime($directory);
+
+            // Format the timestamp as a human-readable date
+            return date('Y-m-d H:i:s', $timestamp);
+        }
+
+        return null;
+    }
+
+
+
 
     public function getStructuredFiles()
     {
