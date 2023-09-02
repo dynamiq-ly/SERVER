@@ -177,4 +177,29 @@ class FileSystemManagerController extends Controller
         }
     }
 
+    public function getFileDetails(Request $request)
+    {
+        $filePath = $request->input('id');
+
+        if (Storage::disk('public')->exists($filePath)) {
+            $size = Storage::disk('public')->size($filePath);
+            $mimeType = Storage::disk('public')->mimeType($filePath);
+            $lastModified = Storage::disk('public')->lastModified($filePath);
+
+            // Extract the file name from the file path
+            $fileName = pathinfo($filePath)['basename'];
+
+            return response()->json([
+                'file_path' => $filePath,
+                'file_name' => $fileName,
+                'size' => $size, // Size in bytes
+                'size_formatted' => $this->formatSizeUnits($size), // Formatted size (KB, MB, GB, etc.)
+                'mime_type' => $mimeType,
+                'last_modified' => date('Y-m-d H:i:s', $lastModified),
+            ]);
+        } else {
+            return response()->json(['error' => 'File not found'], 404);
+        }
+    }
+
 }
