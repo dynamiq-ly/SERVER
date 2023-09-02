@@ -163,4 +163,18 @@ class FileSystemManagerController extends Controller
 
         return response()->json($data);
     }
+
+
+    public function deleteFile(Request $request)
+    {
+        try {
+            // Use the 'public' disk (you can change the disk if needed)
+            Storage::disk('public')->delete($request->id);
+
+            return response()->json(['message' => 'File deleted successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
 }

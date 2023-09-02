@@ -99,6 +99,7 @@ Route::prefix('/helpers')->group(function () {
     // disk manager
     Route::prefix('/file-manager')->group(function () {
         Route::get('/files', [FileSystemManagerController::class, 'getFiles']);
+        Route::delete('/files', [FileSystemManagerController::class, 'deleteFile']);
         Route::get('/directories', [FileSystemManagerController::class, 'getAllDirectories']);
         Route::get('/detailed-file-structure', [FileSystemManagerController::class, 'getStructuredFiles']);
     });
