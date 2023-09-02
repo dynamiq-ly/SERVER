@@ -139,19 +139,28 @@ class FileSystemManagerController extends Controller
     {
         $files = Storage::disk('public')->allFiles();
         $data = [];
+
         foreach ($files as $file) {
             $dir = pathinfo($file)['dirname'];
             $filename = pathinfo($file)['basename'];
             $extension = pathinfo($file)['extension']; // Extract the file extension
+
+            // Get the full URL
+            $fullUrl = Storage::disk('public')->url($file);
+
+            // Extract the part of the URL starting from "storage/"
+            $pathStartingFromStorage = substr($fullUrl, strpos($fullUrl, 'storage/'));
+
             $data[] = [
                 'dir' => $dir,
                 'filename' => $filename,
                 'size' => Storage::disk('public')->size($file),
                 'extension' => $extension, // Store the extension in 'extension'
                 'last_modified' => Storage::disk('public')->lastModified($file),
-                'url' => Storage::disk('public')->url($file),
+                'url' => $pathStartingFromStorage, // Extracted path starting from "storage/"
             ];
         }
+
         return response()->json($data);
     }
 }
