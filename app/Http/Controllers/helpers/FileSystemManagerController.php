@@ -202,4 +202,21 @@ class FileSystemManagerController extends Controller
         }
     }
 
+    public function storeFiles(Request $request)
+    {
+
+        $name = $request->name;
+        $feature = $request->feature;
+        $pathToStore = $request->path;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = str_replace(' ', '_', $name) . time() . '.' . $image->extension();
+            $image->storeAs('public/' . $feature . "/" . $pathToStore, $imageName);
+            return $imageName;
+        }
+
+        return response()->json(['message' => 'No images found'], 400);
+    }
+
 }
