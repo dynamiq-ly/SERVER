@@ -46,30 +46,26 @@ class BarsListController extends Controller
             'visible',
         ]);
 
-        if ($request->hasFile('images')) {
+        if ($request->has('images') && is_array($request->images)) {
+            $images = $request->images;
 
-            if ($request->hasFile('menu_a_la_carte')) {
-                $menuFile = $request->file('menu_a_la_carte');
-                $menuFile->store('public/pdf/menus/bar'); // You might want to change the directory
+            if (!empty($images)) {
+                $bar = BarsList::create($data);
 
-                $data['menu_a_la_carte'] = $menuFile->hashName();
+                /* image handling */
+                foreach ($images as $imageName) {
+                    // You may want to validate the image filename here
+                    $bar->images()->create([
+                        'image' => $imageName,
+                        'bar_id' => $bar->id
+                    ]);
+                }
+
+                return $bar;
             }
-
-            $bar = BarsList::create($data);
-
-            /* image handling */
-            foreach ($request->file('images') as $image) {
-                $image->store('public/bars');
-                $bar->images()->create([
-                    'image' => $image->hashName(),
-                    'bar_id' => $bar->id
-                ]);
-            }
-
-            return $bar;
         }
-        return response()->json([
-            'message' => 'Please upload at least one image'
+
+        return response()->json(['message' => 'Please provide an array of image filenames'
         ], 422);
     }
 
@@ -91,11 +87,12 @@ class BarsListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
         // Find the existing BarsList record by ID
         $bar = BarsList::findOrFail($id);
-
+    
         // Extract the input data from the request
         $data = $request->only([
             'title',
@@ -111,31 +108,38 @@ class BarsListController extends Controller
         ]);
 
         // Handle images if provided
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $image->store('public/bars');
+        if ($request->has('images') && is_array($request->images)) {
+            // Delete existing images associated with the bar
+            $bar->images()->delete();
+
+            foreach ($request->images as $imageName) {
+                // You may want to validate the image filename here
                 $bar->images()->create([
-                    'image' => $image->hashName(),
+                    'image' => $imageName,
                     'bar_id' => $bar->id
                 ]);
             }
         }
-
+    
         // Handle menu_a_la_carte file if provided
         if ($request->hasFile('menu_a_la_carte')) {
             $menuFile = $request->file('menu_a_la_carte');
             $menuFile->store('public/pdf/menus/bar'); // You might want to change the directory
-
+    
             $data['menu_a_la_carte'] = $menuFile->hashName();
         }
-
+    
         if ($request->delete_pdf !== null) {
+            // Delete the existing menu_a_la_carte file
             $data['menu_a_la_carte'] = null;
         }
 
         // Update the BarsList record with the modified data
-        return $bar->update($data);
+        $bar->update($data);
+
+        return $bar;
     }
+    
 
     /**
      * Remove the specified resource from storage.
