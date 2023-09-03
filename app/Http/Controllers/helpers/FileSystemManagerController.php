@@ -139,28 +139,36 @@ class FileSystemManagerController extends Controller
     {
         $files = Storage::disk('public')->allFiles();
         $data = [];
-
+    
         foreach ($files as $file) {
             $dir = pathinfo($file)['dirname'];
             $filename = pathinfo($file)['basename'];
-            $extension = pathinfo($file)['extension']; // Extract the file extension
-
+            $extension = pathinfo($file)['extension'];
+    
             // Get the full URL
             $fullUrl = Storage::disk('public')->url($file);
-
+    
             // Extract the part of the URL starting from "storage/"
             $pathStartingFromStorage = substr($fullUrl, strpos($fullUrl, 'storage/'));
 
+            // Retrieve the creation date (you may need to store this information when uploading files)
+            $creationDate = Storage::disk('public')->lastModified($file);
+    
             $data[] = [
                 'dir' => $dir,
                 'filename' => $filename,
                 'size' => Storage::disk('public')->size($file),
-                'extension' => $extension, // Store the extension in 'extension'
-                'last_modified' => Storage::disk('public')->lastModified($file),
-                'url' => $pathStartingFromStorage, // Extracted path starting from "storage/"
+                'extension' => $extension,
+                'creation_date' => $creationDate, // Store the creation date
+                'url' => $pathStartingFromStorage,
             ];
         }
 
+        // Sort the files by creation date in descending order
+        usort($data, function ($a, $b) {
+            return $b['creation_date'] - $a['creation_date'];
+        });
+    
         return response()->json($data);
     }
 
